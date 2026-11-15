@@ -153,5 +153,33 @@
     "Polish": "Rola pośrednika lepiej handluje i się targuje, taniej negocjuje, wydobywa szybciej i więcej, szybko uczy się elokwencji i górnictwa oraz woli handel, rzemiosło, górnictwo i sztukę.",
     "Turkish": "Komisyoncu rolü daha iyi ticaret ve pazarlık yapar, daha ucuza müzakere eder, daha hızlı ve daha çok kazı yapar, Hitabet ve Madencilikte hızla gelişir ve ticaret, zanaat, madencilik ve sanatı tercih eder.",
     "Italian": "Il ruolo di mediatore commercia e contratta meglio, negozia a minor costo, scava più in fretta e di più, impara rapidamente Eloquenza e Estrazione e preferisce commercio, artigianato, estrazione e arte."
+  },
+  "More_Creation_Points": {
+    "English": "New settlers: up to 1000 creation points, 40 perks and 20 passions.",
+    "Chinese": "新定居者：最多1000创建点数、40个特质和20个热情。",
+    "French": "Nouveaux colons : jusqu'à 1000 points de création, 40 atouts et 20 passions.",
+    "Spanish": "Nuevos colonos: hasta 1000 puntos de creación, 40 rasgos y 20 pasiones.",
+    "German": "Neue Siedler: bis zu 1000 Erstellungspunkte, 40 Eigenschaften und 20 Leidenschaften.",
+    "Russian": "Новые поселенцы: до 1000 очков создания, 40 особенностей и 20 увлечений.",
+    "Japanese": "新しい入植者：作成ポイント最大1000、特性40、情熱20。",
+    "Portugese": "Novos colonos: até 1000 pontos de criação, 40 vantagens e 20 paixões.",
+    "Korean": "새 정착민: 생성 포인트 최대 1000, 특성 40개, 열정 20개.",
+    "Polish": "Nowi osadnicy: do 1000 punktów tworzenia, 40 atutów i 20 pasji.",
+    "Turkish": "Yeni yerleşimciler: en fazla 1000 oluşturma puanı, 40 özellik ve 20 tutku.",
+    "Italian": "Nuovi coloni: fino a 1000 punti creazione, 40 tratti e 20 passioni."
+  },
+  "Urgent_Body": {
+    "English": "Burying, burning and stripping bodies move to Urgent Haul, so they get done first.",
+    "Chinese": "埋葬、焚烧和剥除尸体移至紧急搬运，优先完成。",
+    "French": "Enterrer, brûler et dépouiller les corps passent au transport urgent et sont faits en priorité.",
+    "Spanish": "Enterrar, quemar y despojar cuerpos pasan a Transporte urgente, así se hacen primero.",
+    "German": "Leichen begraben, verbrennen und ausziehen wird zu dringendem Transport und zuerst erledigt.",
+    "Russian": "Захоронение, сжигание и раздевание тел перенесены в срочную переноску и выполняются первыми.",
+    "Japanese": "遺体の埋葬・焼却・剥ぎ取りを緊急運搬に移し、優先して行います。",
+    "Portugese": "Enterrar, queimar e despir corpos passam para Transporte urgente e são feitos primeiro.",
+    "Korean": "시체 매장, 소각, 벗기기가 긴급 운반으로 옮겨져 먼저 처리됩니다.",
+    "Polish": "Grzebanie, palenie i rozbieranie ciał trafia do pilnego transportu, więc dzieje się najpierw.",
+    "Turkish": "Ceset gömme, yakma ve soyma Acil Taşıma'ya taşınır, böylece önce yapılır.",
+    "Italian": "Seppellire, bruciare e spogliare i corpi passano al Trasporto urgente e vengono fatti per primi."
   }
 }

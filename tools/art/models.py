@@ -196,3 +196,41 @@ def broker_scale():
     m.box((0.62, 0.32, 0.18), (0.04, 0.62, 0.04), WOOD_L)
     m.box((0.62, 0.62, 0.18), (0.36, 0.05, 0.05), IRON)
     return m
+
+
+def creation_book():
+    """More Creation Points: an open ledger on a lectern, a quill, and a heap of gold tokens."""
+    m = Model()
+    PAGE, INK = (240, 228, 196), (60, 50, 60)
+    m.box((0, 0.35, 0), (0.12, 0.7, 0.12), WOOD_D, top=WOOD)                     # lectern post
+    m.box((0, 0.04, 0), (0.5, 0.08, 0.4), WOOD_D, top=WOOD)                      # foot
+    m.box((0, 0.74, 0), (0.86, 0.06, 0.56), WOOD_D, top=WOOD)                    # desk
+    for s in (-1, 1):                                                            # open pages
+        m.box((s * 0.2, 0.8, 0), (0.38, 0.05, 0.48), (200, 186, 150), top=PAGE)
+        for i in range(4):
+            m.box((s * 0.2, 0.83, -0.14 + i * 0.09), (0.26, 0.005, 0.02), INK)
+    m.box((0.32, 0.86, 0.12), (0.02, 0.02, 0.4), (250, 250, 245))                # quill
+    for i, (x, z) in enumerate([(-0.55, 0.3), (-0.45, 0.42), (-0.62, 0.48), (-0.5, 0.56)]):
+        for k in range(3 - i % 2):
+            m.cylinder((x, 0.02 + k * 0.03, z), 0.08, 0.025, GOLD, seg=12)
+    return m
+
+
+def body_pyre():
+    """Urgent Haul - Bodies: a burning pyre of logs with a shovel in a fresh mound beside it."""
+    m = Model()
+    FLAME, FLAME_L, EARTH = (240, 120, 40), (255, 210, 90), (120, 84, 56)
+    for layer in range(3):                                                        # crossed log stack
+        y = 0.08 + layer * 0.14
+        for i in range(4):
+            off = -0.3 + i * 0.2
+            if layer % 2 == 0:
+                m.cylinder((off, y, 0), 0.07, 0.9, WOOD_D, seg=8, axis="z", top=WOOD_L)
+            else:
+                m.cylinder((0, y, off), 0.07, 0.9, WOOD_D, seg=8, axis="x", top=WOOD_L)
+    m.lathe((0, 0.4, 0), [(0.38, 0.0), (0.3, 0.3), (0.14, 0.6), (0.0, 0.85)], FLAME, seg=10)
+    m.lathe((0.04, 0.42, 0.04), [(0.2, 0.0), (0.14, 0.25), (0.0, 0.5)], FLAME_L, seg=8)
+    m.lathe((0.85, 0, -0.35), [(0.42, 0.0), (0.3, 0.12), (0.0, 0.2)], EARTH, seg=12)   # mound
+    m.box((0.85, 0.78, -0.35), (0.04, 0.7, 0.04), WOOD_L)                          # shovel handle
+    m.box((0.85, 0.32, -0.35), (0.22, 0.3, 0.04), IRON)                           # blade
+    return m

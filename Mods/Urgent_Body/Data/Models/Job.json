@@ -12,9 +12,10 @@
           ]
         }
       ],
-      "goals": [
-        "StockpileHaulingGoal",
-        "BarrelFillGoal"
+      "goals#REMOVE": [
+        "BuryBodyGoal",
+        "ProductionCarcassDisposalGoal",
+        "StripCarcassGoal"
       ]
     },
     {
@@ -31,8 +32,7 @@
           ]
         }
       ],
-      "goals": [
-        "StockpileUrgentHaulingGoal",
+      "goals#APPEND": [
         "BuryBodyGoal",
         "ProductionCarcassDisposalGoal",
         "StripCarcassGoal"
