@@ -1,12 +1,12 @@
 {
   "repository": [
     {
+      "id": "preserving_food_lvl1",
       "unlocks#APPEND": [
         {
           "unlockId": "cold_shelf"
         }
-      ],
-      "id": "preserving_food_lvl1"
+      ]
     }
   ]
 }

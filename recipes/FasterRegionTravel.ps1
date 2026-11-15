@@ -1,3 +1,4 @@
+﻿# SPDX-License-Identifier: MIT  (Copyright (c) 2026 phrontisteries; see LICENSE)
 $caravanTravelDurationMultiplier = 0.01
 function Set-FasterRegionTravel_ModInfo {
     # Process will use first available: HERE, existing ModInfo.json (auto-versioning), lastly as generic defaults

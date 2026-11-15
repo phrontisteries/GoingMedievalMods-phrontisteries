@@ -1,6 +1,7 @@
 {
   "repository": [
     {
+      "id": "cold_storage",
       "maxPileCount": 10,
       "storableResourceGroups": [
         "Apparel",
@@ -22,8 +23,7 @@
         "Grandoak",
         "Grandbook"
       ],
-      "zonePriority": 1,
-      "id": "cold_storage"
+      "zonePriority": 1
     }
   ]
 }

@@ -1,3 +1,4 @@
+﻿# SPDX-License-Identifier: MIT  (Copyright (c) 2026 phrontisteries; see LICENSE)
 <#
 .SYNOPSIS
     Checks Going Medieval mod folders against the installed game's data.
@@ -56,7 +57,7 @@ function Add-Paths {
 }
 
 function Get-Paths($Node) {
-    $set = [System.Collections.Generic.HashSet[string]]::new()
+    $set = New-Object System.Collections.Generic.HashSet[string]
     Add-Paths $Node "" $set
     return $set
 }
@@ -72,7 +73,7 @@ if ($Mod) { $modDirs = $modDirs | Where-Object { $Mod -contains $_.Name } }
 
 foreach ($dir in $modDirs) {
     Write-Host "== $($dir.Name)" -ForegroundColor Cyan
-    $info = Get-Content (Join-Path $dir.FullName "ModInfo.json") -Raw | ConvertFrom-Json
+    $info = Read-JsonFile (Join-Path $dir.FullName "ModInfo.json")
     if ($info.gameVersion -and $Global:GameVersion -and $info.gameVersion -ne $Global:GameVersion) {
         Write-Finding WARN ver "ModInfo.json" "gameVersion $($info.gameVersion), game is $($Global:GameVersion)"
     }
@@ -81,8 +82,8 @@ foreach ($dir in $modDirs) {
         if (-not $script:gameFiles.ContainsKey($file.Name)) {
             Write-Finding ERROR file $file.Name "no game file with this name"; continue
         }
-        $modJson = Get-Content $file.FullName -Raw | ConvertFrom-Json
-        $gameJson = Get-Content $script:gameFiles[$file.Name] -Raw | ConvertFrom-Json
+        $modJson = Read-JsonFile $file.FullName
+        $gameJson = Read-JsonFile $script:gameFiles[$file.Name]
 
         if ($gameJson.PSObject.Properties.Name -contains 'repository' -and $modJson.PSObject.Properties.Name -contains 'repository') {
             $byId = @{}
@@ -126,9 +127,9 @@ foreach ($dir in $modDirs) {
     if (Test-Path $shelfPath) {
         $piles = @{}
         foreach ($src in @($script:gameFiles["UniversalStorage.json"], (Join-Path $models "UniversalStorage.json"))) {
-            if ($src -and (Test-Path $src)) { foreach ($s in (Get-Content $src -Raw | ConvertFrom-Json).repository) { $piles[[string]$s.id] = $s.maxPileCount } }
+            if ($src -and (Test-Path $src)) { foreach ($s in (Read-JsonFile $src).repository) { $piles[[string]$s.id] = $s.maxPileCount } }
         }
-        foreach ($shelf in (Get-Content $shelfPath -Raw | ConvertFrom-Json).repository) {
+        foreach ($shelf in (Read-JsonFile $shelfPath).repository) {
             $sets = @($shelf.multipleTransformSettingsArray)
             if ($sets.Count -eq 0) { continue }   # hidden storage (chests) shows no items
             foreach ($storageId in @($shelf.storageIDs)) {

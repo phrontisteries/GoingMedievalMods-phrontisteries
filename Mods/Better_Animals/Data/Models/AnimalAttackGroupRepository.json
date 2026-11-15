@@ -1,22 +1,22 @@
 {
   "repository": [
     {
+      "id": "cat_pest_control",
       "entries": [
         {
+          "domestic": false,
+          "pet": false,
+          "priority": "100",
+          "priorityPerDistanceUnit": "0.1",
+          "type": "Animals",
           "values": [
             "rat",
             "polecat",
             "water_vole"
           ],
-          "priorityPerDistanceUnit": "0.1",
-          "domestic": false,
-          "pet": false,
-          "type": "Animals",
-          "priority": "100",
           "wild": true
         }
-      ],
-      "id": "cat_pest_control"
+      ]
     }
   ]
 }

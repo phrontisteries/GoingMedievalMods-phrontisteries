@@ -1,4 +1,15 @@
-﻿<# Mod Translation Patcher v20260330 -phrontisteries | License/Copyright: MITx11 | AKA: Enjoy #>
+﻿<# Mod Translation Patcher v20261115 -phrontisteries | SPDX-License-Identifier: MIT | AKA: Enjoy
+   Runs in Windows PowerShell 5.1 and PowerShell 7+. #>
+# Windows PowerShell 5.1 may default to TLS 1.0/1.1, which the translation API refuses.
+if ($PSVersionTable.PSVersion.Major -lt 6) {
+    [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
+    Remove-TypeData System.Array -ErrorAction SilentlyContinue   # stops 5.1 writing arrays as {"value":[..],"Count":n}
+}
+function Read-TextUtf8 { param([string]$Path) [System.IO.File]::ReadAllText($Path, [System.Text.Encoding]::UTF8) }
+function Write-TextUtf8 { param([string]$Path, [string]$Text) [System.IO.File]::WriteAllText($Path, $Text, (New-Object System.Text.UTF8Encoding $false)) }
+# Inside this repo, use the shared settings (Format-Json keeps output identical to MakeMod.ps1).
+$settingsFile = Join-Path $PSScriptRoot "..\Settings.ps1"
+if (Test-Path $settingsFile) { . $settingsFile }
 # Our authoring language (the language the original text is in)
 $script:ourLanguage = "English" # Assumed "English" if not changed here.
 # Language list (order locked)
@@ -302,7 +313,7 @@ function Get-ModInfo {
     $files = Get-ChildItem -Path $script:modFolder -Recurse -Filter ModInfo.json -File
 
     foreach ($file in $files) {
-        $json = Get-Content $file.FullName -Raw | ConvertFrom-Json
+        $json = ConvertFrom-Json -InputObject (Read-TextUtf8 $file.FullName)
 
         $modInfos += [pscustomobject]@{
             ModRoot = Split-Path $file.FullName -Parent
@@ -345,7 +356,7 @@ function Find-LocKeys {
         $mod = Get-ModForFile -FilePath $file.FullName -ModInfos $modInfos
         if ($null -eq $mod) { continue }
 
-        $json  = Get-Content $file.FullName -Raw | ConvertFrom-Json
+        $json  = ConvertFrom-Json -InputObject (Read-TextUtf8 $file.FullName)
         $found = Get-LocKeysFromObject -Obj $json
 
         foreach ($entry in $found) {
@@ -1427,8 +1438,8 @@ function Set-LocKeysInJson {
             Write-Host "  → $jsonFile " -ForegroundColor Cyan -NoNewline
 
             # Load JSON once
-            $jsonText = Get-Content -Raw -Path $filePath
-            $jsonObj  = $jsonText | ConvertFrom-Json -Depth 50
+            $jsonText = Read-TextUtf8 $filePath
+            $jsonObj  = ConvertFrom-Json -InputObject $jsonText
 
             # Apply all patches for this file
             foreach ($entry in $changes) {
@@ -1446,7 +1457,9 @@ function Set-LocKeysInJson {
             }
 
             # Write JSON once
-            $jsonObj | ConvertTo-Json -Depth 50 | Set-Content -Path $filePath -Encoding UTF8
+            $out = ConvertTo-Json -InputObject $jsonObj -Depth 50
+            if (Get-Command Format-Json -ErrorAction SilentlyContinue) { $out = Format-Json (ConvertTo-Json -InputObject $jsonObj -Depth 50 -Compress) }
+            Write-TextUtf8 -Path $filePath -Text ($out + "`r`n")
             Write-Host ""
         }
     }

@@ -1,3 +1,4 @@
+﻿# SPDX-License-Identifier: MIT  (Copyright (c) 2026 phrontisteries; see LICENSE)
 $carryCapacityMultiplier = 100
 $populationControl = @{
 #   deer    =   10

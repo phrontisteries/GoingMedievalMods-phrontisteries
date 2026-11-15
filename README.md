@@ -37,7 +37,8 @@ docs\MODDING-NOTES.md  How the game merges mod JSON, and the pitfalls these tool
 ## Requirements
 
 - Windows with Going Medieval installed (Steam, GOG or Epic)
-- [PowerShell 7+](https://learn.microsoft.com/powershell/scripting/install/installing-powershell-on-windows) (`pwsh`). Windows PowerShell 5.1 is not supported.
+- Windows PowerShell 5.1 (built into Windows 10/11) or [PowerShell 7+](https://learn.microsoft.com/powershell/scripting/install/installing-powershell-on-windows). Both produce identical files.
+- If scripts are blocked, allow them for your user once: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`
 
 ## Using it
 
@@ -45,13 +46,13 @@ docs\MODDING-NOTES.md  How the game merges mod JSON, and the pitfalls these tool
 2. Edit `Settings.ps1`: set `$Global:Author` to your own handle and `$Global:StreamingAssets` to your install's `Going Medieval_Data\StreamingAssets` folder. Or set `GM_AUTHOR` and `GM_STREAMING_ASSETS` instead of editing.
 3. Build:
    ```powershell
-   pwsh .\MakeMod.ps1                  # pick from a menu
-   pwsh .\MakeMod.ps1 -ModName Cold    # one mod
-   pwsh .\MakeMod.ps1 -All             # every mod
+   .\MakeMod.ps1                  # pick from a menu (run it in a console window, not the ISE)
+   .\MakeMod.ps1 -ModName Cold    # one mod
+   .\MakeMod.ps1 -All             # every mod
    ```
 4. Check:
    ```powershell
-   pwsh .\tools\Test-Mods.ps1          # exit code = number of errors
+   .\tools\Test-Mods.ps1          # exit code = number of errors
    ```
 5. Copy the mod folder from `Mods\` to `Documents\Foxy Voxel\Going Medieval\Mods\`, test it in game (existing save and a new game), then upload from the game's Mods menu.
 
@@ -60,8 +61,8 @@ Mod versions follow `x.v.y.z`: game version `x.y.z` with your revision `v` in th
 ### After a game update
 
 ```powershell
-pwsh .\MakeMod.ps1 -All
-pwsh .\tools\Test-Mods.ps1
+.\MakeMod.ps1 -All
+.\tools\Test-Mods.ps1
 git diff Mods        # what changed in the built mods, because the game changed
 ```
 
@@ -93,6 +94,8 @@ The built model is the current vanilla `fermenting_mash` with the fields you wro
 
 A mod can use both. A `Build-` function wins over a source file with the same name.
 
+Script files are saved as UTF-8 **with** a BOM so Windows PowerShell 5.1 reads them correctly. Keep it when editing (VS Code: "UTF-8 with BOM"). Mod JSON is written as UTF-8 without a BOM through `Write-JsonFile` in `Settings.ps1`; use it (not `ConvertTo-Json | Out-File`) in new tools so 5.1 and 7 give the same bytes.
+
 ## License
 
-[MIT](LICENSE). Going Medieval and its data belong to Foxy Voxel / Mythwright; see their [modding policy](https://foxyvoxel.io/2025/03/13/modding-guide-policy/) before publishing.
+Everything in this repository is released under the [MIT License](LICENSE): the tooling, the recipes and the mods. Every built mod folder carries a copy as `LICENSE.txt`. Going Medieval and its game data remain the property of Foxy Voxel / Mythwright; see their [modding policy](https://foxyvoxel.io/2025/03/13/modding-guide-policy/) before publishing.

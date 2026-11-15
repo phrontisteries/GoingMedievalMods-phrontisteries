@@ -1,8 +1,9 @@
-<# Going Medieval Mod Scriptor
+﻿<# Going Medieval Mod Scriptor
     Author: phrontisteries
     Last Modified: 2026-11-15
     Version: 0.7
-    Requires: PowerShell 7+
+    Requires: Windows PowerShell 5.1 or PowerShell 7+
+    License: MIT (see LICENSE)
 
     How To Use:
 
@@ -121,7 +122,7 @@ function ConvertTo-Hashtable {
 }
 function New-DeepCopy {
     param([Parameter(Mandatory=$true)][object]$InputObject)
-    return ($InputObject | ConvertTo-Json -Depth 100 | ConvertFrom-Json)
+    return (ConvertFrom-Json -InputObject (ConvertTo-Json -InputObject $InputObject -Depth 100 -Compress))
 }
 function New-LocKeys {
     param( [string]$NameKey, [string]$InfoKey )
@@ -237,7 +238,7 @@ function Get-JSONGameFile{
     if (-not $found) { throw "Source file '$SourceFileName' was not found." }
     $sourcePath = $found.FullName
     Write-Host "Found Source File" -NoNewline -ForegroundColor Green
-    return (Get-Content $sourcePath -Raw | ConvertFrom-Json)
+    return (Read-JsonFile $sourcePath)
 }
 function Merge-WithTemplate { # Copy of the vanilla model, with the fields written in $Entry replacing the vanilla ones.
     param(
@@ -260,7 +261,7 @@ function Build-FromSource { # Builds one mod file from .\recipes\<ModName>\<File
         [Parameter(Mandatory=$true)][string]$SourcePath,
         [Parameter(Mandatory=$true)][object]$RawJson
     )
-    $source = Get-Content $SourcePath -Raw | ConvertFrom-Json
+    $source = Read-JsonFile $SourcePath
     if (-not ($source.PSObject.Properties.Name -contains 'repository')) { return $source }
     $fileName = Split-Path $SourcePath -Leaf
     $built = foreach ($entry in $source.repository) {
@@ -328,12 +329,13 @@ function New-Mod {
         $modified = if ($work[$fileBase] -like "Build-*") { & $work[$fileBase] -RawJson $raw } else { Build-FromSource -SourcePath $work[$fileBase] -RawJson $raw }
         $newPath = Join-Path $modData $fileName
         $null = New-Item -ItemType Directory -Force -Path (Split-Path $newPath)
-        $json = $modified | ConvertTo-Json -Depth 100
+        $json = ConvertTo-ModJson -InputObject $modified
         if($jsonReplace -and $jsonReplace.ContainsKey($fileBase)) {
             Write-Host "(Fix Format" -NoNewline
             foreach ($pair in $jsonReplace[$fileBase]) {
-                if ($pair[1] -is [scriptblock]) { # dynamic replacement
-                    $json = $json -replace $pair[0], { param($m) & $pair[1] $m }
+                if ($pair[1] -is [scriptblock]) { # dynamic replacement (the scriptblock gets the Match as $args[0])
+                    $block = $pair[1]
+                    $json = [regex]::Replace($json, $pair[0], [System.Text.RegularExpressions.MatchEvaluator]{ param($m) [string](& $block $m) })
                 } else { # static replacement
                     $json = $json -replace $pair[0], $pair[1]
                 }
@@ -341,14 +343,14 @@ function New-Mod {
             }
             Write-Host ") " -NoNewline
         }
-        $json | Out-File -Encoding utf8NoBOM -Force $newPath
+        Write-TextFile -Text ($json + "`r`n") -Path $newPath
         Write-Host "Complete." -ForegroundColor Green
     }
 
     # Update ModInfo.json
     $modInfoPath = Join-Path $modRoot "ModInfo.json"
     $existing = $null
-    if (Test-Path $modInfoPath) { $existing = Get-Content $modInfoPath -Raw | ConvertFrom-Json }
+    if (Test-Path $modInfoPath) { $existing = Read-JsonFile $modInfoPath }
     $overrideFunc = "Set-$($fn)_ModInfo"
     $overrides = @{}
     $ifOverride = ""
@@ -357,13 +359,17 @@ function New-Mod {
         $ifOverride = " (with '$overrideFunc')"
     }
     $modInfo = New-ModInfoObject -ModName $ModName -ExistingModInfo $existing -Overrides $overrides
-    $modInfo | ConvertTo-Json -Depth 20 | Out-File -Encoding utf8NoBOM -Force $modInfoPath
+    Write-JsonFile -InputObject $modInfo -Path $modInfoPath
 
     if ($existing){
         Write-Host "Updated 'ModInfo.json'$ifOverride" -ForegroundColor Green
     }else{
         Write-Host "Created 'ModInfo.json'$ifOverride" -NoNewline -ForegroundColor Green
     }
+    # License travels with the mod (Workshop uploads contain only the mod folder)
+    $license = Join-Path $PSScriptRoot "LICENSE"
+    if (Test-Path $license) { Copy-Item -Path $license -Destination (Join-Path $modRoot "LICENSE.txt") -Force }
+
     # Ensure Preview.png
     $modPreview = Join-Path $modRoot "Preview.png"
     $genericPreview = Join-Path $Global:StreamingAssets "Modding\PreviewMod.png"

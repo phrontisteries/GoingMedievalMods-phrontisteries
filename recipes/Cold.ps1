@@ -1,3 +1,4 @@
+﻿# SPDX-License-Identifier: MIT  (Copyright (c) 2026 phrontisteries; see LICENSE)
 function Set-Cold_ModInfo {
     # Process will use first available: HERE, existing ModInfo.json (auto-versioning), lastly as generic defaults
     return @{
@@ -148,7 +149,7 @@ function Build-Cold_BaseBuildingRepository {
     # New ids must be complete models: clone the CURRENT vanilla building, then change only what makes it "Cold".
     $vanillaShelf = $RawJson.repository | Where-Object { $_.id -eq $Cold.BuildingId_Shelf_From }
     if (-not $vanillaShelf) { throw "Shelf '$($Cold.BuildingId_Shelf_From)' not found in $($Cold.BaseBuildingRepository)" }
-    $shelfClone = $vanillaShelf | ConvertTo-Json -Depth 100 | ConvertFrom-Json
+    $shelfClone = New-DeepCopy $vanillaShelf
     $shelfClone.id = $Cold.BuildingId_Shelf_Id
     $shelfClone.shelfComponentID = $Cold.ShelfComponentId
     $shelfClone | Add-Member -NotePropertyName defaultThermalModelID -NotePropertyValue $Cold.ThermalModelId -Force
@@ -156,7 +157,7 @@ function Build-Cold_BaseBuildingRepository {
 
     $vanillaFloor = $RawJson.repository | Where-Object { $_.id -eq $Cold.BuildingId_Floor_From }
     if (-not $vanillaFloor) { throw "Floor '$($Cold.BuildingId_Floor_From)' not found in $($Cold.BaseBuildingRepository)" }
-    $floorClone = $vanillaFloor | ConvertTo-Json -Depth 100 | ConvertFrom-Json
+    $floorClone = New-DeepCopy $vanillaFloor
     $floorClone.id = $Cold.BuildingId_Floor_Id
     $floorClone | Add-Member -NotePropertyName defaultThermalModelID -NotePropertyValue $Cold.ThermalModelId -Force
     $floorClone.locKeys = @(Get-ColdLocKeys -Id $Cold.BuildingId_Floor_Id -InfoKey $vanillaFloor.locKeys[0].info)

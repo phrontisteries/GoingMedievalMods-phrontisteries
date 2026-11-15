@@ -1,12 +1,12 @@
 {
   "repository": [
     {
+      "id": "cold_temp",
+      "emission": -999999,
+      "emissionRange": 45,
       "insulation": 1,
       "insulationVertical": 1,
-      "lightTransmission": 1,
-      "emissionRange": 45,
-      "id": "cold_temp",
-      "emission": -999999
+      "lightTransmission": 1
     }
   ]
 }
