@@ -1,0 +1,11 @@
+{
+  "id": "phrontisteries.cold",
+  "name": "Cold",
+  "description": "Active Cooling\r\nCold Shelf: holds 10 (no Coin, Carcass, or Fermention)\r\nCold Floor: Clay (end of selection list)\r\nTemperature Modification: threshold from 0 to 1 and 1 to 2.",
+  "author": "phrontisteries",
+  "modVersion": "1.1.0.46",
+  "gameVersion": "1.0.46",
+  "tags": [
+    "General"
+  ]
+}

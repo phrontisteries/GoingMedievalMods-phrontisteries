@@ -1,0 +1,56 @@
+{
+  "repository": [
+    {
+      "id": "cold_shelf_storage",
+      "storageIDs": [
+        "cold_storage"
+      ],
+      "multipleTransformSettingsArray": [
+        {
+          "id": "general_storage",
+          "transformSettingsArray": [
+            {
+              "id": "1",
+              "positionOffset": {
+                "x": 0,
+                "y": 1.776,
+                "z": 0
+              },
+              "rotationOffset": {
+                "x": 0,
+                "y": 90,
+                "z": 0
+              }
+            },
+            {
+              "id": "2",
+              "positionOffset": {
+                "x": 0,
+                "y": 0.934,
+                "z": 0
+              },
+              "rotationOffset": {
+                "x": 0,
+                "y": 90,
+                "z": 0
+              }
+            },
+            {
+              "id": "3",
+              "positionOffset": {
+                "x": 0,
+                "y": 0.234,
+                "z": 0
+              },
+              "rotationOffset": {
+                "x": 0,
+                "y": 90,
+                "z": 0
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
