@@ -1,0 +1,11 @@
+{
+  "id": "phrontisteries.Brokerastered",
+  "name": "Brokerastered",
+  "description": "Broker gets better Trade/Barter/Negotiate and extra Mining Speed/Amount",
+  "author": "phrontisteries",
+  "modVersion": "1.1.0.56",
+  "gameVersion": "1.0.56",
+  "tags": [
+    "General"
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "repository": [
+    {
+      "id": "broker",
+      "roleLevels": [
+        {
+          "level": 1,
+          "goalPreferences#REMOVE": [
+            {
+              "key": "PhysicalLabourPreference",
+              "value": 2
+            }
+          ],
+          "goalPreferences#APPEND": [
+            {
+              "key": "TradingPreference",
+              "value": 5
+            },
+            {
+              "key": "CraftingPreference",
+              "value": 5
+            },
+            {
+              "key": "MiningPreference",
+              "value": 5
+            },
+            {
+              "key": "ArtPreference",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "level": 2,
+          "goalPreferences#REMOVE": [
+            {
+              "key": "PhysicalLabourPreference",
+              "value": 1
+            },
+            {
+              "key": "AnimalPreference",
+              "value": 2
+            }
+          ],
+          "goalPreferences#APPEND": [
+            {
+              "key": "TradingPreference",
+              "value": 5
+            },
+            {
+              "key": "CraftingPreference",
+              "value": 5
+            },
+            {
+              "key": "MiningPreference",
+              "value": 5
+            },
+            {
+              "key": "ArtPreference",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "goalPreferences#REMOVE": [
+            {
+              "key": "PhysicalLabourPreference",
+              "value": 1
+            },
+            {
+              "key": "AnimalPreference",
+              "value": 1
+            },
+            {
+              "key": "MeleeCombatPreference",
+              "value": 2
+            },
+            {
+              "key": "RangedCombatPreference",
+              "value": 2
+            }
+          ],
+          "goalPreferences#APPEND": [
+            {
+              "key": "TradingPreference",
+              "value": 5
+            },
+            {
+              "key": "CraftingPreference",
+              "value": 5
+            },
+            {
+              "key": "MiningPreference",
+              "value": 5
+            },
+            {
+              "key": "ArtPreference",
+              "value": 5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
