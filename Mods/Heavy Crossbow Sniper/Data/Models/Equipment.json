@@ -1,0 +1,53 @@
+{
+  "repository": [
+    {
+      "id": "heavy_crossbow",
+      "primaryWeaponMode": {
+        "weaponType": "TwoHandCrossbow",
+        "projectilePrefabAddress": "BoltProjectile",
+        "projectileArcHeight": 0.3,
+        "hitEffectorGroupIDs": [
+          "WoundsPiercing"
+        ],
+        "criticalHitEffectorGroupIDs": [
+          "WoundsPiercingHead"
+        ],
+        "hpLossFlammableProjectileModifier": 3,
+        "weaponSound": "ShootCrossbow",
+        "damage": 360,
+        "ignoresArmor": 1,
+        "armorDamage": 0,
+        "buildingDamage": 0,
+        "precision": 1,
+        "precisionFalloff": 0,
+        "range": 45,
+        "attackSpeed": 1,
+        "projectileSpeed": 13,
+        "hpLossPerUse": 0,
+        "loseHpOnMiss": false
+      },
+      "secondaryWeaponMode": {
+        "weaponType": "TwoHandBowMelee",
+        "precision": 1,
+        "precisionFalloff": 0,
+        "range": 0,
+        "hitEffectorGroupIDs": [
+          "WoundsBlunt"
+        ],
+        "criticalHitEffectorGroupIDs": [
+          "WoundsBluntHead"
+        ],
+        "weaponSound": "StaffSlash",
+        "damage": 80,
+        "ignoresArmor": 1,
+        "armorDamage": 0,
+        "buildingDamage": 0,
+        "attackSpeed": 1,
+        "hpLossPerUse": 0,
+        "loseHpOnMiss": false
+      },
+      "meleeCover": 1,
+      "rangedCover": 1
+    }
+  ]
+}

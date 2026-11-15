@@ -16,6 +16,7 @@ Found a bug or have an idea? [Open an issue](https://github.com/phrontisteries/G
 | [Fermenting Apple Cider](Mods/Fermenting%20Apple%20Cider) | [3681708241](https://steamcommunity.com/sharedfiles/filedetails/?id=3681708241) | The fermentation station makes apple cider. |
 | [Fine Clothing Worker](Mods/Fine_Clothing_Worker) | [3681706422](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706422) | Settlers in Superior/Flawless apparel work, walk, rest and fight better. |
 | [Fish Farming](Mods/Fish_Farming) | [3681706482](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706482) | A fish farm that breeds trout, pike and eel (unlocked with barrel making). |
+| [Heavy Crossbow Sniper](Mods/Heavy%20Crossbow%20Sniper) | [3458906692](https://steamcommunity.com/sharedfiles/filedetails/?id=3458906692) | The heavy crossbow becomes a long-range sniper weapon (360 armor-piercing damage, 45 m, perfect accuracy, fast reload, full cover); NPCs no longer spawn with it. |
 | [More Prisoners](Mods/More_Prisoners) | [3681706523](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706523) | Raiders surrender more readily; merchants trade more prisoners. |
 | [Mushroom Cropfield](Mods/Mushroom%20Cropfield) | [3458079756](https://steamcommunity.com/sharedfiles/filedetails/?id=3458079756) | Plantable, fast-spreading mushrooms that grow on any terrain. |
 

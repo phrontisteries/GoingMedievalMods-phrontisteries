@@ -166,7 +166,10 @@ function Get-NextModVersion {
     $gPatch = [int]$gParts[2]
     if (-not $ExistingModVersion) { $v = 1; return "$($gMajor).$($v).$($gMinor).$($gPatch)" } # First time: v = 1 → x.1.y.z
     $mParts = $ExistingModVersion.Split('.') # Existing: x.v.y.z
-    if ($mParts.Count -ne 4) { throw "ExistingModVersion '$ExistingModVersion' must be in format x.v.y.z" }
+    if ($mParts.Count -ne 4 -or ($mParts | Where-Object { $_ -notmatch '^\d+$' })) { # older scheme (e.g. "0.2"): start fresh
+        Write-Host "(old version '$ExistingModVersion' -> new scheme) " -NoNewline -ForegroundColor DarkYellow
+        return "$($gMajor).0.$($gMinor).$($gPatch)"
+    }
     $mMajor = [int]$mParts[0]
     $mV     = [int]$mParts[1]
     $mMinor = [int]$mParts[2]
