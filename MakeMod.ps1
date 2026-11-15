@@ -206,6 +206,19 @@ function New-ModInfoObject {
     $finalId          = Use-ExistingOrDefault "id"          "$($Global:Author).$($ModName.ToLower() -replace ' ', '_')"
     $finalName        = Use-ExistingOrDefault "name"        $(Invoke-SpacesBeforeCaptialLetters $ModName)
     $finalDescription = Use-ExistingOrDefault "description" "$ModName mod for Going Medieval."
+    # recipes\Descriptions.json: one short line per language (the game shows one description to every player)
+    $descFile = Join-Path $Global:RecipesRoot "Descriptions.json"
+    if (Test-Path $descFile) {
+        $all = Read-JsonFile $descFile
+        $mine = $all.PSObject.Properties[$ModName]
+        if ($mine) {
+            $lines = foreach ($p in $mine.Value.PSObject.Properties) {
+                $label = if ($all._labels.PSObject.Properties[$p.Name]) { $all._labels.($p.Name) } else { $p.Name }
+                "$($label): $($p.Value)"
+            }
+            $finalDescription = ($lines -join "`n")
+        }
+    }
     if ($Global:RepoUrl) { # Link to the source: read it, report issues, suggest changes (added once, kept at the end)
         $finalDescription = ($finalDescription -replace '(\r?\n)*Source, issues and suggestions: \S+\s*$', '')
         $finalDescription = "$finalDescription`n`nSource, issues and suggestions: $($Global:RepoUrl)"

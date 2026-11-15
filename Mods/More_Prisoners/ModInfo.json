@@ -1,9 +1,9 @@
 {
   "id": "phrontisteries.more_prisoners",
   "name": "More Prisoners",
-  "description": "Tweaks surrender logic and Merchant trading prisoners.\n\nSource, issues and suggestions: https://github.com/phrontisteries/GoingMedievalMods-phrontisteries",
+  "description": "English: Raiders keep surrendering as your settlement grows, and merchants offer many more prisoners, more often.\n中文: 定居点扩大后，袭击者仍会投降；商人会更频繁地出售更多囚犯。\nFrançais: Les pillards continuent de se rendre quand votre colonie grandit, et les marchands proposent bien plus de prisonniers, plus souvent.\nEspañol: Los asaltantes siguen rindiéndose a medida que crece tu asentamiento, y los mercaderes ofrecen muchos más prisioneros, con más frecuencia.\nDeutsch: Plünderer ergeben sich weiterhin, auch wenn deine Siedlung wächst, und Händler bieten öfter deutlich mehr Gefangene an.\nРусский: Налётчики продолжают сдаваться по мере роста поселения, а торговцы чаще предлагают гораздо больше пленников.\n日本語: 集落が大きくなっても襲撃者が降伏し続け、商人がより多くの捕虜をより頻繁に売りに来ます。\nPortuguês: Os saqueadores continuam se rendendo conforme seu assentamento cresce, e os mercadores oferecem muito mais prisioneiros, com mais frequência.\n한국어: 정착지가 커져도 습격자가 계속 항복하며, 상인이 더 자주 훨씬 많은 포로를 팝니다.\nPolski: Najeźdźcy wciąż się poddają, gdy osada rośnie, a kupcy częściej oferują znacznie więcej więźniów.\nTürkçe: Yerleşiminiz büyüdükçe akıncılar teslim olmaya devam eder ve tüccarlar daha sık, çok daha fazla esir sunar.\nItaliano: I predoni continuano ad arrendersi man mano che l'insediamento cresce, e i mercanti offrono molti più prigionieri, più spesso.\n\nSource, issues and suggestions: https://github.com/phrontisteries/GoingMedievalMods-phrontisteries",
   "author": "phrontisteries",
-  "modVersion": "1.3.2.17",
+  "modVersion": "1.4.2.17",
   "gameVersion": "1.2.17",
   "tags": [
     "General"

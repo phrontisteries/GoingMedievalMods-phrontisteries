@@ -27,6 +27,7 @@ To play one without the Workshop, copy its folder from `Mods\` to `Documents\Fox
 MakeMod.ps1          Builds mods from recipes (menu, -ModName <name>, or -All)
 Settings.ps1         Your author name and the game's StreamingAssets path
 recipes\             What each mod changes (the source of truth)
+  Descriptions.json    In-game description of every mod: one short line in each of the 12 languages
   <Mod>.ps1            script recipe: Build-<Mod>_<File> functions that transform the vanilla file
   <Mod>\<File>.json    source recipe: JSON copied into the mod, "#template" entries rebuilt from vanilla
 Mods\                Built mods, ready for the game and the Workshop (generated; do not edit by hand)
@@ -98,6 +99,8 @@ The built model is the current vanilla `fermenting_mash` with the fields you wro
 **Script:** create `recipes\<ModName>.ps1` with a `Build-<ModName>_<File>` function per file. Each function receives the current vanilla file as `-RawJson` and returns the mod's version. Add `Set-<ModName>_ModInfo` to control the name, description and tags. In function names, leave out spaces (`Mushroom Cropfield` → `Build-MushroomCropfield_Research`). See `recipes\Cold.ps1` and the header of `MakeMod.ps1`.
 
 A mod can use both. A `Build-` function wins over a source file with the same name.
+
+**Description:** add the mod to `recipes\Descriptions.json` with one short line per language (English, Chinese, French, Spanish, German, Russian, Japanese, Portugese, Korean, Polish, Turkish, Italian). The game shows a single description to every player, so each line is labelled with its language. A mod missing from the file keeps the description from its `Set-<ModName>_ModInfo` or existing `ModInfo.json`.
 
 **Art (optional):** `recipes\<ModName>\Sprites\<iconPath>.png` (64×64) is copied to the mod's `Data\Sprites`, and `recipes\<ModName>\Preview.png` becomes the mod's preview. See `docs\GRAPHICS.md`.
 
