@@ -1,0 +1,13 @@
+{
+  "repository": [
+    {
+      "id": "agriculture_lvl1",
+      "unlocks#APPEND": [
+        {
+          "unlockId": "mushroom_cropfield",
+          "hideInUi": true
+        }
+      ]
+    }
+  ]
+}

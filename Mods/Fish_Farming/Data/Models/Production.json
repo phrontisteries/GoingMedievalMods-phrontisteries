@@ -1,0 +1,952 @@
+{
+  "repository": [
+    {
+      "id": "trout_fish",
+      "iconPath": "trout_fish",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Trout (16 ~24H)",
+          "info": "resource_info_trout_fish"
+        }
+      ],
+      "jobType": 65536,
+      "requiredSkills": [
+        {
+          "key": "AnimalHandling",
+          "value": 0
+        }
+      ],
+      "produced": [
+        {
+          "blueprintID": "trout_fish",
+          "amount": 16
+        }
+      ],
+      "recipe": [
+        {
+          "key": "dung",
+          "value": 10
+        },
+        {
+          "key": "trout_fish",
+          "value": 4
+        },
+        {
+          "key": "water_bucket",
+          "value": 20
+        }
+      ],
+      "productionSteps": [
+        {
+          "devName": "collectResources",
+          "type": "collect",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Getting fish tank resources"
+            }
+          ],
+          "interruptible": true
+        },
+        {
+          "devName": "preparingFishtank",
+          "type": "workerProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Setting up fish tank"
+            }
+          ],
+          "productionTime": 20,
+          "interruptible": true
+        },
+        {
+          "devName": "creatingFish",
+          "type": "passiveProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Trout growing and breeding"
+            }
+          ],
+          "productionTime": 1440,
+          "interruptible": true
+        },
+        {
+          "devName": "spawnProduct",
+          "type": "spawnProduct"
+        }
+      ]
+    },
+    {
+      "id": "trout_fish_veg",
+      "iconPath": "trout_fish",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Trout (32 ~24H)",
+          "info": "resource_info_trout_fish"
+        }
+      ],
+      "jobType": 65536,
+      "requiredSkills": [
+        {
+          "key": "AnimalHandling",
+          "value": 0
+        }
+      ],
+      "produced": [
+        {
+          "blueprintID": "trout_fish",
+          "amount": 32
+        }
+      ],
+      "recipe": [
+        {
+          "key": 1,
+          "value": 10
+        },
+        {
+          "key": "trout_fish",
+          "value": 4
+        },
+        {
+          "key": "water_bucket",
+          "value": 20
+        }
+      ],
+      "productionSteps": [
+        {
+          "devName": "collectResources",
+          "type": "collect",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Getting fish tank resources"
+            }
+          ],
+          "interruptible": true
+        },
+        {
+          "devName": "preparingFishtank",
+          "type": "workerProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Setting up fish tank"
+            }
+          ],
+          "productionTime": 20,
+          "interruptible": true
+        },
+        {
+          "devName": "creatingFish",
+          "type": "passiveProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Trout growing and breeding"
+            }
+          ],
+          "productionTime": 1440,
+          "interruptible": true
+        },
+        {
+          "devName": "spawnProduct",
+          "type": "spawnProduct"
+        }
+      ]
+    },
+    {
+      "id": "trout_fish_halftime",
+      "iconPath": "trout_fish",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Trout (16 ~12H)",
+          "info": "resource_info_trout_fish"
+        }
+      ],
+      "jobType": 65536,
+      "requiredSkills": [
+        {
+          "key": "AnimalHandling",
+          "value": 0
+        }
+      ],
+      "produced": [
+        {
+          "blueprintID": "trout_fish",
+          "amount": 16
+        }
+      ],
+      "recipe": [
+        {
+          "key": "animal_feed",
+          "value": 10
+        },
+        {
+          "key": "trout_fish",
+          "value": 4
+        },
+        {
+          "key": "water_bucket",
+          "value": 20
+        }
+      ],
+      "productionSteps": [
+        {
+          "devName": "collectResources",
+          "type": "collect",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Getting fish tank resources"
+            }
+          ],
+          "interruptible": true
+        },
+        {
+          "devName": "preparingFishtank",
+          "type": "workerProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Setting up fish tank"
+            }
+          ],
+          "productionTime": 20,
+          "interruptible": true
+        },
+        {
+          "devName": "creatingFish",
+          "type": "passiveProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Trout growing and breeding"
+            }
+          ],
+          "productionTime": 720,
+          "interruptible": true
+        },
+        {
+          "devName": "spawnProduct",
+          "type": "spawnProduct"
+        }
+      ]
+    },
+    {
+      "id": "trout_fish_carcass",
+      "iconPath": "enemy_carcass",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Trout (-human ~8H)",
+          "info": "resource_info_trout_fish"
+        }
+      ],
+      "jobType": 65536,
+      "requiredSkills": [
+        {
+          "key": "AnimalHandling",
+          "value": 0
+        }
+      ],
+      "produced": [
+        {
+          "blueprintID": "trout_fish",
+          "amount": 8
+        }
+      ],
+      "recipe": [
+        {
+          "key": 8192,
+          "value": 1
+        },
+        {
+          "key": "trout_fish",
+          "value": 4
+        },
+        {
+          "key": "water_bucket",
+          "value": 20
+        }
+      ],
+      "productionSteps": [
+        {
+          "devName": "collectResources",
+          "type": "collect",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Getting fish tank resources"
+            }
+          ],
+          "interruptible": true
+        },
+        {
+          "devName": "preparingFishtank",
+          "type": "workerProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Setting up fish tank"
+            }
+          ],
+          "productionTime": 20,
+          "interruptible": true
+        },
+        {
+          "devName": "creatingFish",
+          "type": "passiveProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Trout eating carcass"
+            }
+          ],
+          "productionTime": 480,
+          "interruptible": true
+        },
+        {
+          "devName": "spawnProduct",
+          "type": "spawnProduct"
+        }
+      ]
+    },
+    {
+      "id": "pike_fish",
+      "iconPath": "pike_fish",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Pike (16 ~24H)",
+          "info": "resource_info_pike_fish"
+        }
+      ],
+      "jobType": 65536,
+      "requiredSkills": [
+        {
+          "key": "AnimalHandling",
+          "value": 0
+        }
+      ],
+      "produced": [
+        {
+          "blueprintID": "pike_fish",
+          "amount": 16
+        }
+      ],
+      "recipe": [
+        {
+          "key": "dung",
+          "value": 10
+        },
+        {
+          "key": "pike_fish",
+          "value": 4
+        },
+        {
+          "key": "water_bucket",
+          "value": 20
+        }
+      ],
+      "productionSteps": [
+        {
+          "devName": "collectResources",
+          "type": "collect",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Getting fish tank resources"
+            }
+          ],
+          "interruptible": true
+        },
+        {
+          "devName": "preparingFishtank",
+          "type": "workerProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Setting up fish tank"
+            }
+          ],
+          "productionTime": 20,
+          "interruptible": true
+        },
+        {
+          "devName": "creatingFish",
+          "type": "passiveProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Pike growing and breeding"
+            }
+          ],
+          "productionTime": 1440,
+          "interruptible": true
+        },
+        {
+          "devName": "spawnProduct",
+          "type": "spawnProduct"
+        }
+      ]
+    },
+    {
+      "id": "pike_fish_veg",
+      "iconPath": "pike_fish",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Pike (64 ~24H)",
+          "info": "resource_info_pike_fish"
+        }
+      ],
+      "jobType": 65536,
+      "requiredSkills": [
+        {
+          "key": "AnimalHandling",
+          "value": 0
+        }
+      ],
+      "produced": [
+        {
+          "blueprintID": "pike_fish",
+          "amount": 64
+        }
+      ],
+      "recipe": [
+        {
+          "key": 1,
+          "value": 10
+        },
+        {
+          "key": "pike_fish",
+          "value": 4
+        },
+        {
+          "key": "water_bucket",
+          "value": 20
+        }
+      ],
+      "productionSteps": [
+        {
+          "devName": "collectResources",
+          "type": "collect",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Getting fish tank resources"
+            }
+          ],
+          "interruptible": true
+        },
+        {
+          "devName": "preparingFishtank",
+          "type": "workerProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Setting up fish tank"
+            }
+          ],
+          "productionTime": 20,
+          "interruptible": true
+        },
+        {
+          "devName": "creatingFish",
+          "type": "passiveProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Pike growing and breeding"
+            }
+          ],
+          "productionTime": 1440,
+          "interruptible": true
+        },
+        {
+          "devName": "spawnProduct",
+          "type": "spawnProduct"
+        }
+      ]
+    },
+    {
+      "id": "pike_fish_halftime",
+      "iconPath": "pike_fish",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Pike (16 ~12H)",
+          "info": "resource_info_pike_fish"
+        }
+      ],
+      "jobType": 65536,
+      "requiredSkills": [
+        {
+          "key": "AnimalHandling",
+          "value": 0
+        }
+      ],
+      "produced": [
+        {
+          "blueprintID": "pike_fish",
+          "amount": 16
+        }
+      ],
+      "recipe": [
+        {
+          "key": "animal_feed",
+          "value": 10
+        },
+        {
+          "key": "pike_fish",
+          "value": 4
+        },
+        {
+          "key": "water_bucket",
+          "value": 20
+        }
+      ],
+      "productionSteps": [
+        {
+          "devName": "collectResources",
+          "type": "collect",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Getting fish tank resources"
+            }
+          ],
+          "interruptible": true
+        },
+        {
+          "devName": "preparingFishtank",
+          "type": "workerProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Setting up fish tank"
+            }
+          ],
+          "productionTime": 20,
+          "interruptible": true
+        },
+        {
+          "devName": "creatingFish",
+          "type": "passiveProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Pike growing and breeding"
+            }
+          ],
+          "productionTime": 720,
+          "interruptible": true
+        },
+        {
+          "devName": "spawnProduct",
+          "type": "spawnProduct"
+        }
+      ]
+    },
+    {
+      "id": "pike_fish_carcass",
+      "iconPath": "enemy_carcass",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Pike (-human ~8H)",
+          "info": "resource_info_pike_fish"
+        }
+      ],
+      "jobType": 65536,
+      "requiredSkills": [
+        {
+          "key": "AnimalHandling",
+          "value": 0
+        }
+      ],
+      "produced": [
+        {
+          "blueprintID": "pike_fish",
+          "amount": 8
+        }
+      ],
+      "recipe": [
+        {
+          "key": 8192,
+          "value": 1
+        },
+        {
+          "key": "pike_fish",
+          "value": 4
+        },
+        {
+          "key": "water_bucket",
+          "value": 20
+        }
+      ],
+      "productionSteps": [
+        {
+          "devName": "collectResources",
+          "type": "collect",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Getting fish tank resources"
+            }
+          ],
+          "interruptible": true
+        },
+        {
+          "devName": "preparingFishtank",
+          "type": "workerProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Setting up fish tank"
+            }
+          ],
+          "productionTime": 20,
+          "interruptible": true
+        },
+        {
+          "devName": "creatingFish",
+          "type": "passiveProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Pike eating carcass"
+            }
+          ],
+          "productionTime": 480,
+          "interruptible": true
+        },
+        {
+          "devName": "spawnProduct",
+          "type": "spawnProduct"
+        }
+      ]
+    },
+    {
+      "id": "eel",
+      "iconPath": "eel",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Eel (16 ~24H)",
+          "info": "resource_info_eel"
+        }
+      ],
+      "jobType": 65536,
+      "requiredSkills": [
+        {
+          "key": "AnimalHandling",
+          "value": 0
+        }
+      ],
+      "produced": [
+        {
+          "blueprintID": "eel",
+          "amount": 16
+        }
+      ],
+      "recipe": [
+        {
+          "key": "dung",
+          "value": 10
+        },
+        {
+          "key": "eel",
+          "value": 4
+        },
+        {
+          "key": "water_bucket",
+          "value": 20
+        }
+      ],
+      "productionSteps": [
+        {
+          "devName": "collectResources",
+          "type": "collect",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Getting fish tank resources"
+            }
+          ],
+          "interruptible": true
+        },
+        {
+          "devName": "preparingFishtank",
+          "type": "workerProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Setting up fish tank"
+            }
+          ],
+          "productionTime": 20,
+          "interruptible": true
+        },
+        {
+          "devName": "creatingFish",
+          "type": "passiveProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Eel growing and breeding"
+            }
+          ],
+          "productionTime": 1440,
+          "interruptible": true
+        },
+        {
+          "devName": "spawnProduct",
+          "type": "spawnProduct"
+        }
+      ]
+    },
+    {
+      "id": "eel_veg",
+      "iconPath": "eel",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Eel (32 ~24H)",
+          "info": "resource_info_eel"
+        }
+      ],
+      "jobType": 65536,
+      "requiredSkills": [
+        {
+          "key": "AnimalHandling",
+          "value": 0
+        }
+      ],
+      "produced": [
+        {
+          "blueprintID": "eel",
+          "amount": 32
+        }
+      ],
+      "recipe": [
+        {
+          "key": 1,
+          "value": 10
+        },
+        {
+          "key": "eel",
+          "value": 4
+        },
+        {
+          "key": "water_bucket",
+          "value": 20
+        }
+      ],
+      "productionSteps": [
+        {
+          "devName": "collectResources",
+          "type": "collect",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Getting fish tank resources"
+            }
+          ],
+          "interruptible": true
+        },
+        {
+          "devName": "preparingFishtank",
+          "type": "workerProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Setting up fish tank"
+            }
+          ],
+          "productionTime": 20,
+          "interruptible": true
+        },
+        {
+          "devName": "creatingFish",
+          "type": "passiveProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Eel growing and breeding"
+            }
+          ],
+          "productionTime": 1440,
+          "interruptible": true
+        },
+        {
+          "devName": "spawnProduct",
+          "type": "spawnProduct"
+        }
+      ]
+    },
+    {
+      "id": "eel_halftime",
+      "iconPath": "eel",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Eel (16 ~12H)",
+          "info": "resource_info_eel"
+        }
+      ],
+      "jobType": 65536,
+      "requiredSkills": [
+        {
+          "key": "AnimalHandling",
+          "value": 0
+        }
+      ],
+      "produced": [
+        {
+          "blueprintID": "eel",
+          "amount": 16
+        }
+      ],
+      "recipe": [
+        {
+          "key": "animal_feed",
+          "value": 10
+        },
+        {
+          "key": "eel",
+          "value": 4
+        },
+        {
+          "key": "water_bucket",
+          "value": 20
+        }
+      ],
+      "productionSteps": [
+        {
+          "devName": "collectResources",
+          "type": "collect",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Getting fish tank resources"
+            }
+          ],
+          "interruptible": true
+        },
+        {
+          "devName": "preparingFishtank",
+          "type": "workerProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Setting up fish tank"
+            }
+          ],
+          "productionTime": 20,
+          "interruptible": true
+        },
+        {
+          "devName": "creatingFish",
+          "type": "passiveProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Eel growing and breeding"
+            }
+          ],
+          "productionTime": 720,
+          "interruptible": true
+        },
+        {
+          "devName": "spawnProduct",
+          "type": "spawnProduct"
+        }
+      ]
+    },
+    {
+      "id": "eel_carcass",
+      "iconPath": "enemy_carcass",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Eels (-human ~8H)",
+          "info": "resource_info_eel"
+        }
+      ],
+      "jobType": 65536,
+      "requiredSkills": [
+        {
+          "key": "AnimalHandling",
+          "value": 0
+        }
+      ],
+      "produced": [
+        {
+          "blueprintID": "eel",
+          "amount": 8
+        }
+      ],
+      "recipe": [
+        {
+          "key": 8192,
+          "value": 1
+        },
+        {
+          "key": "eel",
+          "value": 4
+        },
+        {
+          "key": "water_bucket",
+          "value": 20
+        }
+      ],
+      "productionSteps": [
+        {
+          "devName": "collectResources",
+          "type": "collect",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Getting fish tank resources"
+            }
+          ],
+          "interruptible": true
+        },
+        {
+          "devName": "preparingFishtank",
+          "type": "workerProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Setting up fish tank"
+            }
+          ],
+          "productionTime": 20,
+          "interruptible": true
+        },
+        {
+          "devName": "creatingFish",
+          "type": "passiveProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "Eels eating carcass"
+            }
+          ],
+          "productionTime": 480,
+          "interruptible": true
+        },
+        {
+          "devName": "spawnProduct",
+          "type": "spawnProduct"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+	"id": "phrontisteries.more_prisoners",
+	"name": "More Prisoners",
+	"description": "Tweaks surrender logic and Merchant trading prisoners.",
+	"author": "phrontisteries",
+  "modVersion": "1.1.0.46",
+  "gameVersion": "1.0.46",
+	"tags": [
+		"General"
+	]
+}

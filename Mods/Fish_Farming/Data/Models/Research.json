@@ -1,0 +1,12 @@
+{
+	"repository": [
+		{
+			"id": "barrels_lvl1",
+			"unlocks#APPEND": [
+				{
+					"unlockId": "fish_farm"
+				}
+			]
+		}
+	]
+}

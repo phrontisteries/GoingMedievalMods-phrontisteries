@@ -1,0 +1,10 @@
+{
+  "repository": [
+    {
+      "id": "worker",
+      "storageBase": {
+        "capacity": 6000
+      }
+    }
+  ]
+}

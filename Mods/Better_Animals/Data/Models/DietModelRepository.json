@@ -1,0 +1,1195 @@
+{
+  "repository": [
+    {
+      "id": "animal_herb_diet_large",
+      "dietResources#REMOVE": [
+        {
+          "type": "Resource",
+          "value": "redcurrant",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "blackberry",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "sloe",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "gooseberry",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "quince",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "damson",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "mulberrie",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "walnut",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "cabbage",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "barley",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "beet",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "carrot",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "apple",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "mushroom",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "herbs",
+          "priority": 25
+        },
+        {
+          "type": "Plant",
+          "value": "tree_birch",
+          "priority": 30,
+          "phases": [
+            0
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "tree_willow",
+          "priority": 30,
+          "phases": [
+            0
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "tree_oak",
+          "priority": 30,
+          "phases": [
+            0
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "tree_plane",
+          "priority": 30,
+          "phases": [
+            0
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "tree_apple",
+          "priority": 30,
+          "phases": [
+            0
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "tree_quince",
+          "priority": 30,
+          "phases": [
+            0
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "tree_walnut",
+          "priority": 30,
+          "phases": [
+            0
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "tree_damson",
+          "priority": 30,
+          "phases": [
+            0
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "tree_mulberrie",
+          "priority": 30,
+          "phases": [
+            0
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "tree_pine",
+          "priority": 30,
+          "phases": [
+            0
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_redcurrant",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_blackberry",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_sloe",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_gooseberry",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "cabbage_patch",
+          "priority": 35
+        },
+        {
+          "type": "Plant",
+          "value": "wild_flax_patch",
+          "priority": 35,
+          "phases": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "flax_patch",
+          "priority": 35,
+          "phases": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "carrot_patch",
+          "priority": 35
+        },
+        {
+          "type": "Plant",
+          "value": "beet_patch",
+          "priority": 35
+        },
+        {
+          "type": "Plant",
+          "value": "wild_barley_patch",
+          "priority": 35
+        },
+        {
+          "type": "Plant",
+          "value": "barley_patch",
+          "priority": 35
+        },
+        {
+          "type": "Plant",
+          "value": "herbs_patch",
+          "priority": 30
+        }
+      ]
+    },
+    {
+      "id": "animal_herb_diet_small",
+      "dietResources#REMOVE": [
+        {
+          "type": "Resource",
+          "value": "redcurrant",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "blackberry",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "sloe",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "gooseberry",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "quince",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "damson",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "mulberrie",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "walnut",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "cabbage",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "barley",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "beet",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "carrot",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "apple",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "mushroom",
+          "priority": 25
+        },
+        {
+          "type": "Resource",
+          "value": "herbs",
+          "priority": 30
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_redcurrant",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_blackberry",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_sloe",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_gooseberry",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "cabbage_patch",
+          "priority": 50
+        },
+        {
+          "type": "Plant",
+          "value": "wild_flax_patch",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "flax_patch",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "carrot_patch",
+          "priority": 35
+        },
+        {
+          "type": "Plant",
+          "value": "beet_patch",
+          "priority": 35
+        },
+        {
+          "type": "Plant",
+          "value": "wild_barley_patch",
+          "priority": 30
+        },
+        {
+          "type": "Plant",
+          "value": "barley_patch",
+          "priority": 30
+        },
+        {
+          "type": "Plant",
+          "value": "herbs_patch",
+          "priority": 30
+        }
+      ]
+    },
+    {
+      "id": "animal_diet_rat",
+      "dietResources#REMOVE": [
+        {
+          "type": "Group",
+          "value": "Carcass",
+          "priority": 50
+        },
+        {
+          "type": "Group",
+          "value": "FoodRaw",
+          "priority": 40
+        },
+        {
+          "type": "Group",
+          "value": "FoodMeal",
+          "priority": 35
+        },
+        {
+          "type": "Group",
+          "value": "Seeds",
+          "priority": 25
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_redcurrant",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_blackberry",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_sloe",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_gooseberry",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "cabbage_patch",
+          "priority": 50
+        },
+        {
+          "type": "Plant",
+          "value": "wild_flax_patch",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "flax_patch",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "carrot_patch",
+          "priority": 35
+        },
+        {
+          "type": "Plant",
+          "value": "beet_patch",
+          "priority": 35
+        },
+        {
+          "type": "Plant",
+          "value": "wild_barley_patch",
+          "priority": 30
+        },
+        {
+          "type": "Plant",
+          "value": "barley_patch",
+          "priority": 30
+        },
+        {
+          "type": "Plant",
+          "value": "herbs_patch",
+          "priority": 15
+        }
+      ],
+      "dietResources#APPEND": [
+        {
+          "type": "Plant",
+          "value": "shrub_generic",
+          "priority": 30,
+          "phases": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_ivy",
+          "priority": 30,
+          "phases": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "hay_patch",
+          "priority": 30
+        },
+        {
+          "type": "Plant",
+          "value": "reed_patch",
+          "priority": 30
+        },
+        {
+          "type": "Resource",
+          "value": "hay",
+          "priority": 25
+        }
+      ]
+    },
+    {
+      "id": "animal_meat_diet",
+      "dietResources#REMOVE": [
+        {
+          "type": "Resource",
+          "value": "egg_chicken",
+          "priority": 5
+        },
+        {
+          "type": "Resource",
+          "value": "milk",
+          "priority": 5
+        },
+        {
+          "type": "Group",
+          "value": "Carcass",
+          "priority": 25
+        },
+        {
+          "type": "Group",
+          "value": "FoodMeal",
+          "priority": 30
+        },
+        {
+          "type": "Resource",
+          "value": "meat",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "trout_fish",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "pike_fish",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "eel",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "meat_human",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "smoked_meat",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "smoked_fish",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "smoked_meat_human",
+          "priority": 40
+        }
+      ],
+      "dietResources#APPEND": [
+        {
+          "type": "Plant",
+          "value": "shrub_generic",
+          "priority": 30,
+          "phases": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_ivy",
+          "priority": 30,
+          "phases": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "hay_patch",
+          "priority": 30
+        },
+        {
+          "type": "Plant",
+          "value": "reed_patch",
+          "priority": 30
+        },
+        {
+          "type": "Plant",
+          "value": "mushroom_patch",
+          "priority": 30
+        },
+        {
+          "type": "Resource",
+          "value": "hay",
+          "priority": 25
+        }
+      ]
+    },
+    {
+      "id": "animal_fox_diet",
+      "dietResources#REMOVE": [
+        {
+          "type": "Resource",
+          "value": "egg_chicken",
+          "priority": 10
+        },
+        {
+          "type": "Resource",
+          "value": "honey",
+          "priority": 10
+        },
+        {
+          "type": "Resource",
+          "value": "milk",
+          "priority": 20
+        },
+        {
+          "type": "Group",
+          "value": "Carcass",
+          "priority": 25
+        },
+        {
+          "type": "Group",
+          "value": "FoodMeal",
+          "priority": 30
+        },
+        {
+          "type": "Resource",
+          "value": "meat",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "trout_fish",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "pike_fish",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "eel",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "smoked_fish",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "smoked_meat",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "meat_human",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "smoked_meat_human",
+          "priority": 40
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_redcurrant",
+          "priority": 5,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_blackberry",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_sloe",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_gooseberry",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ],
+      "dietResources#APPEND": [
+        {
+          "type": "Plant",
+          "value": "shrub_generic",
+          "priority": 30,
+          "phases": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_ivy",
+          "priority": 30,
+          "phases": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "hay_patch",
+          "priority": 30
+        },
+        {
+          "type": "Plant",
+          "value": "reed_patch",
+          "priority": 30
+        },
+        {
+          "type": "Resource",
+          "value": "hay",
+          "priority": 25
+        }
+      ]
+    },
+    {
+      "id": "animal_cat_diet",
+      "dietResources#REMOVE": [
+        {
+          "type": "Resource",
+          "value": "egg_chicken",
+          "priority": 8
+        },
+        {
+          "type": "Resource",
+          "value": "honey",
+          "priority": 80
+        },
+        {
+          "type": "Group",
+          "value": "Carcass",
+          "priority": 25
+        },
+        {
+          "type": "Group",
+          "value": "FoodMeal",
+          "priority": 30
+        },
+        {
+          "type": "Resource",
+          "value": "trout_fish",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "pike_fish",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "eel",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "smoked_fish",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "meat",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "meat_human",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "smoked_meat",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "smoked_meat_human",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "milk",
+          "priority": 40
+        }
+      ],
+      "dietResources#APPEND": [
+        {
+          "type": "Plant",
+          "value": "shrub_generic",
+          "priority": 30,
+          "phases": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_ivy",
+          "priority": 30,
+          "phases": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "hay_patch",
+          "priority": 30
+        },
+        {
+          "type": "Plant",
+          "value": "reed_patch",
+          "priority": 30
+        },
+        {
+          "type": "Plant",
+          "value": "mushroom_patch",
+          "priority": 30
+        },
+        {
+          "type": "Resource",
+          "value": "hay",
+          "priority": 25
+        }
+      ]
+    },
+    {
+      "id": "animal_bear_diet",
+      "dietResources#REMOVE": [
+        {
+          "type": "Resource",
+          "value": "honey",
+          "priority": 80
+        },
+        {
+          "type": "Resource",
+          "value": "honey_biscuits",
+          "priority": 65
+        },
+        {
+          "type": "Resource",
+          "value": "trout_fish",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "pike_fish",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "eel",
+          "priority": 40
+        },
+        {
+          "type": "Resource",
+          "value": "smoked_fish",
+          "priority": 40
+        },
+        {
+          "type": "Group",
+          "value": "Carcass",
+          "priority": 7
+        },
+        {
+          "type": "Group",
+          "value": "FoodMeal",
+          "priority": 50
+        },
+        {
+          "type": "Group",
+          "value": "FoodRaw",
+          "priority": 45
+        },
+        {
+          "type": "Resource",
+          "value": "meat",
+          "priority": 20
+        },
+        {
+          "type": "Resource",
+          "value": "meat_human",
+          "priority": 20
+        },
+        {
+          "type": "Resource",
+          "value": "smoked_meat",
+          "priority": 20
+        },
+        {
+          "type": "Resource",
+          "value": "smoked_meat_human",
+          "priority": 20
+        },
+        {
+          "type": "Resource",
+          "value": "herbs",
+          "priority": 5
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_redcurrant",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_blackberry",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_sloe",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_gooseberry",
+          "priority": 30,
+          "phases": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "cabbage_patch",
+          "priority": 20
+        },
+        {
+          "type": "Plant",
+          "value": "wild_flax_patch",
+          "priority": 20,
+          "phases": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "flax_patch",
+          "priority": 20,
+          "phases": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "carrot_patch",
+          "priority": 35
+        },
+        {
+          "type": "Plant",
+          "value": "beet_patch",
+          "priority": 35
+        },
+        {
+          "type": "Plant",
+          "value": "wild_barley_patch",
+          "priority": 35
+        },
+        {
+          "type": "Plant",
+          "value": "barley_patch",
+          "priority": 35
+        },
+        {
+          "type": "Plant",
+          "value": "herbs_patch",
+          "priority": 25
+        }
+      ],
+      "dietResources#APPEND": [
+        {
+          "type": "Plant",
+          "value": "shrub_generic",
+          "priority": 30,
+          "phases": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "shrub_ivy",
+          "priority": 30,
+          "phases": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "Plant",
+          "value": "hay_patch",
+          "priority": 30
+        },
+        {
+          "type": "Plant",
+          "value": "reed_patch",
+          "priority": 30
+        },
+        {
+          "type": "Resource",
+          "value": "hay",
+          "priority": 25
+        }
+      ]
+    }
+  ]
+}
+
