@@ -206,6 +206,10 @@ function New-ModInfoObject {
     $finalId          = Use-ExistingOrDefault "id"          "$($Global:Author).$($ModName.ToLower() -replace ' ', '_')"
     $finalName        = Use-ExistingOrDefault "name"        $(Invoke-SpacesBeforeCaptialLetters $ModName)
     $finalDescription = Use-ExistingOrDefault "description" "$ModName mod for Going Medieval."
+    if ($Global:RepoUrl) { # Link to the source: read it, report issues, suggest changes (added once, kept at the end)
+        $finalDescription = ($finalDescription -replace '(\r?\n)*Source, issues and suggestions: \S+\s*$', '')
+        $finalDescription = "$finalDescription`n`nSource, issues and suggestions: $($Global:RepoUrl)"
+    }
     $finalAuthor      = Use-ExistingOrDefault "author"      $Global:Author
     $finalTags        = Use-ExistingOrDefault "tags"        @("General")
     $existingModVersion = $null
@@ -239,6 +243,28 @@ function Get-JSONGameFile{
     $sourcePath = $found.FullName
     Write-Host "Found Source File" -NoNewline -ForegroundColor Green
     return (Read-JsonFile $sourcePath)
+}
+function Set-ShaderParam { # Sets a shader parameter (e.g. _FloorColorAdd, _BaseColor) wherever a model's variations use it.
+    param([Parameter(Mandatory=$true)][object]$Model, [Parameter(Mandatory=$true)][string]$Name, [Parameter(Mandatory=$true)][string]$Value)
+    $hits = 0
+    foreach ($list in @($Model.variationLists)) { foreach ($v in @($list.variations)) { foreach ($slot in @($v.slots)) {
+        if ($slot.slotType -eq 'ShaderParam' -and $slot.shaderParam.variableName -eq $Name) {
+            $key = if ($Value -like '#*') { 'colorValue' } else { 'floatValue' }
+            $slot.shaderParam | Add-Member -NotePropertyName $key -NotePropertyValue $Value -Force; $hits++
+        } } } }
+    if ($hits -eq 0) { Write-Warning "Shader parameter '$Name' not found on '$($Model.id)'" }
+}
+function Set-ModelMesh { # Points a model's mesh slots (baseMesh, LOD0, shadow caster) and albedo texture at custom assets.
+    param([Parameter(Mandatory=$true)][object]$Model, [Parameter(Mandatory=$true)][string]$Mesh, [string]$Texture)
+    foreach ($list in @($Model.variationLists)) { foreach ($v in @($list.variations)) { foreach ($slot in @($v.slots)) {
+        if ($slot.slotType -eq 'Mesh' -and $slot.slot -like 'baseMesh*') { $slot.value = $Mesh }
+        elseif ($Texture -and $slot.slotType -eq 'Texture' -and $slot.slot -eq 'albedo') { $slot.value = $Texture }
+        elseif ($Texture -and $slot.slotType -eq 'Texture' -and $slot.slot -eq 'reflection') { $slot.value = "" }
+    } } }
+}
+function Test-ModAddressables { # True when recipes\<ModName>\AddressableAssets holds a built catalog (see unity\README.md).
+    param([Parameter(Mandatory=$true)][string]$ModName)
+    return [bool](Get-ChildItem -Path (Join-Path (Join-Path $Global:RecipesRoot $ModName) "AddressableAssets") -Filter "catalog*.json" -File -ErrorAction SilentlyContinue)
 }
 function Merge-WithTemplate { # Copy of the vanilla model, with the fields written in $Entry replacing the vanilla ones.
     param(
@@ -378,6 +404,16 @@ function New-Mod {
         $sprites = @(Get-ChildItem -Path $spriteSource -Filter *.png -File)
         foreach ($s in $sprites) { Copy-Item -Path $s.FullName -Destination $spriteDest -Force }
         Write-Host "Copied $($sprites.Count) sprite(s) to 'Data\Sprites'" -ForegroundColor Green
+    }
+
+    # Custom meshes/textures built with Foxy Voxel's Unity project: recipes\<ModName>\AddressableAssets -> Data\AddressableAssets
+    $aaSource = Join-Path $sourceDir "AddressableAssets"
+    if (Test-Path $aaSource) {
+        $aaDest = Join-Path $modRoot "Data\AddressableAssets"
+        if (Test-Path $aaDest) { Remove-Item -Path $aaDest -Recurse -Force }
+        $null = New-Item -ItemType Directory -Force -Path $aaDest
+        Copy-Item -Path (Join-Path $aaSource "*") -Destination $aaDest -Recurse -Force
+        Write-Host "Copied built Addressables to 'Data\AddressableAssets'" -ForegroundColor Green
     }
 
     # Ensure Preview.png: recipes\<ModName>\Preview.png if the recipe has one, else keep the mod's, else the game's generic one

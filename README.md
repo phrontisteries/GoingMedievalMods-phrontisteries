@@ -6,6 +6,8 @@ Built for game version **1.2.17**.
 
 ## The mods
 
+Found a bug or have an idea? [Open an issue](https://github.com/phrontisteries/GoingMedievalMods-phrontisteries/issues). Every mod's description links here.
+
 | Mod | Workshop | What it does |
 |---|---|---|
 | [Better_Animals](Mods/Better_Animals) | [3681706355](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706355) | All animals can be tamed, penned, trained, haul and attack; 100x carrying; population caps; simpler diets; cat pest control; settlers carry more. |
@@ -31,7 +33,8 @@ Mods\                Built mods, ready for the game and the Workshop (generated;
 tools\
   Test-Mods.ps1        Checks built mods against the installed game
   ModTranslationPatcher.ps1  Fills in locKeys for the game's languages (MyMemory translation API)
-  art\make_art.py      Draws the original icons and Workshop previews (Python + Pillow)
+  art\                 Original art: 3D models, game-style icon renderer, previews, Unity mesh export (Python)
+unity\                In-world models for Foxy Voxel's Unity modding project, with build steps
 docs\MODDING-NOTES.md  How the game merges mod JSON, and the pitfalls these tools guard against
 docs\GRAPHICS.md      Icons, previews and other art: what the game supports and how ours are made
 ```
@@ -45,7 +48,7 @@ docs\GRAPHICS.md      Icons, previews and other art: what the game supports and 
 ## Using it
 
 1. Fork or clone this repo.
-2. Edit `Settings.ps1`: set `$Global:Author` to your own handle and `$Global:StreamingAssets` to your install's `Going Medieval_Data\StreamingAssets` folder. Or set `GM_AUTHOR` and `GM_STREAMING_ASSETS` instead of editing.
+2. Edit `Settings.ps1`: set `$Global:Author` to your own handle, `$Global:StreamingAssets` to your install's `Going Medieval_Data\StreamingAssets` folder, and `$Global:RepoUrl` to your fork. That link is added to the end of every mod description so players can find the source and report issues; leave it empty for no link. Or set `GM_AUTHOR`, `GM_STREAMING_ASSETS` and `GM_REPO_URL` instead of editing.
 3. Build:
    ```powershell
    .\MakeMod.ps1                  # pick from a menu (run it in a console window, not the ISE)

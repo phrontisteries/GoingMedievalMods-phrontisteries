@@ -1,9 +1,9 @@
 {
   "id": "phrontisteries.faster_region_travel",
   "name": "Faster Region Travel",
-  "description": "Speed of travel \"caravans\" in the region, multiplier: 0.01",
+  "description": "Speed of travel \"caravans\" in the region, multiplier: 0.01\n\nSource, issues and suggestions: https://github.com/phrontisteries/GoingMedievalMods-phrontisteries",
   "author": "phrontisteries",
-  "modVersion": "1.1.2.17",
+  "modVersion": "1.2.2.17",
   "gameVersion": "1.2.17",
   "tags": [
     "General"

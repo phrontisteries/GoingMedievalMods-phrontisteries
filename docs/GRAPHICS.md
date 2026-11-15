@@ -14,13 +14,15 @@ Per Foxy Voxel's [modding guide](https://foxyvoxel.io/2025/03/13/modding-guide-p
 
 ## What is in this branch
 
-| Mod | Icons (`iconPath`) | Preview |
-|---|---|---|
-| Cold | `phrontisteries_cold_shelf`, `phrontisteries_cold_floor` | new |
-| Fermenting Apple Cider | `phrontisteries_fermenting_apple_cider` (resource and recipe) | new |
-| Fish Farming | `phrontisteries_fish_farm` | new |
-| Better_Animals, Faster Region Travel, Fine Clothing Worker, More Prisoners | (no new items) | new |
-| Mushroom Cropfield | (uses the game's `mushroom`) | keeps its existing hand-made preview |
+| Mod | Icons (`iconPath`, 128×128) | In the world | Preview |
+|---|---|---|---|
+| Cold | `phrontisteries_cold_shelf`, `phrontisteries_cold_floor` | Cold Floor tinted cool blue (floor shader `_FloorColorMultiply` / `_FloorColorAdd`, no build needed). Frosted shelf model once built in Unity. | new |
+| Fermenting Apple Cider | `phrontisteries_fermenting_apple_cider` (resource and recipe) | (resource) | new |
+| Fish Farming | `phrontisteries_fish_farm` | Fish-tub model once built in Unity (until then the saltpeter-pit model) | new |
+| Better_Animals, Faster Region Travel, Fine Clothing Worker, More Prisoners | (no new items) | | new |
+| Mushroom Cropfield | (uses the game's `mushroom`) | | keeps its hand-made preview |
+
+**Icons match the game's own:** like the vanilla icons, they are renders of 3D models at 128×128 with the same lighting (warm key, violet shadows, cyan rim). Buildings sit on the olive tile with the light grid and glow. Items have the thick white outline. The low-poly models are in `tools/art/models.py`, and the renderer is `tools/art/model3d.py`.
 
 Icon names are prefixed with `phrontisteries_` so a mod sprite can never replace a vanilla icon of the same name.
 
@@ -28,23 +30,31 @@ Before this branch, seven mods shipped the game's generic `PreviewMod.png` (Foxy
 
 ## How it is built
 
-- `tools\art\make_art.py` draws everything (Python 3 + Pillow: `pip install pillow`, then `python tools\art\make_art.py`). It writes:
-  - `recipes\<Mod>\Sprites\<iconPath>.png`
-  - `recipes\<Mod>\Preview.png`
-- `MakeMod.ps1` copies `recipes\<Mod>\Sprites\*.png` into the mod's `Data\Sprites\`, and `recipes\<Mod>\Preview.png` over the mod's `Preview.png`.
-- Recipes point at the sprites: `iconPath` in `recipes\Cold.ps1` and in the `"#template"` entries of the source recipes.
+- `tools\art\make_art.py` (Python 3 with `pip install pillow numpy`) writes:
+  - `recipes\<Mod>\Sprites\<iconPath>.png`: icon renders
+  - `recipes\<Mod>\Preview.png`: Workshop previews
+  - `unity\<Mod>\Mesh\*.obj` and `unity\<Mod>\Texture\*_palette.png`: in-world models for Unity (see `unity\README.md`)
+- `MakeMod.ps1`:
+  - copies `recipes\<Mod>\Sprites\*.png` into the mod's `Data\Sprites\`
+  - copies `recipes\<Mod>\Preview.png` over the mod's `Preview.png`
+  - copies `recipes\<Mod>\AddressableAssets\` (built in Unity) into `Data\AddressableAssets\`
+- Recipe helpers in `MakeMod.ps1`:
+  - `Set-ShaderParam -Model $m -Name _FloorColorAdd -Value "#..."`: tints through the game's shader parameters
+  - `Set-ModelMesh -Model $m -Mesh <name> -Texture <name>`: switches to a custom model
+  - `Test-ModAddressables <Mod>`: true once the Unity build is in place, so recipes switch models only when the assets exist
 
 You can also drop hand-made PNGs into `recipes\<Mod>\Sprites\` and skip the script.
 
 ## To check in game
 
-- [ ] The new icons appear in the build menu (Cold Shelf, Cold Floor, Fish Farm) and on the cider resource and recipe.
+- [ ] The new icons appear in the build menu (Cold Shelf, Cold Floor, Fish Farm) and on the cider resource and recipe. (The guide asks for 64×64; ours are 128×128 like the game's own. If they show wrongly, render at 64 with `ICON_SIZE` in `make_art.py`.)
+- [ ] The Cold Floor looks cool blue but still like clay; adjust `FloorTintMultiply` / `FloorTintAdd` in `recipes\Cold.ps1`.
 - [ ] Icons look right at the game's UI scale and on its dark and light panels.
 - [ ] Previews show in the in-game Mods menu and on the Workshop page.
 - [ ] Nothing else changed: the Cold Shelf still shows its 10 piles, and saves from 1.0.2.17 still load.
 
 ## Ideas for next steps
 
-- Hand-painted icons closer to the game's own style (the current ones are flat vector art).
-- A distinct look for the Cold Shelf and Cold Floor in the world (a blue tint or frost), through a recolored texture or mesh variation. The mod JSON already supports `variationLists` with texture and shader-parameter slots, which might allow a tint without a new mesh. Worth testing before reaching for Unity.
-- Custom meshes through Addressables, if a tint is not enough.
+- Build the two Unity models (`unity\README.md`) and test them in game.
+- More models: an apple-cider barrel pile for the resource in the world.
+- Hand-painted textures instead of flat palette colours.

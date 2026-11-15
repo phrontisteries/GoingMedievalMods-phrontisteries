@@ -1,13 +1,19 @@
 # SPDX-License-Identifier: MIT  (Copyright (c) 2026 phrontisteries; see LICENSE)
-"""Draws the repo's original mod art: 64x64 item icons and 1280x720 Workshop previews.
+"""Makes the repo's original mod art (no game assets, so it is all MIT-licensed):
 
-Everything is drawn from simple shapes (no game assets), so it can be MIT-licensed.
-Output goes into recipes\\<Mod>\\Sprites\\<icon>.png and recipes\\<Mod>\\Preview.png;
-MakeMod.ps1 copies them into the built mod.
+  * icons: 3D renders of the low-poly models in models.py, lit and framed like the
+    game's own icons (128x128) -> recipes\\<Mod>\\Sprites\\<iconPath>.png
+  * Workshop previews (1280x720) -> recipes\\<Mod>\\Preview.png
+  * in-world meshes for Foxy Voxel's Unity modding project (.obj + palette texture)
+    -> unity\\<Mod>\\Mesh, unity\\<Mod>\\Texture (see unity\\README.md)
 
-    python tools/art/make_art.py            (needs: pip install pillow)
+MakeMod.ps1 copies the icons and previews into the built mods.
+
+    python tools/art/make_art.py            (needs: pip install pillow numpy)
 """
 import math, os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import model3d, models
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -69,86 +75,35 @@ def finish(img, px=64):
     return Image.alpha_composite(shadow, small)
 
 
-# ---------------------------------------------------------------- icons
-def icon_cold_shelf():
-    img, d = canvas()
-    box(d, 12, 6, 52, 60, WOOD_D, r=2)                    # frame
-    for y in (10, 27, 44):                                # three boards with icy goods
-        box(d, 15, y + 11, 49, y + 15, WOOD_L, r=1, w=3)
-        box(d, 18, y + 2, 27, y + 11, ICE, r=2, w=3)
-        box(d, 29, y + 4, 37, y + 11, (232, 214, 160, 255), r=2, w=3)
-        ellipse(d, 39, y + 3, 47, y + 11, APPLE, w=3)
-    for x in range(14, 51, 6):                            # frost on top
-        poly(d, [(x - 3, 6), (x + 3, 6), (x, 11)], ICE_L, w=2)
-    snowflake(d, 50, 12, 9, ICE_D, w=3.2)
-    snowflake(d, 50, 12, 9, ICE_L, w=1.8)
-    return finish(img)
-
-
-def icon_cold_floor():
-    img, d = canvas()
-    poly(d, [(32, 8), (60, 24), (32, 40), (4, 24)], CLAY)          # top face (isometric tile)
-    poly(d, [(4, 24), (32, 40), (32, 52), (4, 36)], CLAY_D)        # left side
-    poly(d, [(60, 24), (32, 40), (32, 52), (60, 36)], CLAY_D)      # right side
-    for t in (0.33, 0.66):                                         # brick joints
-        a = (4 + 28 * t, 24 - 16 * t); b = (32 + 28 * t, 40 - 16 * t)
-        d.line(P(a, b), fill=INK, width=int(1.6 * S))
-        a = (32 - 28 * t, 8 + 16 * t); b = (60 - 28 * t, 24 + 16 * t)
-        d.line(P(a, b), fill=INK, width=int(1.6 * S))
-    overlay = Image.new("RGBA", img.size, (0, 0, 0, 0))            # blue chill on the top face
-    ImageDraw.Draw(overlay).polygon(P((32, 8), (60, 24), (32, 40), (4, 24)), fill=(150, 210, 255, 90))
-    img.alpha_composite(overlay)
-    d = ImageDraw.Draw(img)
-    snowflake(d, 32, 24, 11, ICE_D, w=3.4)
-    snowflake(d, 32, 24, 11, ICE_L, w=2.0)
-    return finish(img)
-
-
-def fish(d, cx, cy, size, body, belly, facing=1):
-    f = facing
-    poly(d, [(cx - f * size * 0.9, cy), (cx - f * size * 1.5, cy - size * 0.55), (cx - f * size * 1.5, cy + size * 0.55)], body, w=2.5)
-    ellipse(d, cx - size, cy - size * 0.55, cx + size, cy + size * 0.55, body, w=2.5)
-    d.ellipse(((cx - size * 0.6) * S, (cy) * S, (cx + size * 0.6) * S, (cy + size * 0.42) * S), fill=belly)
-    d.ellipse(((cx + f * size * 0.5 - 1.3) * S, (cy - size * 0.2 - 1.3) * S, (cx + f * size * 0.5 + 1.3) * S, (cy - size * 0.2 + 1.3) * S), fill=INK)
-
-
-def icon_fish_farm():
-    img, d = canvas()
-    poly(d, [(8, 26), (56, 26), (52, 60), (12, 60)], WOOD)          # tub
-    for x in (20, 32, 44):
-        d.line(P((x, 27), (x - (x - 32) * 0.15, 59)), fill=WOOD_D, width=int(1.8 * S))
-    box(d, 7, 32, 57, 36, IRON, r=1, w=3); box(d, 9, 50, 55, 54, IRON, r=1, w=3)
-    ellipse(d, 6, 18, 58, 32, WOOD_D)                               # rim
-    ellipse(d, 10, 20, 54, 30, WATER, w=0)                          # water
-    for x in (18, 30, 42):
-        d.arc(((x - 4) * S, 22 * S, (x + 4) * S, 27 * S), 200, 340, fill=(170, 220, 235, 255), width=int(1.6 * S))
-    fish(d, 34, 12, 8, (120, 150, 90, 255), (210, 220, 170, 255), facing=-1)   # leaping fish
-    for (x, y) in ((22, 14), (18, 8), (46, 9)):
-        ellipse(d, x - 1.6, y - 1.6, x + 1.6, y + 1.6, (190, 230, 245, 255), w=1.5)
-    return finish(img)
-
-
-def icon_fermenting_apple_cider():
-    img, d = canvas()
-    ellipse(d, 10, 14, 50, 60, WOOD)                                # small barrel, side view
-    for x in (20, 30, 40):
-        d.arc((x * S - 14 * S, 14 * S, x * S + 14 * S, 60 * S), 250, 290, fill=WOOD_D, width=int(1.6 * S))
-    box(d, 9, 22, 51, 26, IRON_D, r=1, w=3); box(d, 9, 48, 51, 52, IRON_D, r=1, w=3)
-    box(d, 27, 8, 33, 16, WOOD_L, r=1, w=3)                         # bung with airlock bubbles
-    for (x, y, r) in ((36, 6, 2.2), (41, 3, 1.6), (45, 7, 1.2)):
-        ellipse(d, x - r, y - r, x + r, y + r, (240, 220, 160, 255), w=1.5)
-    ellipse(d, 36, 36, 60, 60, APPLE)                               # apple in front
-    d.arc((40 * S, 40 * S, 52 * S, 52 * S), 200, 260, fill=(240, 120, 110, 255), width=int(2 * S))
-    d.line(P((48, 37), (50, 31)), fill=WOOD_D, width=int(2.4 * S))
-    poly(d, [(50, 33), (58, 29), (54, 36)], LEAF, w=2)
-    return finish(img)
-
-
-ICONS = {   # mod -> {sprite name: drawing}
-    "Cold": {"phrontisteries_cold_shelf": icon_cold_shelf, "phrontisteries_cold_floor": icon_cold_floor},
-    "Fish_Farming": {"phrontisteries_fish_farm": icon_fish_farm},
-    "Fermenting Apple Cider": {"phrontisteries_fermenting_apple_cider": icon_fermenting_apple_cider},
+# mod -> {sprite name (= iconPath): (model, icon kind, camera pitch)}
+ICONS = {
+    "Cold": {"phrontisteries_cold_shelf": (models.cold_shelf, "building", 33),
+             "phrontisteries_cold_floor": (models.cold_floor, "building", 48)},
+    "Fish_Farming": {"phrontisteries_fish_farm": (models.fish_farm, "building", 33)},
+    "Fermenting Apple Cider": {"phrontisteries_fermenting_apple_cider": (models.fermenting_apple_cider, "item", 33)},
 }
+ICON_SIZE = 128   # the game's own icons are 128x128
+
+# mod -> {mesh name: model} for the Unity project (meshes without decorative goods: the game draws the stored piles)
+MESHES = {
+    "Cold": {"phrontisteries_cold_shelf": lambda: models.cold_shelf(goods=False)},
+    "Fish_Farming": {"phrontisteries_fish_farm": models.fish_farm},
+}
+
+
+def render_art(model_fn, kind, size, pitch=33):
+    """Large transparent render for previews (items keep their white outline)."""
+    m = model_fn()
+    if kind == "item":
+        return model3d.render_icon(m, "item", size, pitch=pitch)
+    body = model3d.rasterize(m, size, pitch=pitch, margin=0.04)
+    shadow = Image.new("RGBA", body.size, (0, 0, 0, 0))
+    shadow.paste((0, 0, 0, 140), (0, 0), body.split()[3])
+    out = Image.new("RGBA", body.size, (0, 0, 0, 0))
+    out.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(size / 40)), (0, 0))
+    out.alpha_composite(body)
+    return out
+
 
 # ---------------------------------------------------------------- emblems for previews of mods without new items
 def emblem_animals():
@@ -257,8 +212,8 @@ def wrap(d, text, f, width):
 def combo(*fns):           # several icons side by side, as one 400x400 picture
     tiles = [f() for f in fns]
     out = Image.new("RGBA", (400, 400), (0, 0, 0, 0))
-    out.alpha_composite(tiles[0].resize((250, 250), Image.LANCZOS), (0, 10))
-    out.alpha_composite(tiles[1].resize((250, 250), Image.LANCZOS), (150, 150))
+    out.alpha_composite(tiles[1].resize((230, 230), Image.LANCZOS), (170, 170))   # second item behind-right
+    out.alpha_composite(tiles[0].resize((330, 330), Image.LANCZOS), (-10, 0))
     return out
 
 
@@ -275,11 +230,11 @@ def hires(fn):
 
 PREVIEWS = {   # mod -> (title, lines, art, gradient top, gradient bottom)
     "Cold": ("Cold", ["Cold Shelf: a 10-pile, actively cooled food shelf.", "Cold Floor: clay floor that chills the room.", "Adjusted temperature thresholds."],
-             lambda: combo(lambda: hires(icon_cold_shelf), lambda: hires(icon_cold_floor)), (36, 70, 104), (14, 26, 44)),
+             lambda: combo(lambda: render_art(models.cold_shelf, "building", 400), lambda: render_art(models.cold_floor, "building", 400, 48)), (36, 70, 104), (14, 26, 44)),
     "Fish_Farming": ("Fish Farming", ["Breed trout, pike and eel in a fish farm.", "Feed them dung, vegetables or animal feed.", "Unlocked with barrel making."],
-                     lambda: hires(icon_fish_farm), (30, 82, 96), (12, 32, 40)),
+                     lambda: render_art(models.fish_farm, "building", 400), (30, 82, 96), (12, 32, 40)),
     "Fermenting Apple Cider": ("Apple Cider", ["The fermentation station makes apple cider.", "Ferments like mash, from apples."],
-                               lambda: hires(icon_fermenting_apple_cider), (110, 52, 34), (40, 18, 12)),
+                               lambda: render_art(models.fermenting_apple_cider, "item", 400), (110, 52, 34), (40, 18, 12)),
     "Better_Animals": ("Better Animals", ["Every animal can be tamed, penned, trained, haul and fight.", "Much stronger haulers; tidier diets.", "Cats hunt pests."],
                        lambda: hires(emblem_animals), (78, 92, 46), (28, 34, 16)),
     "FasterRegionTravel": ("Faster Region Travel", ["Caravans cross the region map 100x faster."],
@@ -296,9 +251,17 @@ def main():
     for mod, icons in ICONS.items():
         folder = os.path.join(ROOT, "recipes", mod, "Sprites")
         os.makedirs(folder, exist_ok=True)
-        for name, fn in icons.items():
-            fn().save(os.path.join(folder, name + ".png"), optimize=True)
-            print("icon   ", os.path.relpath(os.path.join(folder, name + ".png"), ROOT))
+        for name, (fn, kind, pitch) in icons.items():
+            path = os.path.join(folder, name + ".png")
+            model3d.render_icon(fn(), kind, ICON_SIZE, pitch=pitch).save(path, optimize=True)
+            print("icon   ", os.path.relpath(path, ROOT))
+    for mod, meshes in MESHES.items():
+        for name, fn in meshes.items():
+            mesh_dir = os.path.join(ROOT, "unity", mod, "Mesh"); tex_dir = os.path.join(ROOT, "unity", mod, "Texture")
+            os.makedirs(mesh_dir, exist_ok=True); os.makedirs(tex_dir, exist_ok=True)
+            n, tex = model3d.export_obj(fn(), os.path.join(mesh_dir, name + ".obj"), os.path.join(tex_dir, name + "_palette.png"), name)
+            print("mesh   ", f"unity/{mod}/Mesh/{name}.obj", f"({n} triangles, {tex[0]}x{tex[1]} palette)")
+            sprite_dir = os.path.join(ROOT, "unity", mod, "Sprite"); os.makedirs(sprite_dir, exist_ok=True)
     for mod, (title, lines, art, top, bottom) in PREVIEWS.items():
         folder = os.path.join(ROOT, "recipes", mod)
         os.makedirs(folder, exist_ok=True)

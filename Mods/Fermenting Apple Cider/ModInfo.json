@@ -1,9 +1,9 @@
 {
   "id": "phrontisteries.fermenting_apple_cider",
   "name": "Fermenting Apple Cider",
-  "description": "Fermentation Station now allows making Apple Cider. This adds the intermediate product of 'Fermenting Apple Cider' which fermets like mash.",
+  "description": "Fermentation Station now allows making Apple Cider. This adds the intermediate product of 'Fermenting Apple Cider' which fermets like mash.\n\nSource, issues and suggestions: https://github.com/phrontisteries/GoingMedievalMods-phrontisteries",
   "author": "phrontisteries",
-  "modVersion": "1.1.2.17",
+  "modVersion": "1.2.2.17",
   "gameVersion": "1.2.17",
   "tags": [
     "General"

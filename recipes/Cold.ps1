@@ -39,6 +39,10 @@ $script:Cold = [ordered]@{
     BuildingId_Floor_Id     = "cold_floor"
     BuildingId_Floor_Name   = "Cold Floor"
     BuildingId_Floor_Icon   = "phrontisteries_cold_floor"
+    FloorTintMultiply       = "#CFE3FF"                     # _FloorColorMultiply: cools the clay colour (vanilla: #FFFFFF)
+    FloorTintAdd            = "#04101C"                     # _FloorColorAdd: a little blue lift (vanilla clay: #000000)
+    ShelfMesh               = "phrontisteries_cold_shelf"   # unity\Cold\Mesh\phrontisteries_cold_shelf.obj
+    ShelfTexture            = "phrontisteries_cold_shelf_palette"
 
     # Cold Shelf display: one slot per pile (the game needs a slot for every pile, filed under the storage id).
     # 4 piles on the top board, 3 on each lower board, shrunk to fit side by side.
@@ -165,6 +169,11 @@ function Build-Cold_BaseBuildingRepository {
     $floorClone.iconPath = $Cold.BuildingId_Floor_Icon
     $floorClone | Add-Member -NotePropertyName defaultThermalModelID -NotePropertyValue $Cold.ThermalModelId -Force
     $floorClone.locKeys = @(Get-ColdLocKeys -Id $Cold.BuildingId_Floor_Id -InfoKey $vanillaFloor.locKeys[0].info)
+    Set-ShaderParam -Model $floorClone -Name "_FloorColorMultiply" -Value $Cold.FloorTintMultiply   # cool blue look in the world
+    Set-ShaderParam -Model $floorClone -Name "_FloorColorAdd" -Value $Cold.FloorTintAdd
+
+    # Custom frosted shelf model, once its Addressables are built (unity\README.md); until then the vanilla shelf model.
+    if (Test-ModAddressables "Cold") { Set-ModelMesh -Model $shelfClone -Mesh $Cold.ShelfMesh -Texture $Cold.ShelfTexture }
 
     return @{ repository = @($shelfClone, $floorClone) }
 }

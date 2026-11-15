@@ -1,9 +1,9 @@
 {
   "id": "phrontisteries.mushroom_cropfield",
   "name": "Mushroom Cropfield",
-  "description": "No longer spawns naturally as it expands too quickly. (Trade for it.)\nGrows on all terrain, temperature resilient (0-45), increased HP (25/50), nutritious (30/HP), and fast expansion (make sure to define a boundary!)\n(Perfect for herbivorous animal pens; carnivores need meat/fish/animal feed.)",
+  "description": "No longer spawns naturally as it expands too quickly. (Trade for it.)\nGrows on all terrain, temperature resilient (0-45), increased HP (25/50), nutritious (30/HP), and fast expansion (make sure to define a boundary!)\n(Perfect for herbivorous animal pens; carnivores need meat/fish/animal feed.)\n\nSource, issues and suggestions: https://github.com/phrontisteries/GoingMedievalMods-phrontisteries",
   "author": "phrontisteries",
-  "modVersion": "1.1.2.17",
+  "modVersion": "1.2.2.17",
   "gameVersion": "1.2.17",
   "tags": [
     [

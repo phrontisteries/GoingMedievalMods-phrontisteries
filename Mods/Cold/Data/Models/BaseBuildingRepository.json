@@ -706,7 +706,7 @@
                   "slotType": "ShaderParam",
                   "shaderParam": {
                     "variableName": "_FloorColorAdd",
-                    "colorValue": "#000000"
+                    "colorValue": "#04101C"
                   }
                 },
                 {
@@ -715,7 +715,7 @@
                   "slotType": "ShaderParam",
                   "shaderParam": {
                     "variableName": "_FloorColorMultiply",
-                    "colorValue": "#FFFFFF"
+                    "colorValue": "#CFE3FF"
                   }
                 },
                 {
