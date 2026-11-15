@@ -8,13 +8,13 @@
       "growsOn#APPEND": [
         "Rocky",
         "Limestone",
-		"ImpureLimestone",
-		"Clay",
-		"Salt",
-		"Coal",
-		"Iron",
-		"Silver",
-		"Gold"
+        "ImpureLimestone",
+        "Clay",
+        "Salt",
+        "Coal",
+        "Iron",
+        "Silver",
+        "Gold"
       ],
       "placeAnywhereChance": 0,
       "maxCount": 2000,
@@ -22,7 +22,7 @@
       "newPlantsPerDay": 100,
       "walkSpeedMultiplier": 1,
       "nutritionPerHp": 30,
-	  "lifePhases": [
+      "lifePhases": [
         {
           "phaseName": "mushroomYoung",
           "locKeys": [
@@ -104,6 +104,6 @@
           "flammability": 0.4
         }
       ]
-	}
+    }
   ]
 }

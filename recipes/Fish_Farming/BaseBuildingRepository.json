@@ -1,0 +1,17 @@
+{
+  "repository": [
+    {
+      "#template": "saltpeter_pit",
+      "id": "fish_farm",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Fish Farm",
+          "info": "Breeds fish: Trout, Pike, and Eel."
+        }
+      ],
+      "flammability": 0.2,
+      "productionComponentID": "fish_farm"
+    }
+  ]
+}

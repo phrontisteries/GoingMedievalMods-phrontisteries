@@ -1,10 +1,10 @@
 {
-    "repository": [
-        {
-            "id": "fermenting_station",
-            "productions#APPEND": [
-                "fermenting_apple_cider"
-            ]
-        }
-    ]
+  "repository": [
+    {
+      "id": "fermenting_station",
+      "productions#APPEND": [
+        "fermenting_apple_cider"
+      ]
+    }
+  ]
 }

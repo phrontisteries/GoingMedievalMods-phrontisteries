@@ -1,0 +1,4 @@
+# Debug output from older MakeMod versions
+*.before.json
+# Local overrides
+Settings.local.ps1

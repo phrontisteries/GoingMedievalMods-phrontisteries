@@ -1,0 +1,76 @@
+{
+  "repository": [
+    {
+      "id": "mushroom_cropfield",
+      "iconPath": "mushroom",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Mushrooms",
+          "info": "Grows on all terrain, temperature resilient (0-45), increased HP (25/50), nutritious (30/HP), and fast expansion (make sure to define a boundary!)\n(Perfect for herbivorous animal pens; carnivores need meat/fish/animal feed.)"
+        },
+        {
+          "languageName": "Chinese",
+          "name": "蘑菇",
+          "info": "可在全地形上生长，耐温度（0-45），增加生命值（25/50），营养丰富（30/HP），快速扩张（确保定义边界！）\n（非常适合食草动物围栏；食肉动物需要肉/鱼/动物饲料。）"
+        },
+        {
+          "languageName": "French",
+          "name": "Champignons",
+          "info": "Pousse sur tous les terrains, résiste à la température (0-45), augmente les PV (25/50), est nutritif (30/PV) et s'étend rapidement (assurez-vous de définir une limite !)\n(Parfait pour les enclos d'animaux herbivores ; les carnivores ont besoin de viande/poisson/nourriture animale.)"
+        },
+        {
+          "languageName": "Spanish",
+          "name": "Hongos",
+          "info": "Crece en todo terreno, es resistente a la temperatura (0-45), tiene más HP (25/50), es nutritivo (30/HP) y se expande rápidamente (¡asegúrate de definir un límite!). (Perfecto para corrales de animales herbívoros; los carnívoros necesitan carne, pescado y alimento para animales)."
+        },
+        {
+          "languageName": "German",
+          "name": "Pilze",
+          "info": "Wächst auf jedem Gelände, ist temperaturbeständig (0–45), hat mehr HP (25/50), ist nahrhaft (30/HP) und breitet sich schnell aus (achten Sie darauf, eine Grenze festzulegen!)\n(Perfekt für Gehege für pflanzenfressende Tiere; Fleischfresser brauchen Fleisch/Fisch/Tierfutter.)"
+        },
+        {
+          "languageName": "Russian",
+          "name": "Грибы",
+          "info": "Растет на любой местности, устойчив к температурам (0-45), имеет повышенное здоровье (25/50), питателен (30/здоровье) и быстро расширяется (обязательно определите границу!)\n(Идеально подходит для загонов для травоядных животных; плотоядным нужно мясо/рыба/корм для животных.)"
+        },
+        {
+          "languageName": "Japanese",
+          "name": "キノコ",
+          "info": "あらゆる地形で育ち、温度に強く (0-45)、HP が増加 (25/50)、栄養価が高く (30/HP)、急速に拡大します (境界を必ず定義してください!)\n(草食動物の囲いに最適です。肉食動物には肉/魚/動物の飼料が必要です。)"
+        },
+        {
+          "languageName": "Portugese",
+          "name": "Cogumelos",
+          "info": "Cresce em todos os terrenos, é resistente à temperatura (0-45), tem mais HP (25/50), é nutritivo (30/HP) e tem rápida expansão (certifique-se de definir um limite!)\n(Perfeito para currais de animais herbívoros; carnívoros precisam de carne/peixe/ração animal.)"
+        },
+        {
+          "languageName": "Korean",
+          "name": "버섯",
+          "info": "모든 지형에서 자라고, 온도 회복력이 강하고(0~45), 체력이 높고(25/50), 영양가가 높으며(30/HP) 빠르게 확장됩니다(경계를 명확히 해야 함!)\n(초식 동물 우리에 적합함. 육식 동물에게는 고기/생선/사료가 필요합니다.)"
+        },
+        {
+          "languageName": "Polish",
+          "name": "Grzyby",
+          "info": "Rośnie na każdym terenie, jest odporny na zmiany temperatury (0-45), ma zwiększone HP (25/50), jest pożywny (30/HP) i szybko się rozrasta (pamiętaj o ustaleniu granic!)\n(Idealny dla zagród dla zwierząt roślinożernych; mięsożercy potrzebują mięsa/ryb/paszy dla zwierząt.)"
+        },
+        {
+          "languageName": "Turkish",
+          "name": "Mantarlar",
+          "info": "Her türlü arazide yetişir, sıcaklığa dayanıklıdır (0-45), artırılmış HP (25/50), besleyicidir (30/HP) ve hızlı yayılır (sınırı belirlediğinizden emin olun!)\n(Otçul hayvan barınakları için mükemmeldir; etoburların ete/balığa/hayvan yemine ihtiyacı vardır.)"
+        },
+        {
+          "languageName": "Italian",
+          "name": "Funghi",
+          "info": "Cresce su tutti i terreni, resiste alle alte temperature (0-45), ha più PS (25/50), è nutriente (30/PS) e si espande rapidamente (assicurati di definire un confine!)\n(Perfetto per i recinti degli animali erbivori; i carnivori hanno bisogno di carne/pesce/mangime per animali.)"
+        }
+      ],
+      "defaultPlant": "mushroom_patch",
+      "layerHideOffset": -1.5,
+      "layerShadowOffset": -1.5,
+      "buildingCategoryUI": 7,
+      "buildingSubCategoryUI": 17,
+      "seedID": "mushroom"
+    }
+  ]
+}

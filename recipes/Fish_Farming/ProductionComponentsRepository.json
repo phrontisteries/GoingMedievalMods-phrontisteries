@@ -1,0 +1,30 @@
+{
+  "repository": [
+    {
+      "#template": "saltpeter_pit",
+      "id": "fish_farm",
+      "productionSpeedMultiplier": {
+        "outside": 1,
+        "inside": 1,
+        "roofed": 1,
+        "outsideRain": 1,
+        "outsideSnow": 1,
+        "outsideFog": 1
+      },
+      "productions": [
+        "trout_fish",
+        "trout_fish_veg",
+        "trout_fish_halftime",
+        "trout_fish_carcass",
+        "pike_fish",
+        "pike_fish_veg",
+        "pike_fish_halftime",
+        "pike_fish_carcass",
+        "eel",
+        "eel_veg",
+        "eel_halftime",
+        "eel_carcass"
+      ]
+    }
+  ]
+}

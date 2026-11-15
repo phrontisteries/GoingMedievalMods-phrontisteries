@@ -1,0 +1,81 @@
+{
+  "repository": [
+    {
+      "#template": "fermenting_mash",
+      "id": "fermenting_apple_cider",
+      "iconPath": "apple_cider",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Fermenting Apple Cider",
+          "info": "Adding yeast in apple juice, the yeast eats the sugar and turns it into alcohol - Cider."
+        },
+        {
+          "languageName": "Chinese",
+          "name": "发酵苹果酒。",
+          "info": "在苹果汁中加入酵母，酵母会吃掉糖并将其转化为酒精-苹果酒。."
+        },
+        {
+          "languageName": "French",
+          "name": "Fermentation du cidre de pomme",
+          "info": ".En ajoutant de la levure dans le jus de pomme, la levure mange le sucre et le transforme en alcool - Cidre."
+        },
+        {
+          "languageName": "Spanish",
+          "name": "Sidra de manzana fermentada",
+          "info": ".Añadiendo levadura en el jugo de manzana, la levadura se come el azúcar y lo convierte en alcohol - Sidra."
+        },
+        {
+          "languageName": "German",
+          "name": "Apfelwein fermentieren",
+          "info": "Fügen Sie Hefe in Apfelsaft hinzu, die Hefe isst den Zucker und verwandelt ihn in Alkohol - Apfelwein."
+        },
+        {
+          "languageName": "Russian",
+          "name": "Сбраживание яблочного сидра",
+          "info": "Добавляя дрожжи в яблочный сок, дрожжи съедают сахар и превращают его в спирт - сидр."
+        },
+        {
+          "languageName": "Japanese",
+          "name": "りんごシードルの発酵。",
+          "info": "。リンゴジュースに酵母を加えると、酵母は砂糖を食べてアルコールに変えます-サイダー。."
+        },
+        {
+          "languageName": "Portugese",
+          "name": "Fermentando a sidra de maçã",
+          "info": "Adicionando levedura no sumo de maçã, a levedura come o açúcar e transforma-o em álcool - Sidra."
+        },
+        {
+          "languageName": "Korean",
+          "name": "발효 사과주",
+          "info": "사과 주스에 효모를 첨가하면 효모가 설탕을 먹고 알코올 - 사이다로 바뀝니다."
+        },
+        {
+          "languageName": "Polish",
+          "name": "Fermentowanie jabłkowego cydru",
+          "info": "Dodając drożdże do soku jabłkowego, drożdże zjedzą cukier i zamienią go w alkohol - Cydr."
+        },
+        {
+          "languageName": "Turkish",
+          "name": "Fermenting Elma Şırası",
+          "info": "Elma suyuna maya ekleyen maya, şekeri yer ve alkole dönüştürür - Elma şarabı."
+        },
+        {
+          "languageName": "Italian",
+          "name": "Fermentazione del sidro di mele",
+          "info": "Aggiungendo il lievito nel succo di mela, il lievito mangia lo zucchero e lo trasforma in alcol - Sidro."
+        }
+      ],
+      "fermentedId": "apple_cider",
+      "almanacTags": [
+        "resource_category_name_CtgAlcohol",
+        "building_name_brewing_station",
+        "resource_name_apple"
+      ],
+      "onUseEffects": [
+        "DrankWeakAlcohol",
+        "MoodInstaAddLow"
+      ]
+    }
+  ]
+}

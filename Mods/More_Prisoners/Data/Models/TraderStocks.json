@@ -1,21 +1,21 @@
 {
-    "repository": [
+  "repository": [
+    {
+      "id": "Prisoners",
+      "stockItems": [
         {
-            "id": "Prisoners",
-            "stockItems": [
-                {
-                    "dev_name": "PrisonersRandom",
-                    "type": "prisoner",
-                    "amountRange": {
-                        "min": 5,
-                        "max": 20
-                    },
-                    "entriesCount": {
-                        "min": 20,
-                        "max": 20
-                    }
-                }
-            ]
+          "dev_name": "PrisonersRandom",
+          "type": "prisoner",
+          "amountRange": {
+            "min": 5,
+            "max": 20
+          },
+          "entriesCount": {
+            "min": 20,
+            "max": 20
+          }
         }
-    ]
+      ]
+    }
+  ]
 }

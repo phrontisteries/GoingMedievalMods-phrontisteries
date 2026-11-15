@@ -1,0 +1,109 @@
+{
+  "repository": [
+    {
+      "id": "mushroom_patch",
+      "yieldByDifficulty": true,
+      "cultivable": true,
+      "canHaveBlight": false,
+      "growsOn#APPEND": [
+        "Rocky",
+        "Limestone",
+        "ImpureLimestone",
+        "Clay",
+        "Salt",
+        "Coal",
+        "Iron",
+        "Silver",
+        "Gold"
+      ],
+      "placeAnywhereChance": 0,
+      "maxCount": 2000,
+      "newPlantTemperatureLimit": 0,
+      "newPlantsPerDay": 100,
+      "walkSpeedMultiplier": 1,
+      "nutritionPerHp": 30,
+      "lifePhases": [
+        {
+          "phaseName": "mushroomYoung",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "resource_phase_young"
+            }
+          ],
+          "appearance": {
+            "scale": 1,
+            "shaderParameters": [
+              {
+                "parameterId": "_GrowAmount",
+                "parameterValue": 0.3
+              },
+              {
+                "parameterId": "_CapWidth",
+                "parameterValue": 1
+              }
+            ]
+          },
+          "durationDays": 1,
+          "baseHealth": 25,
+          "resourcesRange": [
+            {
+              "min": 1,
+              "max": 1
+            }
+          ],
+          "temperatureFreeze": 0,
+          "temperatureDeath": -5,
+          "nextPhaseIndex": 1,
+          "deathPhaseIndex": -1,
+          "beautyInput": 1,
+          "temperatureOverheat": 45,
+          "turningPhase": false,
+          "useSunLight": false,
+          "deathPhaseIndexFire": -1,
+          "flammability": 0.4
+        },
+        {
+          "phaseName": "mushroomMature",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "resource_phase_ripe"
+            }
+          ],
+          "appearance": {
+            "scale": 1,
+            "shaderParameters": [
+              {
+                "parameterId": "_GrowAmount",
+                "parameterValue": 1
+              },
+              {
+                "parameterId": "_CapWidth",
+                "parameterValue": 3
+              }
+            ]
+          },
+          "durationDays": 3,
+          "baseHealth": 50,
+          "resourcesRange": [
+            {
+              "min": 4,
+              "max": 4
+            }
+          ],
+          "temperatureFreeze": 0,
+          "temperatureDeath": -5,
+          "nextPhaseIndex": -1,
+          "deathPhaseIndex": -1,
+          "beautyInput": 1,
+          "temperatureOverheat": 45,
+          "turningPhase": false,
+          "useSunLight": false,
+          "deathPhaseIndexFire": -1,
+          "flammability": 0.4
+        }
+      ]
+    }
+  ]
+}

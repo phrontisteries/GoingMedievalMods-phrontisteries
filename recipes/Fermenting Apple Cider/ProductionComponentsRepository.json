@@ -1,0 +1,10 @@
+{
+  "repository": [
+    {
+      "id": "fermenting_station",
+      "productions#APPEND": [
+        "fermenting_apple_cider"
+      ]
+    }
+  ]
+}

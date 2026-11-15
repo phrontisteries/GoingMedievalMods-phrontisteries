@@ -1,26 +1,98 @@
-# GoingMedievalMod-Cold
+# GoingMedievalMods-phrontisteries
 
-Going Medieval mod **Cold**, updated for game version **1.2.17**.
+[Going Medieval](https://store.steampowered.com/app/1029780/Going_Medieval/) mods by **phrontisteries**, and the PowerShell tooling that builds them from the game's own data, so they can be rebuilt after every game update.
 
-- **Cold Shelf:** a food-storage shelf that holds 10 piles (no Coin, Carcass or Fermenting). Unlocked by Preserving Food I.
-- **Cold Floor:** a clay brick floor with active cooling. It is at the end of the floor list.
-- **Temperature thresholds:** the first two thresholds change from 0 and 1 to 1 and 2.
+Built for game version **1.2.17**.
 
-## Install
+## The mods
 
-Copy this folder to `Documents\Foxy Voxel\Going Medieval\Mods\Cold`, or subscribe on the Steam Workshop. The `tools` folder and this README are not needed by the game.
+| Mod | Workshop | What it does |
+|---|---|---|
+| [Better_Animals](Mods/Better_Animals) | [3681706355](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706355) | All animals can be tamed, penned, trained, haul and attack; 100x carrying; population caps; simpler diets; cat pest control; settlers carry more. |
+| [Cold](Mods/Cold) | [3681706554](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706554) | Cold Shelf (10 piles, actively cooled), Cold Floor (clay), adjusted temperature thresholds. |
+| [Faster Region Travel](Mods/FasterRegionTravel) | [3681708275](https://steamcommunity.com/sharedfiles/filedetails/?id=3681708275) | Caravans cross the region map 100x faster. |
+| [Fermenting Apple Cider](Mods/Fermenting%20Apple%20Cider) | [3681708241](https://steamcommunity.com/sharedfiles/filedetails/?id=3681708241) | The fermentation station makes apple cider. |
+| [Fine Clothing Worker](Mods/Fine_Clothing_Worker) | [3681706422](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706422) | Settlers in Superior/Flawless apparel work, walk, rest and fight better. |
+| [Fish Farming](Mods/Fish_Farming) | [3681706482](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706482) | A fish farm that breeds trout, pike and eel (unlocked with barrel making). |
+| [More Prisoners](Mods/More_Prisoners) | [3681706523](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706523) | Raiders surrender more readily; merchants trade more prisoners. |
+| [Mushroom Cropfield](Mods/Mushroom%20Cropfield) | [3458079756](https://steamcommunity.com/sharedfiles/filedetails/?id=3458079756) | Plantable, fast-spreading mushrooms that grow on any terrain. |
 
-## Updating for a new game version
+To play one without the Workshop, copy its folder from `Mods\` to `Documents\Foxy Voxel\Going Medieval\Mods\` and enable it in the game's Mods menu.
 
-New buildings must be complete models. `tools/build.py` regenerates `cold_shelf` and `cold_floor` from the current vanilla `shelf` and `clay_brick_floor`, and rebuilds the shelf's display slots:
+## Repository layout
 
 ```
-python tools/build.py "<Going Medieval>/Going Medieval_Data/StreamingAssets" Data/Models
+MakeMod.ps1          Builds mods from recipes (menu, -ModName <name>, or -All)
+Settings.ps1         Your author name and the game's StreamingAssets path
+recipes\             What each mod changes (the source of truth)
+  <Mod>.ps1            script recipe: Build-<Mod>_<File> functions that transform the vanilla file
+  <Mod>\<File>.json    source recipe: JSON copied into the mod, "#template" entries rebuilt from vanilla
+Mods\                Built mods, ready for the game and the Workshop (generated; do not edit by hand)
+tools\
+  Test-Mods.ps1        Checks built mods against the installed game
+  ModTranslationPatcher.ps1  Fills in locKeys for the game's languages (MyMemory translation API)
+docs\MODDING-NOTES.md  How the game merges mod JSON, and the pitfalls these tools guard against
 ```
 
-Then set `gameVersion` in `ModInfo.json`.
+## Requirements
 
-## 1.2.0.17 changes
+- Windows with Going Medieval installed (Steam, GOG or Epic)
+- [PowerShell 7+](https://learn.microsoft.com/powershell/scripting/install/installing-powershell-on-windows) (`pwsh`). Windows PowerShell 5.1 is not supported.
 
-- Fixed the load crash (NullReferenceException) and the shelf turning into an empty rack: the shelf now has one display slot per pile, filed under its own storage id.
-- Added the fields the current game requires on the shelf (`inflationCurve`, `marketCap`) and the floor (`upgradeToFlag`).
+## Using it
+
+1. Fork or clone this repo.
+2. Edit `Settings.ps1`: set `$Global:Author` to your own handle and `$Global:StreamingAssets` to your install's `Going Medieval_Data\StreamingAssets` folder. Or set `GM_AUTHOR` and `GM_STREAMING_ASSETS` instead of editing.
+3. Build:
+   ```powershell
+   pwsh .\MakeMod.ps1                  # pick from a menu
+   pwsh .\MakeMod.ps1 -ModName Cold    # one mod
+   pwsh .\MakeMod.ps1 -All             # every mod
+   ```
+4. Check:
+   ```powershell
+   pwsh .\tools\Test-Mods.ps1          # exit code = number of errors
+   ```
+5. Copy the mod folder from `Mods\` to `Documents\Foxy Voxel\Going Medieval\Mods\`, test it in game (existing save and a new game), then upload from the game's Mods menu.
+
+Mod versions follow `x.v.y.z`: game version `x.y.z` with your revision `v` in the second place. `MakeMod.ps1` bumps `v` on each build and resets it to 0 when the game version changes.
+
+### After a game update
+
+```powershell
+pwsh .\MakeMod.ps1 -All
+pwsh .\tools\Test-Mods.ps1
+git diff Mods        # what changed in the built mods, because the game changed
+```
+
+Recipes start from the current vanilla data each time, so most game changes flow in automatically. `Test-Mods.ps1` reports what still needs a human:
+
+| Finding | Meaning | Usual fix |
+|---|---|---|
+| `ERROR file` | The game no longer has a file with that name. | Find where the data moved; rename the recipe file or `Build-` function. |
+| `ERROR field` | A field no game entry uses any more (renamed or removed). | Rename or drop it in the recipe. |
+| `ERROR rule` | A cross-file rule is broken (e.g. shelf display slots). | See `docs\MODDING-NOTES.md`. |
+| `WARN new` | A new model lacks fields the closest vanilla model has. | Add a `"#template"` to it, or add the fields. |
+| `WARN ver` | `ModInfo.json` targets another game version. | Rebuild with `MakeMod.ps1`. |
+
+### Making a new mod
+
+**No code:** create `recipes\<ModName>\` and put game-named JSON files in it, written as the game's merge rules expect (see the notes). Give every new model a template:
+
+```json
+{
+  "repository": [
+    { "#template": "fermenting_mash", "id": "fermenting_apple_cider", "iconPath": "fermenting_apple_cider" }
+  ]
+}
+```
+
+The built model is the current vanilla `fermenting_mash` with the fields you wrote replacing its own. Overrides of existing ids (and `#APPEND` / `#REMOVE` lists) are copied as written.
+
+**Script:** create `recipes\<ModName>.ps1` with a `Build-<ModName>_<File>` function per file. Each function receives the current vanilla file as `-RawJson` and returns the mod's version. Add `Set-<ModName>_ModInfo` to control the name, description and tags. In function names, leave out spaces (`Mushroom Cropfield` → `Build-MushroomCropfield_Research`). See `recipes\Cold.ps1` and the header of `MakeMod.ps1`.
+
+A mod can use both. A `Build-` function wins over a source file with the same name.
+
+## License
+
+[MIT](LICENSE). Going Medieval and its data belong to Foxy Voxel / Mythwright; see their [modding policy](https://foxyvoxel.io/2025/03/13/modding-guide-policy/) before publishing.

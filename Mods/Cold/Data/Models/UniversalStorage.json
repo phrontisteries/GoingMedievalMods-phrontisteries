@@ -1,0 +1,29 @@
+{
+  "repository": [
+    {
+      "maxPileCount": 10,
+      "storableResourceGroups": [
+        "Apparel",
+        "Food",
+        "Material",
+        "Seeds",
+        "Warfare",
+        "Fodder",
+        "Waste",
+        "Books",
+        "Medicine",
+        "Trophy",
+        "Structures",
+        "Misc",
+        "Water",
+        "Ammo",
+        "Skillbooks",
+        "Relic",
+        "Grandoak",
+        "Grandbook"
+      ],
+      "zonePriority": 1,
+      "id": "cold_storage"
+    }
+  ]
+}

@@ -1,252 +1,252 @@
 {
-	"repository": [
-		{
-			"id": "FineClothing",
-			"effects#APPEND": [
-				{
-					"type": "MoodModify",
-					"parameters": [
-						{
-							"key": "BaseValue",
-							"value": "20"
-						}
-					]
-				},
-				{
-					"type": "AttributeModify",
-					"parameters": [
-						{
-							"key": "Attribute",
-							"value": "GlobalWorkSpeed"
-						},
-						{
-							"key": "Multiplier",
-							"value": "5"
-						}
-					]
-				},
-				{
-					"type": "AttributeModify",
-					"parameters": [
-						{
-							"key": "Attribute",
-							"value": "MotorFunction"
-						},
-						{
-							"key": "Multiplier",
-							"value": "5"
-						}
-					]
-				},
-				{
-					"type": "AttributeModify",
-					"parameters": [
-						{
-							"key": "Attribute",
-							"value": "MovementSpeed"
-						},
-						{
-							"key": "Multiplier",
-							"value": "2"
-						}
-					]
-				},
-				{
-					"type": "AttributeModify",
-					"parameters": [
-						{
-							"key": "Attribute",
-							"value": "SleepRecoverSpeed"
-						},
-						{
-							"key": "Multiplier",
-							"value": "4"
-						}
-					]
-				},
-				{
-					"type": "AttributeModify",
-					"parameters": [
-						{
-							"key": "Attribute",
-							"value": "SleepDepletionSpeed"
-						},
-						{
-							"key": "Multiplier",
-							"value": "0.1"
-						}
-					]
-				},
-				{
-					"type": "AttributeModify",
-					"parameters": [
-						{
-							"key": "Attribute",
-							"value": "RareChance"
-						},
-						{
-							"key": "Multiplier",
-							"value": "5"
-						}
-					]
-				},
-				{
-					"type": "AttributeModify",
-					"parameters": [
-						{
-							"key": "Attribute",
-							"value": "Clumsiness"
-						},
-						{
-							"key": "Multiplier",
-							"value": "0.1"
-						}
-					]
-				},
-				{
-					"type": "AttributeModify",
-					"parameters": [
-						{
-							"key": "Attribute",
-							"value": "EvadeChance"
-						},
-						{
-							"key": "Multiplier",
-							"value": "5"
-						}
-					]
-				},
-				{
-					"type": "AttributeModify",
-					"parameters": [
-						{
-							"key": "Attribute",
-							"value": "RangedSpeed"
-						},
-						{
-							"key": "Multiplier",
-							"value": "0.1"
-						}
-					]
-				},
-				{
-					"type": "AttributeModify",
-					"parameters": [
-						{
-							"key": "Attribute",
-							"value": "MeleeAttackSpeed"
-						},
-						{
-							"key": "Multiplier",
-							"value": "0.1"
-						}
-					]
-				},
-				{
-					"type": "AttributeModify",
-					"parameters": [
-						{
-							"key": "Attribute",
-							"value": "UnarmedSpeed"
-						},
-						{
-							"key": "Multiplier",
-							"value": "0.1"
-						}
-					]
-				},
-				{
-					"type": "AttributeModify",
-					"parameters": [
-						{
-							"key": "Attribute",
-							"value": "AttackCritChance"
-						},
-						{
-							"key": "Multiplier",
-							"value": "5"
-						}
-					]
-				},
-				{
-					"type": "AttributeModify",
-					"parameters": [
-						{
-							"key": "Attribute",
-							"value": "AgentFlammability"
-						},
-						{
-							"key": "Multiplier",
-							"value": "0"
-						}
-					]
-				},
-				{
-					"type": "AttributeModify",
-					"parameters": [
-						{
-							"key": "Attribute",
-							"value": "TempColdTresh"
-						},
-						{
-							"key": "Multiplier",
-							"value": "2"
-						}
-					]
-				},
-				{
-					"type": "AttributeModify",
-					"parameters": [
-						{
-							"key": "Attribute",
-							"value": "TempHotTresh"
-						},
-						{
-							"key": "Multiplier",
-							"value": "2"
-						}
-					]
-				},
-				{
-					"type": "AttributeModify",
-					"parameters": [
-						{
-							"key": "Attribute",
-							"value": "SocialCompatibilityPositive"
-						},
-						{
-							"key": "Multiplier",
-							"value": "2"
-						}
-					]
-				},
-				{
-					"type": "AttributeModify",
-					"parameters": [
-						{
-							"key": "Attribute",
-							"value": "WoundRegen"
-						},
-						{
-							"key": "Multiplier",
-							"value": "2"
-						}
-					]
-				},
-				{
-					"type": "AttributeModify",
-					"parameters": [
-						{
-							"key": "Attribute",
-							"value": "HealthRecovery"
-						},
-						{
-							"key": "Multiplier",
-							"value": "2"
-						}
-					]
-				}
-			]
-		}
-	]
+  "repository": [
+    {
+      "id": "FineClothing",
+      "effects#APPEND": [
+        {
+          "type": "MoodModify",
+          "parameters": [
+            {
+              "key": "BaseValue",
+              "value": "20"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "GlobalWorkSpeed"
+            },
+            {
+              "key": "Multiplier",
+              "value": "5"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "MotorFunction"
+            },
+            {
+              "key": "Multiplier",
+              "value": "5"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "MovementSpeed"
+            },
+            {
+              "key": "Multiplier",
+              "value": "2"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "SleepRecoverSpeed"
+            },
+            {
+              "key": "Multiplier",
+              "value": "4"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "SleepDepletionSpeed"
+            },
+            {
+              "key": "Multiplier",
+              "value": "0.1"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "RareChance"
+            },
+            {
+              "key": "Multiplier",
+              "value": "5"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "Clumsiness"
+            },
+            {
+              "key": "Multiplier",
+              "value": "0.1"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "EvadeChance"
+            },
+            {
+              "key": "Multiplier",
+              "value": "5"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "RangedSpeed"
+            },
+            {
+              "key": "Multiplier",
+              "value": "0.1"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "MeleeAttackSpeed"
+            },
+            {
+              "key": "Multiplier",
+              "value": "0.1"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "UnarmedSpeed"
+            },
+            {
+              "key": "Multiplier",
+              "value": "0.1"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "AttackCritChance"
+            },
+            {
+              "key": "Multiplier",
+              "value": "5"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "AgentFlammability"
+            },
+            {
+              "key": "Multiplier",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "TempColdTresh"
+            },
+            {
+              "key": "Multiplier",
+              "value": "2"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "TempHotTresh"
+            },
+            {
+              "key": "Multiplier",
+              "value": "2"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "SocialCompatibilityPositive"
+            },
+            {
+              "key": "Multiplier",
+              "value": "2"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "WoundRegen"
+            },
+            {
+              "key": "Multiplier",
+              "value": "2"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "HealthRecovery"
+            },
+            {
+              "key": "Multiplier",
+              "value": "2"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

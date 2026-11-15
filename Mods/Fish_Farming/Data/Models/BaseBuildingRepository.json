@@ -1,292 +1,294 @@
 {
-    "repository": [
-        {
-            "id": "fish_farm",
-            "iconPath": "saltpeter_pit",
-            "locKeys": [
-                {
-                    "languageName": "English",
-                    "name": "Fish Farm",
-                    "info": "Breeds fish: Trout, Pike, and Eel."
-                }
-            ],
-            "prefabID": "base_production_structure",
-            "previewPrefabID": "base_constructable_preview",
-            "occlusionCullingMode": "CanBeOccludedOnly",
-            "buildItem": "hammer_item",
-            "buildTime": 150,
-            "size": {
-                "x": 3,
-                "y": 1,
-                "z": 3
-            },
-            "boxColliderSettings": {
-                "centerOffset": {
-                    "x": 1,
-                    "y": 0.5,
-                    "z": 1
-                },
-                "sizeOffset": {
-                    "x": 2.9,
-                    "y": 1,
-                    "z": 2.9
-                }
-            },
-            "workPositionsArray": [
-                {
-                    "id": "1",
-                    "positionOffset": {
-                        "x": -0.172,
-                        "y": 0.31,
-                        "z": 1.202
-                    },
-                    "rotationOffset": {
-                        "x": 0,
-                        "y": 107.7,
-                        "z": 0
-                    },
-                    "scaleOffset": {
-                        "x": 0,
-                        "y": 0,
-                        "z": 0
-                    }
-                }
-            ],
-            "buildingCategoryUI": "Production",
-            "buildingSubCategoryUI": "None",
-            "soundMaterialCategory": 1,
-            "buildingType": 2048,
-            "constructableBaseCategory": 2,
-            "placementType": 0,
-            "materials": {
-                "keys": [
-                    "wood",
-                    "iron_ingot"
-                ],
-                "values": [
-                    50,
-                    15
-                ]
-            },
-            "returnOnDestroy": {
-                "keys": [
-                    "wood",
-                    "iron_ingot"
-                ],
-                "values": [
-                    0.6,
-                    1
-                ]
-            },
-            "returnOnDeconstruct": {
-                "keys": [
-                    "wood",
-                    "iron_ingot"
-                ],
-                "values": [
-                    0.3,
-                    0.6
-                ]
-            },
-            "pathfindingPenalty": 25000,
-            "idleTargetForbidden": true,
-            "maxPoolCount": 2,
-            "refillThreshold": 1,
-            "placeableBellowOthers": false,
-            "transfersStability": false,
-            "layerShadowOffset": -1,
-            "layerHideOffset": -1,
-            "attackTraversePenalty": 0.2,
-            "cover": 0,
-            "wealthPoints": 127,
-            "beautyInput": 0,
-            "flammability": 0.2,
-            "heatDamageThreshold": 80,
-            "heatDamage": 0.5,
-            "stats": [
-                {
-                    "debugName": "Hitpoints",
-                    "type": 1,
-                    "initialValue": 160,
-                    "attributes": {
-                        "max": [
-                            {
-                                "baseValue": 160
-                            }
-                        ]
-                    }
-                }
-            ],
-            "destroyParticles": "destroy_wood_floor",
-            "hasDestructionAnimation": true,
-            "sortingGroup": "StructuresProduction",
-            "canBeMoved": true,
-            "pilePrefabID": "base_building_pile",
-            "pileVariationLists": [
-                {
-                    "name": "CountVariations",
-                    "variations": [
-                        {
-                            "name": "stackSize01",
-                            "slots": [
-                                {
-                                    "id": "1",
-                                    "slot": "baseMesh",
-                                    "slotType": "Mesh",
-                                    "value": "structure_wood_pile"
-                                },
-                                {
-                                    "id": "2",
-                                    "slot": "albedo",
-                                    "slotType": "Texture",
-                                    "value": "base_texture_png"
-                                },
-                                {
-                                    "id": "3",
-                                    "slot": "reflection",
-                                    "slotType": "Texture",
-                                    "value": "base_texture_reflection"
-                                },
-                                {
-                                    "id": "4",
-                                    "slot": "reflection",
-                                    "slotType": "ShaderParam",
-                                    "shaderParam": {
-                                        "variableName": "_BaseColorMultiply",
-                                        "colorValue": "#FFFFFF"
-                                    }
-                                },
-                                {
-                                    "id": "5",
-                                    "slot": "reflection",
-                                    "slotType": "ShaderParam",
-                                    "shaderParam": {
-                                        "variableName": "_Metallic",
-                                        "floatValue": "1"
-                                    }
-                                },
-                                {
-                                    "id": "6",
-                                    "slot": "reflection",
-                                    "slotType": "ShaderParam",
-                                    "shaderParam": {
-                                        "variableName": "_Smoothness",
-                                        "floatValue": "1"
-                                    }
-                                },
-                                {
-                                    "id": "7",
-                                    "slot": "boxMesh",
-                                    "slotType": "Mesh",
-                                    "value": "structure_pile_box"
-                                },
-                                {
-                                    "id": "8",
-                                    "slot": "boxAlbedo",
-                                    "slotType": "Texture",
-                                    "value": "base_texture_png"
-                                },
-                                {
-                                    "id": "9",
-                                    "slot": "boxReflection",
-                                    "slotType": "Texture",
-                                    "value": "base_texture_reflection"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "weight": 60,
-            "decomposeModifiersId": "structure_pile_decay",
-            "productionComponentID": "fish_farm",
-            "useLOD": true,
-            "useShadowCasters": true,
-            "variationLists": [
-                {
-                    "name": "List01",
-                    "hideInUI": true,
-                    "variations": [
-                        {
-                            "name": "default",
-                            "slots": [
-                                {
-                                    "id": 1,
-                                    "slot": "baseMesh",
-                                    "slotType": "Mesh",
-                                    "value": "saltpeter_pit"
-                                },
-                                {
-                                    "id": "11",
-                                    "slot": "baseMeshLOD0",
-                                    "slotType": "Mesh",
-                                    "value": "saltpeter_pit_LOD0"
-                                },
-                                {
-                                    "id": "12",
-                                    "slot": "baseMeshSC",
-                                    "slotType": "Mesh",
-                                    "value": "saltpeter_pit_SC"
-                                },
-                                {
-                                    "id": 2,
-                                    "slot": "albedo",
-                                    "slotType": "Texture",
-                                    "value": "water_barrels"
-                                },
-                                {
-                                    "id": 3,
-                                    "slot": "reflection",
-                                    "slotType": "Texture",
-                                    "value": ""
-                                },
-                                {
-                                    "id": 4,
-                                    "slot": "emission",
-                                    "slotType": "Texture",
-                                    "value": ""
-                                },
-                                {
-                                    "id": 5,
-                                    "slot": "emission",
-                                    "slotType": "ShaderParam",
-                                    "shaderParam": {
-                                        "variableName": "_ContactIntencity",
-                                        "floatValue": "0.2"
-                                    }
-                                },
-                                {
-                                    "id": 6,
-                                    "slot": "emission",
-                                    "slotType": "ShaderParam",
-                                    "shaderParam": {
-                                        "variableName": "_RimlightIntencity",
-                                        "floatValue": "1"
-                                    }
-                                },
-                                {
-                                    "id": 7,
-                                    "slot": "emission",
-                                    "slotType": "ShaderParam",
-                                    "shaderParam": {
-                                        "variableName": "_Metallic",
-                                        "floatValue": "0"
-                                    }
-                                },
-                                {
-                                    "id": 8,
-                                    "slot": "emission",
-                                    "slotType": "ShaderParam",
-                                    "shaderParam": {
-                                        "variableName": "_Smoothness",
-                                        "floatValue": "0"
-                                    }
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
+  "repository": [
+    {
+      "iconPath": "saltpeter_pit",
+      "prefabID": "base_production_structure",
+      "previewPrefabID": "base_constructable_preview",
+      "occlusionCullingMode": "CanBeOccludedOnly",
+      "buildItem": "hammer_item",
+      "buildTime": 150,
+      "size": {
+        "x": 3,
+        "y": 1,
+        "z": 3
+      },
+      "boxColliderSettings": {
+        "centerOffset": {
+          "x": 1,
+          "y": 0.5,
+          "z": 1
+        },
+        "sizeOffset": {
+          "x": 2.9,
+          "y": 1,
+          "z": 2.9
         }
-    ]
+      },
+      "workPositionsArray": [
+        {
+          "id": "1",
+          "positionOffset": {
+            "x": -0.172,
+            "y": 0.31,
+            "z": 1.202
+          },
+          "rotationOffset": {
+            "x": 0,
+            "y": 107.7,
+            "z": 0
+          },
+          "scaleOffset": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        }
+      ],
+      "buildingCategoryUI": "Production",
+      "buildingSubCategoryUI": "None",
+      "soundMaterialCategory": 1,
+      "buildingType": 2048,
+      "constructableBaseCategory": 2,
+      "placementType": 0,
+      "materials": {
+        "keys": [
+          "wood",
+          "iron_ingot"
+        ],
+        "values": [
+          50,
+          15
+        ]
+      },
+      "returnOnDestroy": {
+        "keys": [
+          "wood",
+          "iron_ingot"
+        ],
+        "values": [
+          0.6,
+          1
+        ]
+      },
+      "returnOnDeconstruct": {
+        "keys": [
+          "wood",
+          "iron_ingot"
+        ],
+        "values": [
+          0.3,
+          0.6
+        ]
+      },
+      "pathfindingPenalty": 25000,
+      "idleTargetForbidden": true,
+      "maxPoolCount": 2,
+      "refillThreshold": 1,
+      "placeableBellowOthers": false,
+      "transfersStability": false,
+      "layerShadowOffset": -1,
+      "layerHideOffset": -1,
+      "attackTraversePenalty": 0.2,
+      "cover": 0,
+      "wealthPoints": 127,
+      "marketCap": 2,
+      "inflationCurve": "default",
+      "beautyInput": 0,
+      "heatDamageThreshold": 80,
+      "heatDamage": 0.5,
+      "stats": [
+        {
+          "debugName": "Hitpoints",
+          "type": 1,
+          "initialValue": 160,
+          "attributes": {
+            "max": [
+              {
+                "baseValue": 160
+              }
+            ]
+          }
+        }
+      ],
+      "destroyParticles": "destroy_wood_floor",
+      "hasDestructionAnimation": true,
+      "sortingGroup": "StructuresProduction",
+      "canBeMoved": true,
+      "pilePrefabID": "base_building_pile",
+      "pileVariationLists": [
+        {
+          "name": "CountVariations",
+          "variations": [
+            {
+              "name": "stackSize01",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "structure_wood_pile"
+                },
+                {
+                  "id": "2",
+                  "slot": "albedo",
+                  "slotType": "Texture",
+                  "value": "base_texture_png"
+                },
+                {
+                  "id": "3",
+                  "slot": "reflection",
+                  "slotType": "Texture",
+                  "value": "base_texture_reflection"
+                },
+                {
+                  "id": "4",
+                  "slot": "reflection",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_BaseColorMultiply",
+                    "colorValue": "#FFFFFF"
+                  }
+                },
+                {
+                  "id": "5",
+                  "slot": "reflection",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Metallic",
+                    "floatValue": "1"
+                  }
+                },
+                {
+                  "id": "6",
+                  "slot": "reflection",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Smoothness",
+                    "floatValue": "1"
+                  }
+                },
+                {
+                  "id": "7",
+                  "slot": "boxMesh",
+                  "slotType": "Mesh",
+                  "value": "structure_pile_box"
+                },
+                {
+                  "id": "8",
+                  "slot": "boxAlbedo",
+                  "slotType": "Texture",
+                  "value": "base_texture_png"
+                },
+                {
+                  "id": "9",
+                  "slot": "boxReflection",
+                  "slotType": "Texture",
+                  "value": "base_texture_reflection"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "weight": 60,
+      "decomposeModifiersId": "structure_pile_decay",
+      "useLOD": true,
+      "useShadowCasters": true,
+      "variationLists": [
+        {
+          "name": "List01",
+          "hideInUI": true,
+          "variations": [
+            {
+              "name": "default",
+              "slots": [
+                {
+                  "id": 1,
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "saltpeter_pit"
+                },
+                {
+                  "id": "11",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "saltpeter_pit_LOD0"
+                },
+                {
+                  "id": "12",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "saltpeter_pit_SC"
+                },
+                {
+                  "id": 2,
+                  "slot": "albedo",
+                  "slotType": "Texture",
+                  "value": "water_barrels"
+                },
+                {
+                  "id": 3,
+                  "slot": "reflection",
+                  "slotType": "Texture",
+                  "value": ""
+                },
+                {
+                  "id": 4,
+                  "slot": "emission",
+                  "slotType": "Texture",
+                  "value": ""
+                },
+                {
+                  "id": 5,
+                  "slot": "emission",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_ContactIntencity",
+                    "floatValue": "0.2"
+                  }
+                },
+                {
+                  "id": 6,
+                  "slot": "emission",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_RimlightIntencity",
+                    "floatValue": "1"
+                  }
+                },
+                {
+                  "id": 7,
+                  "slot": "emission",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Metallic",
+                    "floatValue": "0"
+                  }
+                },
+                {
+                  "id": 8,
+                  "slot": "emission",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Smoothness",
+                    "floatValue": "0"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "id": "fish_farm",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Fish Farm",
+          "info": "Breeds fish: Trout, Pike, and Eel."
+        }
+      ],
+      "flammability": 0.2,
+      "productionComponentID": "fish_farm"
+    }
+  ]
 }

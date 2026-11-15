@@ -76,7 +76,7 @@
         {
           "type": "Resource",
           "value": "herbs",
-          "priority": 25
+          "priority": 5
         },
         {
           "type": "Plant",
@@ -338,7 +338,7 @@
         {
           "type": "Resource",
           "value": "herbs",
-          "priority": 30
+          "priority": 5
         },
         {
           "type": "Plant",
@@ -574,7 +574,7 @@
         {
           "type": "Plant",
           "value": "shrub_generic",
-          "priority": 30,
+          "priority": 80,
           "phases": [
             0,
             1
@@ -583,7 +583,7 @@
         {
           "type": "Plant",
           "value": "shrub_ivy",
-          "priority": 30,
+          "priority": 80,
           "phases": [
             0,
             1
@@ -592,7 +592,7 @@
         {
           "type": "Plant",
           "value": "hay_patch",
-          "priority": 30
+          "priority": 100
         },
         {
           "type": "Plant",
@@ -602,7 +602,7 @@
         {
           "type": "Resource",
           "value": "hay",
-          "priority": 25
+          "priority": 120
         }
       ]
     },
@@ -627,54 +627,54 @@
         {
           "type": "Group",
           "value": "FoodMeal",
-          "priority": 30
+          "priority": 20
         },
         {
           "type": "Resource",
           "value": "meat",
-          "priority": 40
+          "priority": 100
         },
         {
           "type": "Resource",
           "value": "trout_fish",
-          "priority": 40
+          "priority": 100
         },
         {
           "type": "Resource",
           "value": "pike_fish",
-          "priority": 40
+          "priority": 100
         },
         {
           "type": "Resource",
           "value": "eel",
-          "priority": 40
+          "priority": 100
         },
         {
           "type": "Resource",
           "value": "meat_human",
-          "priority": 40
+          "priority": 100
         },
         {
           "type": "Resource",
           "value": "smoked_meat",
-          "priority": 40
+          "priority": 45
         },
         {
           "type": "Resource",
           "value": "smoked_fish",
-          "priority": 40
+          "priority": 45
         },
         {
           "type": "Resource",
           "value": "smoked_meat_human",
-          "priority": 40
+          "priority": 45
         }
       ],
       "dietResources#APPEND": [
         {
           "type": "Plant",
           "value": "shrub_generic",
-          "priority": 30,
+          "priority": 80,
           "phases": [
             0,
             1
@@ -683,7 +683,7 @@
         {
           "type": "Plant",
           "value": "shrub_ivy",
-          "priority": 30,
+          "priority": 80,
           "phases": [
             0,
             1
@@ -692,7 +692,7 @@
         {
           "type": "Plant",
           "value": "hay_patch",
-          "priority": 30
+          "priority": 100
         },
         {
           "type": "Plant",
@@ -707,7 +707,7 @@
         {
           "type": "Resource",
           "value": "hay",
-          "priority": 25
+          "priority": 120
         }
       ]
     },
@@ -836,7 +836,7 @@
         {
           "type": "Plant",
           "value": "shrub_generic",
-          "priority": 30,
+          "priority": 80,
           "phases": [
             0,
             1
@@ -845,7 +845,7 @@
         {
           "type": "Plant",
           "value": "shrub_ivy",
-          "priority": 30,
+          "priority": 80,
           "phases": [
             0,
             1
@@ -854,7 +854,7 @@
         {
           "type": "Plant",
           "value": "hay_patch",
-          "priority": 30
+          "priority": 100
         },
         {
           "type": "Plant",
@@ -864,7 +864,7 @@
         {
           "type": "Resource",
           "value": "hay",
-          "priority": 25
+          "priority": 120
         }
       ]
     },
@@ -879,7 +879,7 @@
         {
           "type": "Resource",
           "value": "honey",
-          "priority": 80
+          "priority": 50
         },
         {
           "type": "Group",
@@ -889,27 +889,27 @@
         {
           "type": "Group",
           "value": "FoodMeal",
-          "priority": 30
+          "priority": 25
         },
         {
           "type": "Resource",
           "value": "trout_fish",
-          "priority": 40
+          "priority": 80
         },
         {
           "type": "Resource",
           "value": "pike_fish",
-          "priority": 40
+          "priority": 80
         },
         {
           "type": "Resource",
           "value": "eel",
-          "priority": 40
+          "priority": 80
         },
         {
           "type": "Resource",
           "value": "smoked_fish",
-          "priority": 40
+          "priority": 80
         },
         {
           "type": "Resource",
@@ -934,14 +934,14 @@
         {
           "type": "Resource",
           "value": "milk",
-          "priority": 40
+          "priority": 90
         }
       ],
       "dietResources#APPEND": [
         {
           "type": "Plant",
           "value": "shrub_generic",
-          "priority": 30,
+          "priority": 80,
           "phases": [
             0,
             1
@@ -950,7 +950,7 @@
         {
           "type": "Plant",
           "value": "shrub_ivy",
-          "priority": 30,
+          "priority": 80,
           "phases": [
             0,
             1
@@ -959,7 +959,7 @@
         {
           "type": "Plant",
           "value": "hay_patch",
-          "priority": 30
+          "priority": 100
         },
         {
           "type": "Plant",
@@ -974,7 +974,7 @@
         {
           "type": "Resource",
           "value": "hay",
-          "priority": 25
+          "priority": 120
         }
       ]
     },
@@ -1158,7 +1158,7 @@
         {
           "type": "Plant",
           "value": "shrub_generic",
-          "priority": 30,
+          "priority": 80,
           "phases": [
             0,
             1
@@ -1167,7 +1167,7 @@
         {
           "type": "Plant",
           "value": "shrub_ivy",
-          "priority": 30,
+          "priority": 80,
           "phases": [
             0,
             1
@@ -1176,7 +1176,7 @@
         {
           "type": "Plant",
           "value": "hay_patch",
-          "priority": 30
+          "priority": 100
         },
         {
           "type": "Plant",
@@ -1186,10 +1186,9 @@
         {
           "type": "Resource",
           "value": "hay",
-          "priority": 25
+          "priority": 120
         }
       ]
     }
   ]
 }
-

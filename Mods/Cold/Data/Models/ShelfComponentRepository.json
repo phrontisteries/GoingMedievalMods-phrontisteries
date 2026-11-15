@@ -1,0 +1,197 @@
+{
+  "repository": [
+    {
+      "id": "cold_shelf_storage",
+      "storageIDs": [
+        "cold_storage"
+      ],
+      "multipleTransformSettingsArray": [
+        {
+          "id": "cold_storage",
+          "transformSettingsArray": [
+            {
+              "id": "1",
+              "positionOffset": {
+                "x": -0.3,
+                "y": 1.776,
+                "z": 0
+              },
+              "rotationOffset": {
+                "x": 0,
+                "y": 90,
+                "z": 0
+              },
+              "scaleOffset": {
+                "x": -0.55,
+                "y": -0.55,
+                "z": -0.55
+              }
+            },
+            {
+              "id": "2",
+              "positionOffset": {
+                "x": -0.1,
+                "y": 1.776,
+                "z": 0
+              },
+              "rotationOffset": {
+                "x": 0,
+                "y": 90,
+                "z": 0
+              },
+              "scaleOffset": {
+                "x": -0.55,
+                "y": -0.55,
+                "z": -0.55
+              }
+            },
+            {
+              "id": "3",
+              "positionOffset": {
+                "x": 0.1,
+                "y": 1.776,
+                "z": 0
+              },
+              "rotationOffset": {
+                "x": 0,
+                "y": 90,
+                "z": 0
+              },
+              "scaleOffset": {
+                "x": -0.55,
+                "y": -0.55,
+                "z": -0.55
+              }
+            },
+            {
+              "id": "4",
+              "positionOffset": {
+                "x": 0.3,
+                "y": 1.776,
+                "z": 0
+              },
+              "rotationOffset": {
+                "x": 0,
+                "y": 90,
+                "z": 0
+              },
+              "scaleOffset": {
+                "x": -0.55,
+                "y": -0.55,
+                "z": -0.55
+              }
+            },
+            {
+              "id": "5",
+              "positionOffset": {
+                "x": -0.25,
+                "y": 0.934,
+                "z": 0
+              },
+              "rotationOffset": {
+                "x": 0,
+                "y": 90,
+                "z": 0
+              },
+              "scaleOffset": {
+                "x": -0.55,
+                "y": -0.55,
+                "z": -0.55
+              }
+            },
+            {
+              "id": "6",
+              "positionOffset": {
+                "x": 0.0,
+                "y": 0.934,
+                "z": 0
+              },
+              "rotationOffset": {
+                "x": 0,
+                "y": 90,
+                "z": 0
+              },
+              "scaleOffset": {
+                "x": -0.55,
+                "y": -0.55,
+                "z": -0.55
+              }
+            },
+            {
+              "id": "7",
+              "positionOffset": {
+                "x": 0.25,
+                "y": 0.934,
+                "z": 0
+              },
+              "rotationOffset": {
+                "x": 0,
+                "y": 90,
+                "z": 0
+              },
+              "scaleOffset": {
+                "x": -0.55,
+                "y": -0.55,
+                "z": -0.55
+              }
+            },
+            {
+              "id": "8",
+              "positionOffset": {
+                "x": -0.25,
+                "y": 0.234,
+                "z": 0
+              },
+              "rotationOffset": {
+                "x": 0,
+                "y": 90,
+                "z": 0
+              },
+              "scaleOffset": {
+                "x": -0.55,
+                "y": -0.55,
+                "z": -0.55
+              }
+            },
+            {
+              "id": "9",
+              "positionOffset": {
+                "x": 0.0,
+                "y": 0.234,
+                "z": 0
+              },
+              "rotationOffset": {
+                "x": 0,
+                "y": 90,
+                "z": 0
+              },
+              "scaleOffset": {
+                "x": -0.55,
+                "y": -0.55,
+                "z": -0.55
+              }
+            },
+            {
+              "id": "10",
+              "positionOffset": {
+                "x": 0.25,
+                "y": 0.234,
+                "z": 0
+              },
+              "rotationOffset": {
+                "x": 0,
+                "y": 90,
+                "z": 0
+              },
+              "scaleOffset": {
+                "x": -0.55,
+                "y": -0.55,
+                "z": -0.55
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

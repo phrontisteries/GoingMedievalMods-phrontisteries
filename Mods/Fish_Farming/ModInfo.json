@@ -1,11 +1,11 @@
 {
-    "id": "phrontisteries.fish_farming",
-    "name": "Fish Farming",
-    "description": "Farming trout, pike, and eel. Unlock with barrel making.\n10 dung + 20 water + 4 fish + 24 hours = 16 fish\n10 vegetables + 20 water + 4 fish + 24 hours = 32 fish\n10 animal feed + 20 water + 4 fish + 12 hours = 16 fish\n1 human + 20 water + 4 fish + 8 hours = 8 fish",
-    "author": "phrontisteries",
-  "modVersion": "1.1.0.46",
-  "gameVersion": "1.0.46",
-    "tags": [
-        "General"
-    ]
+  "id": "phrontisteries.fish_farming",
+  "name": "Fish Farming",
+  "description": "Farming trout, pike, and eel. Unlock with barrel making.\n10 dung + 20 water + 4 fish + 24 hours = 16 fish\n10 vegetables + 20 water + 4 fish + 24 hours = 32 fish\n10 animal feed + 20 water + 4 fish + 12 hours = 16 fish\n1 human + 20 water + 4 fish + 8 hours = 8 fish",
+  "author": "phrontisteries",
+  "modVersion": "1.0.2.17",
+  "gameVersion": "1.2.17",
+  "tags": [
+    "General"
+  ]
 }

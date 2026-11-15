@@ -1,0 +1,126 @@
+{
+  "repository": [
+    {
+      "id": "fermenting_apple_cider",
+      "iconPath": "apple_cider",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Fermenting Apple Cider",
+          "info": "resource_info_fermenting_mash"
+        },
+        {
+          "languageName": "Chinese",
+          "name": "发酵苹果酒。",
+          "info": "resource_info_fermenting_mash"
+        },
+        {
+          "languageName": "French",
+          "name": "Fermentation du cidre de pomme",
+          "info": "resource_info_fermenting_mash"
+        },
+        {
+          "languageName": "Spanish",
+          "name": "Sidra de manzana fermentada",
+          "info": "resource_info_fermenting_mash"
+        },
+        {
+          "languageName": "German",
+          "name": "Apfelwein fermentieren",
+          "info": "resource_info_fermenting_mash"
+        },
+        {
+          "languageName": "Russian",
+          "name": "Сбраживание яблочного сидра",
+          "info": "resource_info_fermenting_mash"
+        },
+        {
+          "languageName": "Japanese",
+          "name": "りんごシードルの発酵。",
+          "info": "resource_info_fermenting_mash"
+        },
+        {
+          "languageName": "Portugese",
+          "name": "Fermentando a sidra de maçã",
+          "info": "resource_info_fermenting_mash"
+        },
+        {
+          "languageName": "Korean",
+          "name": "발효 사과주",
+          "info": "resource_info_fermenting_mash"
+        },
+        {
+          "languageName": "Polish",
+          "name": "Fermentowanie jabłkowego cydru",
+          "info": "resource_info_fermenting_mash"
+        },
+        {
+          "languageName": "Turkish",
+          "name": "Mayalanan Elma Şırası",
+          "info": "resource_info_fermenting_mash"
+        },
+        {
+          "languageName": "Italian",
+          "name": "Fermentazione del sidro di mele",
+          "info": "resource_info_fermenting_mash"
+        }
+      ],
+      "hasFreshness": true,
+      "jobType": 1024,
+      "requiredSkills": [
+        {
+          "key": "Culinary",
+          "value": 0
+        }
+      ],
+      "produced": [
+        {
+          "blueprintID": "fermenting_apple_cider",
+          "amount": 10
+        }
+      ],
+      "recipe": [
+        {
+          "key": "apple",
+          "value": 20
+        }
+      ],
+      "productionSteps": [
+        {
+          "devName": "collectResources",
+          "type": "collect",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "name_prod_resources"
+            }
+          ],
+          "interruptible": true
+        },
+        {
+          "devName": "prepareRoughWine",
+          "type": "workerProduce",
+          "locKeys": [
+            {
+              "languageName": "English",
+              "name": "name_prod_prep_material"
+            }
+          ],
+          "productionTime": 75,
+          "modifyingAttribute": "CookingSpeed",
+          "interruptible": true,
+          "experienceReward": [
+            {
+              "key": "Culinary",
+              "value": 220
+            }
+          ]
+        },
+        {
+          "devName": "spawnProduct",
+          "type": "spawnProduct"
+        }
+      ]
+    }
+  ]
+}
