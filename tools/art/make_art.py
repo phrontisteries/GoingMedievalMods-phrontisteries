@@ -75,19 +75,20 @@ def finish(img, px=64):
     return Image.alpha_composite(shadow, small)
 
 
-# mod -> {sprite name (= iconPath): (model, icon kind, camera pitch)}
+# mod -> {sprite name (= iconPath): (model, icon kind, camera pitch, footprint half-size in tiles)}
 ICONS = {
-    "Cold": {"phrontisteries_cold_shelf": (models.cold_shelf, "building", 33),
-             "phrontisteries_cold_floor": (models.cold_floor, "building", 48)},
-    "Fish_Farming": {"phrontisteries_fish_farm": (models.fish_farm, "building", 33)},
-    "Fermenting Apple Cider": {"phrontisteries_fermenting_apple_cider": (models.fermenting_apple_cider, "item", 33)},
+    "Cold": {"phrontisteries_cold_shelf": (models.cold_shelf, "building", 33, 0.5),
+             "phrontisteries_cold_floor": (models.cold_floor, "building", 48, 0.5)},
+    "Fish_Farming": {"phrontisteries_fish_farm": (models.fish_farm, "building", 33, 1.5)},
+    "Fermenting Apple Cider": {"phrontisteries_fermenting_apple_cider": (models.fermenting_apple_cider, "item", 33, 0.5)},
 }
 ICON_SIZE = 128   # the game's own icons are 128x128
 
-# mod -> {mesh name: model} for the Unity project (meshes without decorative goods: the game draws the stored piles)
+# mod -> {mesh name: (model, offset from the building's origin tile)} for the Unity project.
+# A 3x3 building is centred one tile in from its origin (its collider centre is (1, y, 1)).
 MESHES = {
-    "Cold": {"phrontisteries_cold_shelf": lambda: models.cold_shelf(goods=False)},
-    "Fish_Farming": {"phrontisteries_fish_farm": models.fish_farm},
+    "Cold": {"phrontisteries_cold_shelf": (models.cold_shelf, (0, 0, 0))},
+    "Fish_Farming": {"phrontisteries_fish_farm": (models.fish_farm, (1, 0, 1))},
 }
 
 
@@ -231,7 +232,7 @@ def hires(fn):
 PREVIEWS = {   # mod -> (title, lines, art, gradient top, gradient bottom)
     "Cold": ("Cold", ["Cold Shelf: a 10-pile, actively cooled food shelf.", "Cold Floor: clay floor that chills the room.", "Adjusted temperature thresholds."],
              lambda: combo(lambda: render_art(models.cold_shelf, "building", 400), lambda: render_art(models.cold_floor, "building", 400, 48)), (36, 70, 104), (14, 26, 44)),
-    "Fish_Farming": ("Fish Farming", ["Breed trout, pike and eel in a fish farm.", "Feed them dung, vegetables or animal feed.", "Unlocked with barrel making."],
+    "Fish_Farming": ("Fish Farming", ["Breed trout, pike and eel in a 3x3 fish farm.", "Feed them dung, vegetables or animal feed.", "Unlocked with barrel making."],
                      lambda: render_art(models.fish_farm, "building", 400), (30, 82, 96), (12, 32, 40)),
     "Fermenting Apple Cider": ("Apple Cider", ["The fermentation station makes apple cider.", "Ferments like mash, from apples."],
                                lambda: render_art(models.fermenting_apple_cider, "item", 400), (110, 52, 34), (40, 18, 12)),
@@ -251,15 +252,15 @@ def main():
     for mod, icons in ICONS.items():
         folder = os.path.join(ROOT, "recipes", mod, "Sprites")
         os.makedirs(folder, exist_ok=True)
-        for name, (fn, kind, pitch) in icons.items():
+        for name, (fn, kind, pitch, half) in icons.items():
             path = os.path.join(folder, name + ".png")
-            model3d.render_icon(fn(), kind, ICON_SIZE, pitch=pitch).save(path, optimize=True)
+            model3d.render_icon(fn(), kind, ICON_SIZE, pitch=pitch, footprint=(half, half)).save(path, optimize=True)
             print("icon   ", os.path.relpath(path, ROOT))
     for mod, meshes in MESHES.items():
-        for name, fn in meshes.items():
+        for name, (fn, offset) in meshes.items():
             mesh_dir = os.path.join(ROOT, "unity", mod, "Mesh"); tex_dir = os.path.join(ROOT, "unity", mod, "Texture")
             os.makedirs(mesh_dir, exist_ok=True); os.makedirs(tex_dir, exist_ok=True)
-            n, tex = model3d.export_obj(fn(), os.path.join(mesh_dir, name + ".obj"), os.path.join(tex_dir, name + "_palette.png"), name)
+            n, tex = model3d.export_obj(fn(), os.path.join(mesh_dir, name + ".obj"), os.path.join(tex_dir, name + "_palette.png"), name, offset=offset)
             print("mesh   ", f"unity/{mod}/Mesh/{name}.obj", f"({n} triangles, {tex[0]}x{tex[1]} palette)")
             sprite_dir = os.path.join(ROOT, "unity", mod, "Sprite"); os.makedirs(sprite_dir, exist_ok=True)
     for mod, (title, lines, art, top, bottom) in PREVIEWS.items():

@@ -11,8 +11,8 @@ WATER, WATER_D = (64, 150, 176), (40, 104, 136)
 FISH, FISH_B = (132, 156, 96), (214, 220, 170)
 
 
-def cold_shelf(goods=True):
-    """goods=False: just the shelf (in game, the stored piles sit on the boards)."""
+def cold_shelf(goods=False):
+    """Empty by default: in game the stored piles sit on the boards. goods=True adds sample food (not used)."""
     m = Model()
     w, d, h = 0.86, 0.46, 2.0                         # footprint and height (fits one tile)
     for x in (-w / 2 + 0.04, w / 2 - 0.04):            # posts
@@ -57,27 +57,21 @@ def cold_floor():
 
 
 def fish_farm():
+    """3x3 building, drawn centred on (0, 0): an empty staved tub (water and fish are not part of the model;
+    the game shows its 'working' effect while the farm produces)."""
     m = Model()
-    r, h = 0.62, 0.55
-    m.barrel((0, 0, 0), r, h, WOOD, IRON, seg=22, lid=False)
-    m.lathe((0, 0, 0), [(r * 0.8, h * 0.05), (r * 0.8, h * 0.82)], WOOD_D, seg=22)       # inner wall
-    m.cylinder((0, 0, 0), r * 0.8, h * 0.82, WATER, seg=22, top=WATER)                    # water
-    for x, z, s in ((-0.18, 0.1, 1), (0.16, -0.12, -1)):                                 # fish under the surface
-        m.box((x, h * 0.83, z), (0.20, 0.01, 0.06), WATER_D)
-    # leaping fish
-    body = Model().sphere((0, 0, 0), 0.08, FISH, seg=8, rings=5)
-    for t in body.tris: pass
-    fish = Model()
-    for tri, c in zip(body.tris, body.cols):
-        fish.tri(*[(v[0] * 1.9, v[1], v[2] * 0.7) for v in tri], c)
-    fish.tri((-0.14, 0, 0), (-0.24, 0.07, 0), (-0.24, -0.07, 0), FISH)
-    fish.box((0.02, -0.03, 0), (0.18, 0.02, 0.07), FISH_B)
-    m.add(fish, (0.05, h + 0.22, 0.05))
-    for (x, y, z) in ((-0.12, h + 0.08, 0.1), (0.22, h + 0.12, -0.02), (0.0, h + 0.04, -0.15)):
-        m.sphere((x, y, z), 0.025, ICE_L, seg=6, rings=4)                                  # splash
-    # feed sack and small bucket beside it
-    m.sphere((0.72, 0.16, 0.25), 0.17, (198, 172, 120), seg=8, rings=5)
-    m.barrel((-0.7, 0, 0.32), 0.13, 0.22, WOOD_L, IRON, seg=10, top=WATER)
+    r, h = 1.30, 0.72
+    m.barrel((0, 0, 0), r, h, WOOD, IRON, seg=32, lid=False)
+    m.lathe((0, 0, 0), [(r * 0.86, 0.08), (r * 0.86, h * 0.97)], WOOD_D, seg=32)          # inner wall
+    m.cylinder((0, 0, 0), r * 0.86, 0.08, WOOD_D, seg=32, top=(150, 96, 52))              # empty plank floor
+    for x in (-0.75, -0.45, -0.15, 0.15, 0.45, 0.75):                                     # floor seams
+        half = (max(0.0, (r * 0.86) ** 2 - x ** 2)) ** 0.5
+        m.box((x, 0.082, 0), (0.012, 0.004, 2 * half - 0.05), (118, 74, 40))
+    # props, kept inside the 3x3 footprint: water bucket, feed sack, net pole
+    m.barrel((1.22, 0, -1.10), 0.16, 0.28, WOOD_L, IRON, seg=10, top=(150, 96, 52))
+    m.sphere((-1.18, 0.18, 1.12), 0.20, (198, 172, 120), seg=8, rings=5)
+    m.box((-1.30, 0.55, -1.15), (0.05, 1.1, 0.05), WOOD_D)
+    m.lathe((-1.30, 1.05, -1.0), [(0.16, 0.0), (0.12, -0.14)], (214, 204, 170), seg=8)
     return m
 
 

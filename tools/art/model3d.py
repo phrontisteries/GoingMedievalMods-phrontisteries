@@ -226,8 +226,13 @@ def render_icon(model, kind, size=128, yaw=-38, pitch=33, margin=0.05, footprint
 
 
 # ------------------------------------------------------------------ export for Unity
-def export_obj(model, obj_path, png_path, texture_name):
-    """Writes the model as OBJ with UVs into a palette texture (one swatch per colour)."""
+def export_obj(model, obj_path, png_path, texture_name, offset=(0, 0, 0), unity_mirror=True):
+    """Writes the model as OBJ with UVs into a palette texture (one swatch per colour).
+
+    offset: moves the model relative to the building's origin tile (multi-tile buildings are centred
+    one or more tiles in from the origin). unity_mirror: Unity's OBJ importer negates X, so the file
+    is pre-mirrored and the model arrives in Unity exactly as drawn.
+    """
     palette = sorted(set(model.cols)); n = len(palette)
     cells = math.ceil(math.sqrt(n)); px = 8; T = cells * px
     tex = Image.new("RGB", (T, T), (255, 0, 255)); d = ImageDraw.Draw(tex)
@@ -241,8 +246,12 @@ def export_obj(model, obj_path, png_path, texture_name):
     vt_index = {c: i + 1 for i, c in enumerate(palette)}
     for c in palette: lines.append(f"vt {uv[c][0]:.5f} {uv[c][1]:.5f}")
     vi = 1
+    ox, oy, oz = offset
     for t, c in zip(model.tris, model.cols):
-        for v in t: lines.append(f"v {v[0]:.4f} {v[1]:.4f} {v[2]:.4f}")
+        verts = [(v[0] + ox, v[1] + oy, v[2] + oz) for v in t]
+        if unity_mirror:
+            verts = [(-x, y, z) for x, y, z in verts][::-1]          # mirror X and keep faces pointing outward
+        for x, y, z in verts: lines.append(f"v {x:.4f} {y:.4f} {z:.4f}")
         k = vt_index[c]
         lines.append(f"f {vi}/{k} {vi + 1}/{k} {vi + 2}/{k}")
         vi += 3

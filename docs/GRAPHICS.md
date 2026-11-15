@@ -18,7 +18,7 @@ Per Foxy Voxel's [modding guide](https://foxyvoxel.io/2025/03/13/modding-guide-p
 |---|---|---|---|
 | Cold | `phrontisteries_cold_shelf`, `phrontisteries_cold_floor` | Cold Floor tinted cool blue (floor shader `_FloorColorMultiply` / `_FloorColorAdd`, no build needed). Frosted shelf model once built in Unity. | new |
 | Fermenting Apple Cider | `phrontisteries_fermenting_apple_cider` (resource and recipe) | (resource) | new |
-| Fish Farming | `phrontisteries_fish_farm` | Fish-tub model once built in Unity (until then the saltpeter-pit model) | new |
+| Fish Farming | `phrontisteries_fish_farm` | Empty 3×3 fish-tub model once built in Unity (until then the saltpeter-pit model). While producing, the game's built-in working effect plays. | new |
 | Better_Animals, Faster Region Travel, Fine Clothing Worker, More Prisoners | (no new items) | | new |
 | Mushroom Cropfield | (uses the game's `mushroom`) | | keeps its hand-made preview |
 
@@ -52,6 +52,11 @@ You can also drop hand-made PNGs into `recipes\<Mod>\Sprites\` and skip the scri
 - [ ] Icons look right at the game's UI scale and on its dark and light panels.
 - [ ] Previews show in the in-game Mods menu and on the Workshop page.
 - [ ] Nothing else changed: the Cold Shelf still shows its 10 piles, and saves from 1.0.2.17 still load.
+
+## Limits of the game's mod system
+
+- A building has one model; it cannot change with production stages. The only state visual is a built-in effect while it works (`productionEffectPrefabId`), and mods cannot add new effects.
+- Storage shelves must be modelled empty: the game draws the stored piles on them at the shelf's display slots.
 
 ## Ideas for next steps
 
