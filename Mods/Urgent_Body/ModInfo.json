@@ -1,0 +1,11 @@
+{
+  "id": "phrontisteries.urgent_haul_bodies",
+  "name": "Urgent Haul - Bodies",
+  "description": "Urgent Haul: Bury, Burn, Strip Body",
+  "author": "phrontisteries",
+  "modVersion": "1.2",
+  "gameVersion": "1.0.72",
+  "tags": [
+    "General"
+  ]
+}

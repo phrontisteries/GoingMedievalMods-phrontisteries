@@ -1,0 +1,11 @@
+{
+  "id": "phrontisteries.more_creation_points",
+  "name": "More_Creation_Points",
+  "description": "New Settlers:\r\nCreation Points to 1000,\r\nTotal Perks to 40, and\r\nMax Passions to 20.",
+  "author": "phrontisteries",
+  "modVersion": "1.2.0.47",
+  "gameVersion": "1.0.47",
+  "tags": [
+    "General"
+  ]
+}
