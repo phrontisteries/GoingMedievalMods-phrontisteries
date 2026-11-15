@@ -24,6 +24,9 @@ A mod folder holds `ModInfo.json`, `Preview.png` (640×360 or 1280×720, under 1
 
 ## Pitfalls found so far
 
+### ModInfo.json tags must be a flat list of known tags (mod missing from the menu)
+The game reads `ModInfo.json` into `NSMedieval.Modding.ModModel` with `string[] tags` mapped to the `ModTag` enum: `General`, `Localization`, `Scenario`, `Character`, `Map`. A nested list (`[["General","Combat"]]`, an old MakeMod bug) stops the mod loading and it disappears from the Mods menu; tags such as `Combat` or `Food` are not game tags. `Test-Mods.ps1` checks both; MakeMod drops unknown tags with a warning.
+
 ### Shelves need one display slot per pile (Cold, 1.2.x)
 `ShelfComponentRepository.json` lists display slots in `multipleTransformSettingsArray`, grouped by an `id` that must equal a storage id in `storageIDs`. Each group needs exactly as many slots as that storage's `maxPileCount` in `UniversalStorage.json`. Every vanilla shelf follows this. Hidden storage such as chests and barrels has no slots at all. Cold's shelf cloned `shelf_storage`, so it kept 3 slots filed under `general_storage` for a 10-pile `cold_storage`. In 1.2 that crashed loading with a `NullReferenceException`, and stocked shelves turned into empty racks. `Test-Mods.ps1` checks this rule.
 

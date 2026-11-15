@@ -176,3 +176,23 @@ def fine_tunic():
     m.box((0, 0.56, 0.0), (0.57, 0.04, 0.225), GOLD)                              # hem
     m.sphere((0, 1.44, 0.11), 0.05, GOLD, seg=8, rings=5)                         # brooch
     return m
+
+
+def broker_scale():
+    """Brokerastered: a merchant's balance scale weighing coins, with a pickaxe and ore."""
+    m = Model()
+    m.box((0, 0.04, 0), (0.7, 0.08, 0.4), WOOD_D, top=WOOD)                      # base
+    m.cylinder((0, 0.08, 0), 0.03, 1.0, IRON, seg=8)                             # post
+    m.box((0, 1.06, 0), (1.0, 0.04, 0.04), IRON)                                 # beam
+    for s in (-1, 1):
+        x = s * 0.48
+        for dz in (-0.06, 0.06):
+            m.box((x, 0.88, dz), (0.01, 0.34, 0.01), (200, 196, 180))           # chains
+        m.lathe((x, 0.66, 0), [(0.02, 0.0), (0.2, 0.05), (0.21, 0.07)], GOLD, seg=14)   # pan
+    for i in range(4):
+        m.cylinder((-0.48, 0.73 + i * 0.022, 0), 0.07, 0.02, GOLD, seg=12)      # coin stack
+    m.sphere((0.48, 0.79, 0), 0.08, (120, 128, 140), seg=7, rings=4)             # ore lump
+    # pickaxe leaning at the base
+    m.box((0.62, 0.32, 0.18), (0.04, 0.62, 0.04), WOOD_L)
+    m.box((0.62, 0.62, 0.18), (0.36, 0.05, 0.05), IRON)
+    return m

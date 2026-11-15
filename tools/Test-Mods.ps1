@@ -74,6 +74,15 @@ if ($Mod) { $modDirs = $modDirs | Where-Object { $Mod -contains $_.Name } }
 foreach ($dir in $modDirs) {
     Write-Host "== $($dir.Name)" -ForegroundColor Cyan
     $info = Read-JsonFile (Join-Path $dir.FullName "ModInfo.json")
+    # ModInfo.json must deserialize into the game's ModModel (id, name, description, author, modVersion, gameVersion, tags[])
+    foreach ($field in "id", "name", "description", "author", "modVersion", "gameVersion") {
+        if (-not ($info.PSObject.Properties.Name -contains $field) -or $info.$field -isnot [string]) { Write-Finding ERROR info "ModInfo.json" "'$field' must be a text value" }
+    }
+    $validTags = @("General", "Localization", "Scenario", "Character", "Map")
+    foreach ($t in @($info.tags)) {
+        if ($t -isnot [string]) { Write-Finding ERROR info "ModInfo.json" "tags must be a flat list of names (found a nested list); the game will not load the mod" }
+        elseif ($validTags -notcontains $t) { Write-Finding ERROR info "ModInfo.json" "tag '$t' is not one of the game's tags ($($validTags -join ', '))" }
+    }
     if ($info.gameVersion -and $Global:GameVersion -and $info.gameVersion -ne $Global:GameVersion) {
         Write-Finding WARN ver "ModInfo.json" "gameVersion $($info.gameVersion), game is $($Global:GameVersion)"
     }

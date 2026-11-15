@@ -227,7 +227,14 @@ function New-ModInfoObject {
         $finalDescription = "$finalDescription`n`nSource, issues and suggestions: $($Global:RepoUrl)"
     }
     $finalAuthor      = Use-ExistingOrDefault "author"      $Global:Author
-    $finalTags        = Use-ExistingOrDefault "tags"        @("General")
+    # tags: a flat list of the game's ModTag names (NSMedieval.Modding.ModTag). Anything else stops the game from
+    # reading ModInfo.json, and the mod disappears from the Mods menu.
+    $validTags = @("General", "Localization", "Scenario", "Character", "Map")
+    $requested = @(@(Use-ExistingOrDefault "tags" @("General")) | ForEach-Object { $_ } | ForEach-Object { $_ } | Where-Object { $_ })
+    $finalTags = [string[]]@($requested | Where-Object { $validTags -contains $_ } | Select-Object -Unique)
+    $dropped = @($requested | Where-Object { $validTags -notcontains $_ })
+    if ($dropped) { Write-Warning "Dropped tag(s) the game does not know: $($dropped -join ', ') (valid: $($validTags -join ', '))" }
+    if ($finalTags.Count -eq 0) { $finalTags = [string[]]@("General") }
     $existingModVersion = $null
     if ($ExistingModInfo -and $ExistingModInfo.modVersion) {
         $existingModVersion = [string]$ExistingModInfo.modVersion
@@ -247,7 +254,7 @@ function New-ModInfoObject {
         author      = $finalAuthor
         modVersion  = $finalModVersion
         gameVersion = $finalGameVersion
-        tags        = ,$finalTags
+        tags        = $finalTags
     }
 }
 function Get-JSONGameFile{

@@ -202,7 +202,9 @@ PREVIEWS = {   # mod -> (title, lines, art, gradient top, gradient bottom)
                              lambda: render_art(models.fine_tunic, "building", 400), (74, 46, 104), (26, 16, 40)),
     "More_Prisoners": ("More Prisoners", ["Raiders surrender more readily.", "Merchants trade more prisoners."],
                        lambda: render_art(models.surrender_flag, "building", 400), (70, 70, 76), (24, 24, 28)),
-    # "Mushroom Cropfield" keeps its own hand-made preview.
+    "Brokerastered": ("Brokerastered", ["The Broker trades, bargains and negotiates better.", "Mines faster and more; prefers trade, craft, mining and art."],
+                      lambda: render_art(models.broker_scale, "building", 400), (96, 74, 30), (34, 24, 10)),
+    # "Mushroom Cropfield" and "Heavy Crossbow Sniper" keep their own hand-made previews.
 }
 
 

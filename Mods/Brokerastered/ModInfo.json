@@ -1,10 +1,10 @@
 {
   "id": "phrontisteries.Brokerastered",
   "name": "Brokerastered",
-  "description": "Broker gets better Trade/Barter/Negotiate and extra Mining Speed/Amount",
+  "description": "English: The Broker role trades and bargains better, negotiates cheaper, mines faster and more, learns Speechcraft and Mining quickly, and prefers trading, crafting, mining and art.\n中文: 经纪人角色的交易和议价能力更强、谈判花费更少、采矿更快更多，口才和采矿技能成长迅速，并偏好交易、制作、采矿和艺术工作。\nFrançais: Le rôle de courtier commerce et marchande mieux, négocie à moindre coût, mine plus vite et davantage, progresse vite en éloquence et en minage, et préfère le commerce, l'artisanat, le minage et l'art.\nEspañol: El rol de corredor comercia y regatea mejor, negocia más barato, mina más rápido y más, aprende Oratoria y Minería rápido y prefiere comerciar, fabricar, minar y el arte.\nDeutsch: Die Rolle des Maklers handelt und feilscht besser, verhandelt günstiger, baut schneller und mehr ab, lernt Redekunst und Bergbau schnell und bevorzugt Handel, Handwerk, Bergbau und Kunst.\nРусский: Роль брокера лучше торгует и торгуется, дешевле ведёт переговоры, добывает быстрее и больше, быстро осваивает красноречие и горное дело и предпочитает торговлю, ремесло, добычу и искусство.\n日本語: ブローカーの役職は取引と値切りが上手くなり、交渉が安く、採掘が速く多くなり、話術と採掘の上達が早まり、取引・製作・採掘・芸術の仕事を好むようになります。\nPortuguês: O papel de corretor negocia e pechincha melhor, negocia mais barato, minera mais rápido e mais, aprende Oratória e Mineração depressa e prefere comércio, artesanato, mineração e arte.\n한국어: 중개인 역할이 거래와 흥정을 더 잘하고, 협상 비용이 줄며, 채굴이 더 빠르고 많아지고, 화술과 채굴을 빨리 익히며, 거래·제작·채굴·예술 작업을 선호합니다.\nPolski: Rola pośrednika lepiej handluje i się targuje, taniej negocjuje, wydobywa szybciej i więcej, szybko uczy się elokwencji i górnictwa oraz woli handel, rzemiosło, górnictwo i sztukę.\nTürkçe: Komisyoncu rolü daha iyi ticaret ve pazarlık yapar, daha ucuza müzakere eder, daha hızlı ve daha çok kazı yapar, Hitabet ve Madencilikte hızla gelişir ve ticaret, zanaat, madencilik ve sanatı tercih eder.\nItaliano: Il ruolo di mediatore commercia e contratta meglio, negozia a minor costo, scava più in fretta e di più, impara rapidamente Eloquenza e Estrazione e preferisce commercio, artigianato, estrazione e arte.\n\nSource, issues and suggestions: https://github.com/phrontisteries/GoingMedievalMods-phrontisteries",
   "author": "phrontisteries",
-  "modVersion": "1.1.0.56",
-  "gameVersion": "1.0.56",
+  "modVersion": "1.1.2.17",
+  "gameVersion": "1.2.17",
   "tags": [
     "General"
   ]

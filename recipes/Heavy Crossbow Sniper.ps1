@@ -35,7 +35,7 @@ $script:Sniper = [ordered]@{
 function Set-HeavyCrossbowSniper_ModInfo {
     return @{
         name = "Heavy Crossbow Sniper"
-        tags = @("General", "Combat")
+        tags = @("General")   # the game only knows General, Localization, Scenario, Character, Map
     }
 }
 

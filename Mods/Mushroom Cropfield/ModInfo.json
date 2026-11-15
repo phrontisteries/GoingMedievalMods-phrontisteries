@@ -3,13 +3,9 @@
   "name": "Mushroom Cropfield",
   "description": "English: Plant mushrooms in a cropfield (Agriculture I): they grow on any terrain at 0–45 °C, never get blight, are 10× more nutritious and spread fast. Get your first from traders.\n中文: 可在农田种植蘑菇（农业I）：在任何地形、0–45°C下生长，不会染病，营养提高10倍且蔓延迅速。首批蘑菇需向商人购买。\nFrançais: Cultivez des champignons en champ (Agriculture I) : ils poussent sur tout terrain entre 0 et 45 °C, ne tombent jamais malades, sont 10× plus nourrissants et s'étendent vite. Achetez les premiers aux marchands.\nEspañol: Planta setas en un cultivo (Agricultura I): crecen en cualquier terreno entre 0 y 45 °C, nunca sufren plaga, son 10× más nutritivas y se extienden rápido. Compra las primeras a los mercaderes.\nDeutsch: Pilze im Feld anbauen (Landwirtschaft I): Sie wachsen auf jedem Gelände bei 0–45 °C, bekommen nie Fäule, sind 10× nahrhafter und breiten sich schnell aus. Die ersten gibt es bei Händlern.\nРусский: Выращивайте грибы на поле (Земледелие I): они растут на любой местности при 0–45 °C, не болеют, в 10 раз питательнее и быстро разрастаются. Первые купите у торговцев.\n日本語: 畑でキノコを栽培（農業I）：0〜45°Cならどんな地形でも育ち、病気にならず、栄養は10倍で素早く広がります。最初のキノコは商人から購入。\nPortuguês: Plante cogumelos numa lavoura (Agricultura I): crescem em qualquer terreno entre 0 e 45 °C, nunca pegam praga, são 10× mais nutritivos e se espalham rápido. Compre os primeiros de mercadores.\n한국어: 밭에서 버섯을 재배하세요(농업 I). 0–45°C에서 어떤 지형에서도 자라고, 병에 걸리지 않으며, 영양이 10배이고 빠르게 퍼집니다. 첫 버섯은 상인에게서 구입하세요.\nPolski: Uprawiaj grzyby na polu (Rolnictwo I): rosną na każdym terenie w 0–45 °C, nigdy nie chorują, są 10× bardziej pożywne i szybko się rozrastają. Pierwsze kupisz u kupców.\nTürkçe: Tarlada mantar yetiştirin (Tarım I): 0–45 °C arasında her arazide büyür, asla hastalanmaz, 10 kat daha besleyicidir ve hızla yayılır. İlklerini tüccarlardan alın.\nItaliano: Coltiva funghi in un campo (Agricoltura I): crescono su qualsiasi terreno tra 0 e 45 °C, non si ammalano mai, sono 10× più nutrienti e si diffondono in fretta. Compra i primi dai mercanti.\n\nSource, issues and suggestions: https://github.com/phrontisteries/GoingMedievalMods-phrontisteries",
   "author": "phrontisteries",
-  "modVersion": "1.3.2.17",
+  "modVersion": "1.4.2.17",
   "gameVersion": "1.2.17",
   "tags": [
-    [
-      "General",
-      "Food",
-      "Cropfield"
-    ]
+    "General"
   ]
 }

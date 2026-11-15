@@ -11,6 +11,7 @@ Found a bug or have an idea? [Open an issue](https://github.com/phrontisteries/G
 | Mod | Workshop | What it does |
 |---|---|---|
 | [Better_Animals](Mods/Better_Animals) | [3681706355](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706355) | All animals can be tamed, penned, trained, haul and attack; 100x carrying; population caps; simpler diets; cat pest control; settlers carry more. |
+| [Brokerastered](Mods/Brokerastered) | (local) | The Broker trades, bargains and negotiates better, mines faster and more, and prefers trade, crafting, mining and art. |
 | [Cold](Mods/Cold) | [3681706554](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706554) | Cold Shelf (10 piles, actively cooled), Cold Floor (clay), adjusted temperature thresholds. |
 | [Faster Region Travel](Mods/FasterRegionTravel) | [3681708275](https://steamcommunity.com/sharedfiles/filedetails/?id=3681708275) | Caravans cross the region map 100x faster. |
 | [Fermenting Apple Cider](Mods/Fermenting%20Apple%20Cider) | [3681708241](https://steamcommunity.com/sharedfiles/filedetails/?id=3681708241) | The fermentation station makes apple cider. |
@@ -81,6 +82,7 @@ Recipes start from the current vanilla data each time, so most game changes flow
 | `ERROR field` | A field no game entry uses any more (renamed or removed). | Rename or drop it in the recipe. |
 | `ERROR rule` | A cross-file rule is broken (e.g. shelf display slots). | See `docs\MODDING-NOTES.md`. |
 | `WARN new` | A new model lacks fields the closest vanilla model has. | Add a `"#template"` to it, or add the fields. |
+| `ERROR info` | `ModInfo.json` would not load: a missing field, a nested `tags` list, or a tag the game does not know (only General, Localization, Scenario, Character, Map). The mod would be missing from the Mods menu. | Fix the recipe's `Set-<Mod>_ModInfo`; MakeMod drops unknown tags. |
 | `WARN ver` | `ModInfo.json` targets another game version. | Rebuild with `MakeMod.ps1`. |
 
 ### Making a new mod
