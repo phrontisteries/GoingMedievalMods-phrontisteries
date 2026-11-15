@@ -113,4 +113,4 @@ Script files are saved as UTF-8 **with** a BOM so Windows PowerShell 5.1 reads t
 
 ## License
 
-Everything in this repository is released under the [MIT License](LICENSE): the tooling, the recipes and the mods. Every built mod folder carries a copy as `LICENSE.txt`. Going Medieval and its game data remain the property of Foxy Voxel / Mythwright; see their [modding policy](https://foxyvoxel.io/2025/03/13/modding-guide-policy/) before publishing.
+Everything in this repository is released under the [MIT License](LICENSE): the tooling, the recipes and the mods. The one exception is `unity/Cold/Texture/phrontisteries_cold_shelf_albedo.png`, a recoloured copy of the game's own texture, which stays Foxy Voxel's art. Every built mod folder carries a copy as `LICENSE.txt`. Going Medieval and its game data remain the property of Foxy Voxel / Mythwright; see their [modding policy](https://foxyvoxel.io/2025/03/13/modding-guide-policy/) before publishing.

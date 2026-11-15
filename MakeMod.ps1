@@ -285,6 +285,12 @@ function Set-ModelMesh { # Points a model's mesh slots (baseMesh, LOD0, shadow c
         elseif ($Texture -and $slot.slotType -eq 'Texture' -and $slot.slot -eq 'reflection') { $slot.value = "" }
     } } }
 }
+function Set-ModelTexture { # Points a model's albedo texture at a custom asset; mesh, reflection and shader settings stay vanilla.
+    param([Parameter(Mandatory=$true)][object]$Model, [Parameter(Mandatory=$true)][string]$Texture)
+    foreach ($list in @($Model.variationLists)) { foreach ($v in @($list.variations)) { foreach ($slot in @($v.slots)) {
+        if ($slot.slotType -eq 'Texture' -and $slot.slot -eq 'albedo') { $slot.value = $Texture }
+    } } }
+}
 function Test-ModAddressables { # True when recipes\<ModName>\AddressableAssets holds a built catalog (see unity\README.md).
     param([Parameter(Mandatory=$true)][string]$ModName)
     return [bool](Get-ChildItem -Path (Join-Path (Join-Path $Global:RecipesRoot $ModName) "AddressableAssets") -Filter "catalog*.json" -File -ErrorAction SilentlyContinue)

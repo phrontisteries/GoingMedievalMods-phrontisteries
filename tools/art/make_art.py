@@ -87,7 +87,6 @@ ICON_SIZE = 128   # the game's own icons are 128x128
 # mod -> {mesh name: (model, offset from the building's origin tile)} for the Unity project.
 # A 3x3 building is centred one tile in from its origin (its collider centre is (1, y, 1)).
 MESHES = {
-    "Cold": {"phrontisteries_cold_shelf": (models.cold_shelf, (0, 0, 0))},
     "Fish_Farming": {"phrontisteries_fish_farm": (models.fish_farm, (1, 0, 1))},
 }
 
