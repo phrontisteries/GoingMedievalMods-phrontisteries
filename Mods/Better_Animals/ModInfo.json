@@ -3,7 +3,7 @@
   "name": "Better_Animals",
   "description": "Animals (all): Tame-Pen-Train-Haul-Attack, Haul 100x.\r\nPopulation changes (max): wolf (12), pheasant (30), chicken (30), bear (10).\r\nEat only hay, animal feed, wild: hay, reed, mushroom, shrub, ivy.\r\nCat pest control: rat, polecat, water_vole ONLY.\r\nWorkers: can now haul 6000 (new people; not enemies).\n\nSource, issues and suggestions: https://github.com/phrontisteries/GoingMedievalMods-phrontisteries",
   "author": "phrontisteries",
-  "modVersion": "1.2.2.17",
+  "modVersion": "1.3.2.17",
   "gameVersion": "1.2.17",
   "tags": [
     "General"

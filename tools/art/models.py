@@ -84,3 +84,95 @@ def fermenting_apple_cider():
         m.sphere((x, 0.09, z), 0.09, c, seg=9, rings=6, stem=WOOD_D)
     m.box((0.32, 0.19, 0.30), (0.06, 0.012, 0.03), LEAF)
     return m
+
+
+# ---- preview art for mods without new items (rendered like the game's icons)
+CLOTH, CLOTH_D = (250, 250, 246), (220, 220, 214)
+PURPLE, PURPLE_D, GOLD = (118, 70, 168), (88, 50, 128), (226, 182, 78)
+WOOL, WOOL_D, SKIN = (232, 236, 240), (206, 212, 220), (60, 52, 48)
+HAY, HAY_D = (226, 196, 108), (196, 164, 80)
+CANVAS = (232, 220, 186)
+
+
+def surrender_flag():
+    """More Prisoners: a white flag of surrender planted in the ground, with a merchant's coin purse."""
+    m = Model()
+    m.cylinder((0, 0, 0), 0.035, 1.9, WOOD_D, seg=8)                              # pole
+    m.sphere((0, 1.92, 0), 0.05, WOOD_L, seg=8, rings=5)
+    # waving cloth: strips that ripple along the pole
+    import math
+    cols = 8
+    for i in range(cols):
+        x0, x1 = 0.04 + i * 0.14, 0.04 + (i + 1) * 0.14
+        z0, z1 = 0.025 * math.sin(i * 0.9) + 0.06 * i, 0.025 * math.sin((i + 1) * 0.9) + 0.06 * (i + 1)   # flies slightly toward the light
+        sag0, sag1 = 0.03 * i, 0.03 * (i + 1)
+        m.quad((x0, 1.88 - sag0, z0), (x1, 1.88 - sag1, z1), (x1, 1.16 - sag1, z1), (x0, 1.16 - sag0, z0), CLOTH)
+    m.cylinder((0, 0, 0), 0.22, 0.05, (110, 92, 70), seg=10)                     # mound of earth
+    m.sphere((0.38, 0.13, 0.22), 0.14, (150, 104, 60), seg=9, rings=6)           # coin purse
+    m.cylinder((0.38, 0.25, 0.22), 0.05, 0.06, (120, 80, 46), seg=8)
+    for (x, z) in ((0.58, 0.12), (0.64, 0.30), (0.52, 0.36)):
+        m.cylinder((x, 0, z), 0.06, 0.02, GOLD, seg=10)                           # coins
+    return m
+
+
+def sheep():
+    m = Model()
+    m.box((0, 0.48, -0.05), (0.40, 0.34, 0.56), WOOL, top=WOOL)                   # body (long along z)
+    for dz in (-0.22, -0.05, 0.12):                                               # woolly lumps
+        m.sphere((0, 0.66, dz), 0.14, WOOL_D if dz else WOOL, seg=7, rings=4)
+    m.box((0.05, 0.6, 0.27), (0.16, 0.18, 0.18), SKIN)                             # head, facing the viewer (+z)
+    m.box((0.15, 0.67, 0.25), (0.08, 0.03, 0.06), SKIN); m.box((-0.05, 0.67, 0.25), (0.08, 0.03, 0.06), SKIN)  # ears
+    for x in (-0.12, 0.12):
+        for z in (-0.25, 0.14):
+            m.box((x, 0.16, z), (0.07, 0.32, 0.07), SKIN)                         # legs
+    return m
+
+
+def animal_pen():
+    """Better Animals: a sheep at a hay-filled trough by a short fence."""
+    m = Model()
+    m.add(sheep(), (-0.15, 0, 0.05))
+    m.box((0.62, 0.18, -0.05), (0.26, 0.2, 0.7), WOOD, top=WOOD_D)                # trough
+    m.box((0.62, 0.3, -0.05), (0.2, 0.06, 0.62), HAY, top=HAY)
+    m.box((0.95, 0.2, 0.55), (0.42, 0.34, 0.34), HAY, top=HAY_D)                  # hay bale, beside the trough
+    for x in (-0.9, -0.3, 0.3, 0.9):                                              # fence behind
+        m.box((x, 0.4, -0.95), (0.07, 0.8, 0.07), WOOD_D)
+    for y in (0.35, 0.65):
+        m.box((0, y, -0.95), (1.9, 0.06, 0.05), WOOD)
+    return m
+
+
+def caravan_cart():
+    """Faster Region Travel: a covered travel cart."""
+    m = Model()
+    m.box((0, 0.48, 0), (1.2, 0.12, 0.7), WOOD_D)                                 # bed
+    m.box((0, 0.62, 0.34), (1.2, 0.18, 0.04), WOOD); m.box((0, 0.62, -0.34), (1.2, 0.18, 0.04), WOOD)
+    m.lathe((0, 0.62, 0), [(0.36, -0.55), (0.36, 0.55)], CANVAS, seg=16, axis="x")   # canvas cover (a tube...)
+    m.box((0, 0.45, 0), (1.15, 0.3, 0.74), WOOD_D)                                # ...whose lower half sits in the bed
+    for x in (-0.55, 0.55):
+        m.lathe((x, 0.62, 0), [(0.37, -0.03), (0.37, 0.03)], WOOD, seg=16, axis="x")  # hoops
+    for z in (-0.42, 0.42):                                                       # wheels
+        m.cylinder((0, 0.32, z), 0.32, 0.06, WOOD, seg=14, axis="z", top=WOOD_L)
+        m.cylinder((0, 0.32, z + (0.06 if z > 0 else -0.02)), 0.07, 0.02, IRON, seg=8, axis="z")
+    m.box((0.95, 0.42, 0), (0.7, 0.05, 0.05), WOOD_D)                             # shaft
+    for (x, z) in ((0.2, 0.1), (-0.25, -0.1)):
+        m.box((x, 0.72, z), (0.22, 0.16, 0.2), (176, 132, 82))                    # cargo crates peeking out
+    return m
+
+
+def fine_tunic():
+    """Fine Clothing Worker: a superior tunic with gold trim on a wooden clothes stand."""
+    m = Model()
+    m.cylinder((0, 0, 0), 0.26, 0.05, WOOD_D, seg=10)                             # base
+    m.cylinder((0, 0, 0), 0.03, 1.55, WOOD_D, seg=8)                              # post
+    m.box((0, 1.5, 0), (0.62, 0.05, 0.05), WOOD)                                  # shoulders
+    m.box((0, 1.1, 0), (0.48, 0.7, 0.2), PURPLE, top=PURPLE_D)                    # torso
+    m.box((0, 0.66, 0), (0.56, 0.22, 0.22), PURPLE_D)                             # skirt
+    for s in (-1, 1):
+        m.box((s * 0.33, 1.28, 0), (0.18, 0.36, 0.18), PURPLE)                    # sleeves
+        m.box((s * 0.33, 1.08, 0), (0.19, 0.05, 0.19), GOLD)                      # cuffs
+    m.box((0, 1.1, 0.105), (0.05, 0.68, 0.01), GOLD)                              # placket
+    m.box((0, 0.84, 0.0), (0.5, 0.05, 0.215), GOLD)                               # belt
+    m.box((0, 0.56, 0.0), (0.57, 0.04, 0.225), GOLD)                              # hem
+    m.sphere((0, 1.44, 0.11), 0.05, GOLD, seg=8, rings=5)                         # brooch
+    return m

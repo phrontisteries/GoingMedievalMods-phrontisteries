@@ -106,48 +106,6 @@ def render_art(model_fn, kind, size, pitch=33):
     return out
 
 
-# ---------------------------------------------------------------- emblems for previews of mods without new items
-def emblem_animals():
-    img, d = canvas(64)
-    ellipse(d, 16, 28, 48, 58, (196, 150, 104, 255))                # paw pad
-    for (x, y) in ((12, 18), (24, 9), (40, 9), (52, 18)):
-        ellipse(d, x - 7, y - 7, x + 7, y + 7, (196, 150, 104, 255))
-    return img
-
-
-def emblem_travel():
-    img, d = canvas(64)
-    box(d, 14, 20, 54, 40, WOOD, r=3)                               # cart
-    d.pieslice((14 * S, 6 * S, 54 * S, 34 * S), 180, 360, fill=(230, 214, 176, 255), outline=INK, width=int(OUT * S / 2))
-    for x in (22, 46):
-        ellipse(d, x - 9, 34, x + 9, 52, WOOD_D)
-        ellipse(d, x - 2, 41, x + 2, 45, IRON)
-    for y in (16, 26, 36):                                          # speed lines
-        d.line(P((0, y), (10, y)), fill=(240, 230, 200, 255), width=int(2.6 * S))
-    return img
-
-
-def emblem_clothing():
-    img, d = canvas(64)
-    poly(d, [(22, 8), (42, 8), (58, 18), (52, 30), (46, 26), (46, 58), (18, 58), (18, 26), (12, 30), (6, 18)], (92, 60, 140, 255))
-    d.line(P((32, 10), (32, 58)), fill=GOLD, width=int(2.4 * S))
-    box(d, 18, 40, 46, 44, GOLD, r=1, w=2.5)
-    poly(d, [(26, 8), (38, 8), (32, 16)], (230, 214, 176, 255), w=2.5)
-    return img
-
-
-def emblem_prisoners():
-    img, d = canvas(64)
-    for cx in (20, 44):
-        d.ellipse(((cx - 13) * S, 30 * S, (cx + 13) * S, 56 * S), outline=INK, width=int(9 * S))
-        d.ellipse(((cx - 13) * S, 30 * S, (cx + 13) * S, 56 * S), outline=IRON, width=int(6 * S))
-    for i in range(3):                                              # chain
-        y = 8 + i * 8
-        d.ellipse((28 * S, y * S, 36 * S, (y + 10) * S), outline=INK, width=int(4 * S))
-        d.ellipse((28 * S, y * S, 36 * S, (y + 10) * S), outline=IRON_D, width=int(2.4 * S))
-    return img
-
-
 # ---------------------------------------------------------------- previews
 def font(size, bold=False):
     for name in (["DejaVuSerif-Bold.ttf", "georgiab.ttf"] if bold else ["DejaVuSerif.ttf", "georgia.ttf"]):
@@ -237,13 +195,13 @@ PREVIEWS = {   # mod -> (title, lines, art, gradient top, gradient bottom)
     "Fermenting Apple Cider": ("Apple Cider", ["The fermentation station makes apple cider.", "Ferments like mash, from apples."],
                                lambda: render_art(models.fermenting_apple_cider, "item", 400), (110, 52, 34), (40, 18, 12)),
     "Better_Animals": ("Better Animals", ["Every animal can be tamed, penned, trained, haul and fight.", "Much stronger haulers; tidier diets.", "Cats hunt pests."],
-                       lambda: hires(emblem_animals), (78, 92, 46), (28, 34, 16)),
+                       lambda: render_art(models.animal_pen, "building", 400), (78, 92, 46), (28, 34, 16)),
     "FasterRegionTravel": ("Faster Region Travel", ["Caravans cross the region map 100x faster."],
-                           lambda: hires(emblem_travel), (120, 88, 42), (44, 30, 14)),
+                           lambda: render_art(models.caravan_cart, "building", 400), (120, 88, 42), (44, 30, 14)),
     "Fine_Clothing_Worker": ("Fine Clothing Worker", ["Settlers in Superior or Flawless apparel work, walk, rest and fight better."],
-                             lambda: hires(emblem_clothing), (74, 46, 104), (26, 16, 40)),
+                             lambda: render_art(models.fine_tunic, "building", 400), (74, 46, 104), (26, 16, 40)),
     "More_Prisoners": ("More Prisoners", ["Raiders surrender more readily.", "Merchants trade more prisoners."],
-                       lambda: hires(emblem_prisoners), (70, 70, 76), (24, 24, 28)),
+                       lambda: render_art(models.surrender_flag, "building", 400), (70, 70, 76), (24, 24, 28)),
     # "Mushroom Cropfield" keeps its own hand-made preview.
 }
 

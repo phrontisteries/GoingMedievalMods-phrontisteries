@@ -19,7 +19,7 @@ Per Foxy Voxel's [modding guide](https://foxyvoxel.io/2025/03/13/modding-guide-p
 | Cold | `phrontisteries_cold_shelf`, `phrontisteries_cold_floor` | Cold Floor tinted cool blue (floor shader `_FloorColorMultiply` / `_FloorColorAdd`, no build needed). Frosted shelf model once built in Unity. | new |
 | Fermenting Apple Cider | `phrontisteries_fermenting_apple_cider` (resource and recipe) | (resource) | new |
 | Fish Farming | `phrontisteries_fish_farm` | Empty 3×3 fish-tub model once built in Unity (until then the saltpeter-pit model). While producing, the game's built-in working effect plays. | new |
-| Better_Animals, Faster Region Travel, Fine Clothing Worker, More Prisoners | (no new items) | | new |
+| Better_Animals, Faster Region Travel, Fine Clothing Worker, More Prisoners | (no new items) | | new: 3D renders of a sheep at its trough, a covered cart, a fine tunic on a stand, and a white flag of surrender |
 | Mushroom Cropfield | (uses the game's `mushroom`) | | keeps its hand-made preview |
 
 **Icons match the game's own:** like the vanilla icons, they are renders of 3D models at 128×128 with the same lighting (warm key, violet shadows, cyan rim). Buildings sit on the olive tile with the light grid and glow. Items have the thick white outline. The low-poly models are in `tools/art/models.py`, and the renderer is `tools/art/model3d.py`.
