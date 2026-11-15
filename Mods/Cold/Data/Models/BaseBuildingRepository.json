@@ -2,7 +2,7 @@
   "repository": [
     {
       "id": "cold_shelf",
-      "iconPath": "shelf",
+      "iconPath": "phrontisteries_cold_shelf",
       "locKeys": [
         {
           "languageName": "English",
@@ -310,7 +310,7 @@
     },
     {
       "id": "cold_floor",
-      "iconPath": "clay_brick_floor",
+      "iconPath": "phrontisteries_cold_floor",
       "locKeys": [
         {
           "languageName": "English",

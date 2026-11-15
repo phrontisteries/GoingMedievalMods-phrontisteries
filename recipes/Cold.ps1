@@ -33,10 +33,12 @@ $script:Cold = [ordered]@{
     BuildingId_Shelf_From   = "shelf"
     BuildingId_Shelf_Id     = "cold_shelf"
     BuildingId_Shelf_Name   = "Cold Shelf"
+    BuildingId_Shelf_Icon   = "phrontisteries_cold_shelf"
 
     BuildingId_Floor_From   = "clay_brick_floor"
     BuildingId_Floor_Id     = "cold_floor"
     BuildingId_Floor_Name   = "Cold Floor"
+    BuildingId_Floor_Icon   = "phrontisteries_cold_floor"
 
     # Cold Shelf display: one slot per pile (the game needs a slot for every pile, filed under the storage id).
     # 4 piles on the top board, 3 on each lower board, shrunk to fit side by side.
@@ -152,6 +154,7 @@ function Build-Cold_BaseBuildingRepository {
     $shelfClone = New-DeepCopy $vanillaShelf
     $shelfClone.id = $Cold.BuildingId_Shelf_Id
     $shelfClone.shelfComponentID = $Cold.ShelfComponentId
+    $shelfClone.iconPath = $Cold.BuildingId_Shelf_Icon   # recipes\Cold\Sprites\<iconPath>.png
     $shelfClone | Add-Member -NotePropertyName defaultThermalModelID -NotePropertyValue $Cold.ThermalModelId -Force
     $shelfClone.locKeys = @(Get-ColdLocKeys -Id $Cold.BuildingId_Shelf_Id -InfoKey $vanillaShelf.locKeys[0].info)
 
@@ -159,6 +162,7 @@ function Build-Cold_BaseBuildingRepository {
     if (-not $vanillaFloor) { throw "Floor '$($Cold.BuildingId_Floor_From)' not found in $($Cold.BaseBuildingRepository)" }
     $floorClone = New-DeepCopy $vanillaFloor
     $floorClone.id = $Cold.BuildingId_Floor_Id
+    $floorClone.iconPath = $Cold.BuildingId_Floor_Icon
     $floorClone | Add-Member -NotePropertyName defaultThermalModelID -NotePropertyValue $Cold.ThermalModelId -Force
     $floorClone.locKeys = @(Get-ColdLocKeys -Id $Cold.BuildingId_Floor_Id -InfoKey $vanillaFloor.locKeys[0].info)
 

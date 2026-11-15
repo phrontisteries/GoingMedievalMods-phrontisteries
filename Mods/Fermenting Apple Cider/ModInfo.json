@@ -3,7 +3,7 @@
   "name": "Fermenting Apple Cider",
   "description": "Fermentation Station now allows making Apple Cider. This adds the intermediate product of 'Fermenting Apple Cider' which fermets like mash.",
   "author": "phrontisteries",
-  "modVersion": "1.0.2.17",
+  "modVersion": "1.1.2.17",
   "gameVersion": "1.2.17",
   "tags": [
     "General"

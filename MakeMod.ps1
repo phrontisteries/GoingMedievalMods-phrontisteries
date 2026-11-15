@@ -278,7 +278,7 @@ function New-Mod {
 
     $fn = Get-ModFunctionName $ModName
     $sourceDir = Join-Path $Global:RecipesRoot $ModName
-    $hasSource = Test-Path $sourceDir -PathType Container
+    $hasSource = @(Get-ChildItem -Path $sourceDir -Filter *.json -File -ErrorAction SilentlyContinue).Count -gt 0
 
     # Ensure and Load Mod specific functions and file details
     $modScript = Join-Path $Global:RecipesRoot "$($ModName).ps1"
@@ -370,8 +370,20 @@ function New-Mod {
     $license = Join-Path $PSScriptRoot "LICENSE"
     if (Test-Path $license) { Copy-Item -Path $license -Destination (Join-Path $modRoot "LICENSE.txt") -Force }
 
-    # Ensure Preview.png
+    # Custom icons: recipes\<ModName>\Sprites\*.png -> Data\Sprites (64x64, file name = the model's iconPath)
+    $spriteSource = Join-Path $sourceDir "Sprites"
+    if (Test-Path $spriteSource) {
+        $spriteDest = Join-Path $modRoot "Data\Sprites"
+        $null = New-Item -ItemType Directory -Force -Path $spriteDest
+        $sprites = @(Get-ChildItem -Path $spriteSource -Filter *.png -File)
+        foreach ($s in $sprites) { Copy-Item -Path $s.FullName -Destination $spriteDest -Force }
+        Write-Host "Copied $($sprites.Count) sprite(s) to 'Data\Sprites'" -ForegroundColor Green
+    }
+
+    # Ensure Preview.png: recipes\<ModName>\Preview.png if the recipe has one, else keep the mod's, else the game's generic one
     $modPreview = Join-Path $modRoot "Preview.png"
+    $recipePreview = Join-Path $sourceDir "Preview.png"
+    if (Test-Path $recipePreview) { Copy-Item -Path $recipePreview -Destination $modPreview -Force }
     $genericPreview = Join-Path $Global:StreamingAssets "Modding\PreviewMod.png"
     if (-not (Test-Path $modPreview)) {
         if (-not (Test-Path $genericPreview)) { throw "Generic preview image not found at '$genericPreview'." }

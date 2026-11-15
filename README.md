@@ -31,7 +31,9 @@ Mods\                Built mods, ready for the game and the Workshop (generated;
 tools\
   Test-Mods.ps1        Checks built mods against the installed game
   ModTranslationPatcher.ps1  Fills in locKeys for the game's languages (MyMemory translation API)
+  art\make_art.py      Draws the original icons and Workshop previews (Python + Pillow)
 docs\MODDING-NOTES.md  How the game merges mod JSON, and the pitfalls these tools guard against
+docs\GRAPHICS.md      Icons, previews and other art: what the game supports and how ours are made
 ```
 
 ## Requirements
@@ -93,6 +95,8 @@ The built model is the current vanilla `fermenting_mash` with the fields you wro
 **Script:** create `recipes\<ModName>.ps1` with a `Build-<ModName>_<File>` function per file. Each function receives the current vanilla file as `-RawJson` and returns the mod's version. Add `Set-<ModName>_ModInfo` to control the name, description and tags. In function names, leave out spaces (`Mushroom Cropfield` → `Build-MushroomCropfield_Research`). See `recipes\Cold.ps1` and the header of `MakeMod.ps1`.
 
 A mod can use both. A `Build-` function wins over a source file with the same name.
+
+**Art (optional):** `recipes\<ModName>\Sprites\<iconPath>.png` (64×64) is copied to the mod's `Data\Sprites`, and `recipes\<ModName>\Preview.png` becomes the mod's preview. See `docs\GRAPHICS.md`.
 
 Script files are saved as UTF-8 **with** a BOM so Windows PowerShell 5.1 reads them correctly. Keep it when editing (VS Code: "UTF-8 with BOM"). Mod JSON is written as UTF-8 without a BOM through `Write-JsonFile` in `Settings.ps1`; use it (not `ConvertTo-Json | Out-File`) in new tools so 5.1 and 7 give the same bytes.
 
