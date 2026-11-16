@@ -218,27 +218,92 @@ def creation_book():
     return m
 
 
-def mushroom_cropfield():
-    """Mushroom Cropfield: a dark soil plot with a blue rim, as the game's cropfield icons, growing a
-    cluster of red- and tan-capped mushrooms like the game's own mushrooms."""
+def _place(sub, at=(0, 0, 0), scale=(1, 1, 1), yaw=0.0, tilt=0.0):
+    """Scale, tilt (about X) and turn (about Y) a part built at the origin, then move it to `at`."""
+    out = Model()
+    cy, sy = math.cos(math.radians(yaw)), math.sin(math.radians(yaw))
+    ct, st = math.cos(math.radians(tilt)), math.sin(math.radians(tilt))
+    for tri, col in zip(sub.tris, sub.cols):
+        pts = []
+        for v in tri:
+            x, y, z = v[0] * scale[0], v[1] * scale[1], v[2] * scale[2]
+            y, z = y * ct - z * st, y * st + z * ct
+            x, z = x * cy + z * sy, -x * sy + z * cy
+            pts.append((x + at[0], y + at[1], z + at[2]))
+        out.tri(*pts, col)
+    return out
+
+
+def mushroom(r, hgt, cap, oval=0.82, yaw=0.0, tilt=0.0):
+    """One of the game's mushrooms: a pale stem with a notched, flared foot and a wide, flat cap."""
+    STEM, STEM_D = (232, 228, 214), (196, 190, 176)
     m = Model()
-    SOIL, SOIL_D, RIM = (104, 74, 92), (84, 58, 76), (70, 92, 160)
-    STEM, CAP_RED, CAP_TAN, SPOT = (236, 224, 200), (184, 66, 56), (206, 142, 86), (246, 236, 214)
+    sr = r * 0.26
+    m.lathe((0, 0, 0), [(sr * 1.7, 0.0), (sr * 1.15, hgt * 0.18), (sr, hgt * 0.5), (sr * 0.9, hgt)],
+            STEM, seg=10, cols=[STEM, STEM, STEM_D])                              # notched foot
+    gill = tuple(int(c * 0.72) for c in cap)
+    m.lathe((0, hgt - r * 0.04, 0), [(sr * 0.8, 0.0), (r, r * 0.02), (r * 0.94, r * 0.12), (r * 0.62, r * 0.2), (0.001, r * 0.23)],
+            cap, seg=16, cap_bottom=gill)                                         # flat cap
+    return _place(m, scale=(1, 1, oval), yaw=yaw, tilt=tilt)
+
+
+def mushroom_cropfield():
+    """Mushroom Cropfield: a dark soil plot with a blue rim, as the game's cropfield icons, growing the
+    game's mushrooms: wide, flat red, brown and grey-green caps on pale stems."""
+    m = Model()
+    SOIL, SOIL_D, RIM = (96, 72, 84), (76, 56, 68), (70, 92, 160)
+    RED, BROWN, GREY = (150, 42, 54), (138, 98, 52), (104, 124, 108)
     m.box((0, 0.03, 0), (0.98, 0.06, 0.98), RIM, top=RIM)                     # plot rim
     m.box((0, 0.05, 0), (0.88, 0.06, 0.88), SOIL_D, top=SOIL)                 # soil
     for i in range(5):                                                       # furrows
         m.box((0, 0.081, -0.36 + i * 0.18), (0.84, 0.004, 0.03), SOIL_D)
-    # (x, z, cap radius, stem height, cap colour)
-    shrooms = [(-0.20, -0.16, 0.20, 0.27, CAP_RED), (0.12, -0.26, 0.15, 0.20, CAP_TAN),
-               (0.26, 0.04, 0.18, 0.25, CAP_RED), (-0.04, 0.10, 0.22, 0.33, CAP_RED),
-               (-0.30, 0.22, 0.13, 0.17, CAP_TAN), (0.14, 0.30, 0.15, 0.21, CAP_TAN),
-               (0.33, -0.30, 0.10, 0.13, CAP_RED), (-0.33, -0.36, 0.09, 0.12, CAP_TAN)]
-    for x, z, r, hgt, cap in shrooms:
-        m.cylinder((x, 0.08, z), r * 0.32, hgt, STEM, seg=8)                  # stem
-        prof = [(r * 0.30, 0.0), (r, 0.02), (r * 0.96, r * 0.32), (r * 0.72, r * 0.62), (r * 0.36, r * 0.82), (0.001, r * 0.86)]
-        m.lathe((x, 0.08 + hgt - 0.01, z), prof, cap, seg=14)                 # cap
-        if cap == CAP_RED:                                                    # pale spots
-            for k in range(3):
-                a = k * 2.1 + x * 7
-                m.sphere((x + 0.55 * r * math.cos(a), 0.08 + hgt + r * 0.62, z + 0.55 * r * math.sin(a)), r * 0.13, SPOT, seg=6, rings=3)
+    # (x, z, cap radius, stem height, cap colour, turn, tilt)
+    shrooms = [(-0.06, 0.02, 0.27, 0.36, BROWN, 20, -8), (0.24, -0.20, 0.18, 0.24, RED, -30, 10),
+               (-0.26, -0.22, 0.17, 0.22, GREY, 60, 6), (0.26, 0.20, 0.16, 0.20, BROWN, 0, -10),
+               (-0.28, 0.26, 0.13, 0.16, RED, 40, 8), (0.05, -0.33, 0.11, 0.13, BROWN, 10, 0),
+               (0.34, -0.02, 0.10, 0.12, GREY, -20, 6), (-0.36, -0.02, 0.09, 0.10, RED, 0, -6)]
+    for x, z, r, hgt, cap, yaw, tilt in shrooms:
+        m.add(mushroom(r, hgt, cap, yaw=yaw, tilt=tilt), (x, 0.08, z))
     return m
+
+
+def heavy_crossbow():
+    """Heavy Crossbow Sniper: a heavy crossbow with a steel prod, foot stirrup, rear sight and a loaded bolt."""
+    m = Model()
+    STEEL, STEEL_L, STRING, FLETCH = (120, 128, 138), (176, 184, 194), (226, 214, 180), (196, 60, 48)
+    m.box((0, 0, -0.08), (0.065, 0.08, 0.9), WOOD_D, top=WOOD)                 # tiller
+    m.box((0, -0.04, -0.58), (0.09, 0.14, 0.2), WOOD_D, top=WOOD)            # butt
+    m.box((0, 0.05, 0.02), (0.03, 0.012, 0.66), WOOD_L)                       # bolt groove
+    m.box((0, -0.1, -0.28), (0.025, 0.12, 0.03), IRON)                        # trigger lever
+    m.box((0, 0.07, -0.18), (0.06, 0.05, 0.06), IRON)                         # nut
+    m.box((0, 0.12, -0.36), (0.012, 0.09, 0.012), IRON)                       # rear sight post
+    m.box((0, 0.17, -0.36), (0.05, 0.012, 0.012), IRON)                       # sight bar
+    # prod: two steel arms sweeping back from the front of the tiller
+    n, half, sweep, zf = 8, 0.5, 0.16, 0.34
+    tips = []
+    for side in (-1, 1):
+        prev = (0.0, zf)
+        for i in range(1, n + 1):
+            x = side * half * i / n; z = zf - sweep * (i / n) ** 2
+            cx, cz = (prev[0] + x) / 2, (prev[1] + z) / 2
+            length = math.hypot(x - prev[0], z - prev[1]); th = 0.07 * (1 - 0.5 * i / n)
+            seg = Model().box((0, 0, 0), (length + 0.01, th, 0.045), STEEL, top=STEEL_L)
+            m.add(_place(seg, yaw=-math.degrees(math.atan2(z - prev[1], x - prev[0]))), (cx, 0.03, cz))
+            prev = (x, z)
+        tips.append(prev)
+    for tx, tz in tips:                                                        # string to the nut
+        cx, cz = (tx + 0) / 2, (tz - 0.18) / 2
+        length = math.hypot(tx, tz + 0.18)
+        seg = Model().box((0, 0, 0), (length, 0.012, 0.012), STRING)
+        m.add(_place(seg, yaw=-math.degrees(math.atan2(-0.18 - tz, 0 - tx))), (cx, 0.06, cz))
+    # stirrup at the front
+    m.box((0, 0.0, zf + 0.06), (0.04, 0.05, 0.08), IRON)
+    for side in (-1, 1):
+        m.box((side * 0.07, -0.02, zf + 0.15), (0.025, 0.03, 0.16), IRON)
+    m.box((0, -0.02, zf + 0.23), (0.165, 0.03, 0.025), IRON)
+    # bolt
+    m.box((0, 0.075, 0.06), (0.022, 0.022, 0.5), WOOD_L)
+    m.lathe((0, 0.075, 0.31), [(0.03, 0), (0.001, 0.1)], STEEL_L, seg=4, cap_bottom=STEEL, axis="z")
+    for side in (-1, 1):
+        m.box((side * 0.025, 0.09, -0.14), (0.03, 0.045, 0.1), FLETCH)
+    return _place(m, yaw=-62, tilt=-12)

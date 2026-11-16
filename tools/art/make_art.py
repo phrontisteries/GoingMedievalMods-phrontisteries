@@ -318,7 +318,10 @@ PREVIEWS = {   # mod -> (title, lines, art, gradient top, gradient bottom)
                       lambda: render_art(models.broker_scale, "building", 400), (96, 74, 30), (34, 24, 10)),
     "More_Creation_Points": ("More Creation Points", ["Settler creation: up to 1000 points, 40 perks and 20 passions."],
                       lambda: render_art(models.creation_book, "building", 400), (70, 60, 96), (22, 18, 34)),
-    # "Mushroom Cropfield" and "Heavy Crossbow Sniper" keep their own hand-made previews.
+    "Mushroom Cropfield": ("Mushroom Cropfield", ["Mushrooms grow in cropfields (Agriculture\u00a0I) on any terrain, from 0 to 45\u00a0°C.", "No blight; 10× nutrition; spreads fast.", "Buy your first mushrooms from traders."],
+                           lambda: render_art(models.mushroom_cropfield, "building", 400), (84, 50, 64), (30, 16, 24)),
+    "Heavy Crossbow Sniper": ("Heavy\u00a0Crossbow Sniper", ["360 armour-piercing damage, 45\u00a0m range, perfect accuracy.", "Fast reload, no wear, full cover; NPCs no longer carry it."],
+                              lambda: render_art(models.heavy_crossbow, "building", 400), (52, 66, 86), (16, 22, 32)),
 }
 
 
