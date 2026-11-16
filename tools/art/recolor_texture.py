@@ -59,6 +59,25 @@ def frost(src, dst, tint="#DCEFFF", amount=0.3, contrast=1.0):
     im.save(dst)
 
 
+def blend(src, other, dst, k_dark, k_light, l_dark=0.32, l_light=0.78):
+    """Per-channel blend from texture src towards texture other, with a separate strength for dark
+    and light texels (interpolated by the src texel's brightness). Used to calibrate the Cold Shelf
+    against in-game screenshots, where the game's lighting and colour grading shift colours unevenly.
+    k_dark / k_light are (r, g, b) strengths; 0 keeps src, 1 gives other."""
+    a = Image.open(src).convert("RGBA")
+    b = Image.open(other).convert("RGBA")
+    pa, pb = a.load(), b.load()
+    for y in range(a.height):
+        for x in range(a.width):
+            r, g, bl, al = pa[x, y]
+            r2, g2, b2, _ = pb[x, y]
+            l = (0.299 * r + 0.587 * g + 0.114 * bl) / 255
+            t = min(1.0, max(0.0, (l - l_dark) / (l_light - l_dark)))
+            k = [kd + (kl - kd) * t for kd, kl in zip(k_dark, k_light)]
+            pa[x, y] = tuple(min(255, max(0, round(c1 + kk * (c2 - c1)))) for c1, c2, kk in zip((r, g, bl), (r2, g2, b2), k)) + (al,)
+    a.save(dst)
+
+
 if __name__ == "__main__":
     if len(sys.argv) > 3 and sys.argv[3] == "frost":
         frost(sys.argv[1], sys.argv[2], *(sys.argv[4:5] or ["#DCEFFF"]), *[float(v) for v in sys.argv[5:7]])
