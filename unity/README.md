@@ -19,7 +19,14 @@ python tools/art/recolor_texture.py work/base_texture_png.png unity/Cold/Texture
 
 The arguments are the frost colour, how strongly it washes over the wood (0–1) and the contrast (1 = unchanged); change them for another look. The mod cannot load a loose texture file: the game only reads loose PNGs from `Data/Sprites` (icons). Building textures and meshes must come through Addressables, hence the Unity build below.
 
-The Cold Floor needs no build: it is tinted through the floor shader's own colour parameters.
+The Cold Floor uses `Cold/Texture/phrontisteries_cold_floor_albedo.png`: the game's clay herringbone (`clay_brick_floor_diffuse`) with 9 bricks per repeat frosted, the most possible with no two touching (every herringbone brick borders 6 others), in the colour of the Cold Shelf's frosted boards. Floor textures are projected in world space, so the pattern runs across every floor piece (full, corner, edge, end, line, single). The bump map is the game's own `clay_brick_floor_normal`, referenced by name.
+
+```
+python tools/art/extract_game_texture.py "<...>/aa/StandaloneWindows64" work clay_brick_floor_diffuse base_texture_png shelf
+python tools/art/make_cold_floor.py work/clay_brick_floor_diffuse.png unity/Cold/Texture/phrontisteries_cold_shelf_albedo.png work/base_texture_png.png work/shelf.obj unity/Cold/Texture/phrontisteries_cold_floor_albedo.png 9
+```
+
+Until that texture is in the built Addressables, the Cold Floor falls back to a cool tint of the plain clay floor (floor shader colour parameters).
 
 ## Build steps (once per change to a model)
 
@@ -44,6 +51,6 @@ When **Build** asks whether to turn on Debug Build Layout, choose No.
 - Units are metres with Y up, measured from the building's origin tile at floor level. Multi-tile buildings sit one or more tiles in from the origin: the 3×3 fish farm is centred at (1, 0, 1), matching its collider.
 - Unity's OBJ importer mirrors X, so the `.obj` files are pre-mirrored and arrive in Unity exactly as drawn. Import them directly; a round trip through Blender would mirror them back.
 - Production stages: the game cannot swap a building's model per stage. A building has one model, plus an optional built-in effect while it works (`productionEffectPrefabId` in ProductionComponentsRepository). Mods cannot add new effects; the Addressables system only takes meshes, textures and sprites.
-- Asset names: Foxy Voxel's builder uses each file name, without extension, as its address. The recipes reference `phrontisteries_cold_shelf_albedo`, `phrontisteries_fish_farm` and `phrontisteries_fish_farm_palette`, so keep those names.
-- `phrontisteries_cold_shelf_albedo.png` is a recoloured copy of Foxy Voxel's game art, shipped only for use with the game. It is not covered by this repo's MIT licence.
+- Asset names: Foxy Voxel's builder uses each file name, without extension, as its address. The recipes reference `phrontisteries_cold_shelf_albedo`, `phrontisteries_cold_floor_albedo`, `phrontisteries_fish_farm` and `phrontisteries_fish_farm_palette`, so keep those names.
+- `phrontisteries_cold_shelf_albedo.png` and `phrontisteries_cold_floor_albedo.png` are recoloured copies of Foxy Voxel's game art, shipped only for use with the game. They are not covered by this repo's MIT licence.
 - Untested so far: whether the game's shader likes the palette texture with empty reflection and emission slots, and the exact pivot the game expects. Check both on the first in-game test.

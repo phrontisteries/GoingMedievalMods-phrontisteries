@@ -291,9 +291,35 @@ function Set-ModelTexture { # Points a model's albedo texture at a custom asset;
         if ($slot.slotType -eq 'Texture' -and $slot.slot -eq 'albedo') { $slot.value = $Texture }
     } } }
 }
-function Test-ModAddressables { # True when recipes\<ModName>\AddressableAssets holds a built catalog (see unity\README.md).
-    param([Parameter(Mandatory=$true)][string]$ModName)
-    return [bool](Get-ChildItem -Path (Join-Path (Join-Path $Global:RecipesRoot $ModName) "AddressableAssets") -Filter "catalog*.json" -File -ErrorAction SilentlyContinue)
+function Test-ModAddressables { # True when recipes\<ModName>\AddressableAssets holds a built catalog (see unity\README.md);
+    # with -Asset, only when that catalog also contains the named asset (its address, e.g. a texture's file name).
+    param([Parameter(Mandatory=$true)][string]$ModName, [string]$Asset)
+    $catalogs = @(Get-ChildItem -Path (Join-Path (Join-Path $Global:RecipesRoot $ModName) "AddressableAssets") -Filter "catalog*.json" -File -ErrorAction SilentlyContinue)
+    if ($catalogs.Count -eq 0) { return $false }
+    if (-not $Asset) { return $true }
+    foreach ($c in $catalogs) {
+        $keys = [System.Text.Encoding]::UTF8.GetString([Convert]::FromBase64String((Read-JsonFile $c.FullName).m_KeyDataString))
+        if ($keys.Contains($Asset)) { return $true }
+    }
+    return $false
+}
+function Set-ShaderVector2 { # Sets a Vector2 shader parameter (e.g. _FloorSheetSize) wherever a model's variations use it.
+    param([Parameter(Mandatory=$true)][object]$Model, [Parameter(Mandatory=$true)][string]$Name, [double]$X, [double]$Y)
+    $hits = 0
+    foreach ($list in @($Model.variationLists)) { foreach ($v in @($list.variations)) { foreach ($slot in @($v.slots)) {
+        if ($slot.slotType -eq 'ShaderParam' -and $slot.shaderParam.variableName -eq $Name) {
+            $slot.shaderParam | Add-Member -NotePropertyName vector2Value -NotePropertyValue ([ordered]@{ x = $X; y = $Y }) -Force; $hits++
+        } } } }
+    if ($hits -eq 0) { Write-Warning "Shader parameter '$Name' not found on '$($Model.id)'" }
+}
+function Set-FloorTexture { # Gives a floor its own albedo (and normal) texture instead of a square of the shared floor sheet.
+    param([Parameter(Mandatory=$true)][object]$Model, [Parameter(Mandatory=$true)][string]$Albedo, [string]$Normal)
+    foreach ($list in @($Model.variationLists)) { foreach ($v in @($list.variations)) { foreach ($slot in @($v.slots)) {
+        if ($slot.slotType -eq 'Texture' -and $slot.slot -eq 'floorAlbedo') { $slot.value = $Albedo }
+        elseif ($Normal -and $slot.slotType -eq 'Texture' -and $slot.slot -eq 'floorNormal') { $slot.value = $Normal }
+    } } }
+    Set-ShaderVector2 -Model $Model -Name "_FloorSheetSize" -X 1 -Y 1      # the whole texture is the floor
+    Set-ShaderVector2 -Model $Model -Name "_FloorSheetOffset" -X 1 -Y 1    # as the game's decorative floors do
 }
 function Merge-WithTemplate { # Copy of the vanilla model, with the fields written in $Entry replacing the vanilla ones.
     param(

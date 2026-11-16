@@ -623,13 +623,13 @@
                   "id": "1",
                   "slot": "floorAlbedo",
                   "slotType": "Texture",
-                  "value": ""
+                  "value": "phrontisteries_cold_floor_albedo"
                 },
                 {
                   "id": "2",
                   "slot": "floorNormal",
                   "slotType": "Texture",
-                  "value": ""
+                  "value": "clay_brick_floor_normal"
                 },
                 {
                   "id": "12",
@@ -638,8 +638,8 @@
                   "shaderParam": {
                     "variableName": "_FloorSheetSize",
                     "vector2Value": {
-                      "x": 4,
-                      "y": 4
+                      "x": 1.0,
+                      "y": 1.0
                     }
                   }
                 },
@@ -650,8 +650,8 @@
                   "shaderParam": {
                     "variableName": "_FloorSheetOffset",
                     "vector2Value": {
-                      "x": 2,
-                      "y": 1
+                      "x": 1.0,
+                      "y": 1.0
                     }
                   }
                 },
@@ -706,7 +706,7 @@
                   "slotType": "ShaderParam",
                   "shaderParam": {
                     "variableName": "_FloorColorAdd",
-                    "colorValue": "#04101C"
+                    "colorValue": "#000000"
                   }
                 },
                 {
@@ -715,7 +715,7 @@
                   "slotType": "ShaderParam",
                   "shaderParam": {
                     "variableName": "_FloorColorMultiply",
-                    "colorValue": "#CFE3FF"
+                    "colorValue": "#FFFFFF"
                   }
                 },
                 {

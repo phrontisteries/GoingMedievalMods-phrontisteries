@@ -39,8 +39,13 @@ $script:Cold = [ordered]@{
     BuildingId_Floor_Id     = "cold_floor"
     BuildingId_Floor_Name   = "Cold Floor"
     BuildingId_Floor_Icon   = "phrontisteries_cold_floor"
-    FloorTintMultiply       = "#CFE3FF"                     # _FloorColorMultiply: cools the clay colour (vanilla: #FFFFFF)
+    FloorTintMultiply       = "#CFE3FF"                     # _FloorColorMultiply: cools the clay colour (vanilla: #FFFFFF); used until the frosted-brick texture is built
     FloorTintAdd            = "#04101C"                     # _FloorColorAdd: a little blue lift (vanilla clay: #000000)
+    # Frosted bricks: the clay herringbone with 9 bricks per repeat (no two touching) in the frost colour of the
+    # Cold Shelf's boards; the rest stays plain clay. unity\Cold\Texture\phrontisteries_cold_floor_albedo.png,
+    # made by tools\art\make_cold_floor.py. The bump map is the game's own clay-brick one.
+    FloorTexture            = "phrontisteries_cold_floor_albedo"
+    FloorNormal             = "clay_brick_floor_normal"
     # In-world look: the game's own shelf model with a light-blue copy of its texture
     # (unity\Cold\Texture\phrontisteries_cold_shelf_albedo.png, made by tools\art\recolor_texture.py)
     ShelfTexture            = "phrontisteries_cold_shelf_albedo"
@@ -170,11 +175,16 @@ function Build-Cold_BaseBuildingRepository {
     $floorClone.iconPath = $Cold.BuildingId_Floor_Icon
     $floorClone | Add-Member -NotePropertyName defaultThermalModelID -NotePropertyValue $Cold.ThermalModelId -Force
     $floorClone.locKeys = @(Get-ColdLocKeys -Id $Cold.BuildingId_Floor_Id -InfoKey $vanillaFloor.locKeys[0].info)
-    Set-ShaderParam -Model $floorClone -Name "_FloorColorMultiply" -Value $Cold.FloorTintMultiply   # cool blue look in the world
-    Set-ShaderParam -Model $floorClone -Name "_FloorColorAdd" -Value $Cold.FloorTintAdd
+    if (Test-ModAddressables "Cold" -Asset $Cold.FloorTexture) {
+        Set-FloorTexture -Model $floorClone -Albedo $Cold.FloorTexture -Normal $Cold.FloorNormal   # frosted bricks, plain clay between
+    }
+    else {
+        Set-ShaderParam -Model $floorClone -Name "_FloorColorMultiply" -Value $Cold.FloorTintMultiply   # cool blue look in the world
+        Set-ShaderParam -Model $floorClone -Name "_FloorColorAdd" -Value $Cold.FloorTintAdd
+    }
 
     # Light-blue shelf, once its Addressables are built (unity\README.md); until then the vanilla wooden look.
-    if (Test-ModAddressables "Cold") { Set-ModelTexture -Model $shelfClone -Texture $Cold.ShelfTexture }
+    if (Test-ModAddressables "Cold" -Asset $Cold.ShelfTexture) { Set-ModelTexture -Model $shelfClone -Texture $Cold.ShelfTexture }
 
     return @{ repository = @($shelfClone, $floorClone) }
 }
