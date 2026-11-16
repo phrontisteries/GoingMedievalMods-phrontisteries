@@ -213,13 +213,21 @@ def outline(img, width, color=(255, 255, 255, 255)):
     return Image.alpha_composite(base, img)
 
 
-def render_icon(model, kind, size=128, yaw=-38, pitch=33, margin=0.05, footprint=(0.5, 0.5)):
+def render_icon(model, kind, size=128, yaw=-38, pitch=33, margin=0.05, footprint=(0.5, 0.5), tile_fill=None, lift=0.0):
+    """tile_fill: frame like the game's cropfield icons instead of fitting the model: the 1 m tile under
+    the object spans this fraction of the icon width, centred on the point `lift` metres above it."""
     if kind == "item":
         pad = int(size * 0.08)
         body = rasterize(model, size - 2 * pad, yaw, pitch, margin=0.03)
         canvas = Image.new("RGBA", (size, size), (0, 0, 0, 0)); canvas.alpha_composite(body, (pad, pad))
         return outline(canvas, max(2, size // 28))
-    proj = projection(model, size, yaw, pitch, margin)
+    if tile_fill:
+        R = _camera(yaw, pitch)
+        c = R @ np.array((0.0, lift, 0.0))
+        span = abs(math.cos(math.radians(yaw))) + abs(math.sin(math.radians(yaw)))   # tile width on screen
+        proj = (R, size * tile_fill / span, (c[0], c[1]))
+    else:
+        proj = projection(model, size, yaw, pitch, margin)
     bg = tile_background(size, *proj, footprint=footprint)
     body = rasterize(model, size, yaw, pitch, proj=proj)
     return Image.alpha_composite(bg, body)

@@ -80,7 +80,7 @@ ICONS = {
     # Cold: icons are made from the game's own icons (make_cold_shelf_icon.py, make_cold_floor_icons.py)
     "Fish_Farming": {"phrontisteries_fish_farm": (models.fish_farm, "building", 33, 1.5)},
     "Fermenting Apple Cider": {"phrontisteries_fermenting_apple_cider": (models.fermenting_apple_cider, "item", 33, 0.5)},
-    "Mushroom Cropfield": {"phrontisteries_mushroom_cropfield": (models.mushroom_cropfield, "building", 33, 0.36)},
+    "Mushroom Cropfield": {"phrontisteries_mushroom_cropfield": (models.mushroom_cropfield, "cropfield", 36, 0.5)},
 }
 ICON_SIZE = 128   # the game's own icons are 128x128
 
@@ -331,7 +331,11 @@ def main():
         os.makedirs(folder, exist_ok=True)
         for name, (fn, kind, pitch, half) in icons.items():
             path = os.path.join(folder, name + ".png")
-            model3d.render_icon(fn(), kind, ICON_SIZE, pitch=pitch, footprint=(half, half)).save(path, optimize=True)
+            if kind == "cropfield":     # framed like the game's cropfield icons: plot on one tile, seen corner-on
+                img = model3d.render_icon(fn(), "building", ICON_SIZE, yaw=-45, pitch=pitch, footprint=(half, half), tile_fill=0.86, lift=0.2)
+            else:
+                img = model3d.render_icon(fn(), kind, ICON_SIZE, pitch=pitch, footprint=(half, half))
+            img.save(path, optimize=True)
             print("icon   ", os.path.relpath(path, ROOT))
     for mod, meshes in MESHES.items():
         for name, (fn, offset) in meshes.items():

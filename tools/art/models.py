@@ -234,36 +234,39 @@ def _place(sub, at=(0, 0, 0), scale=(1, 1, 1), yaw=0.0, tilt=0.0):
     return out
 
 
-def mushroom(r, hgt, cap, oval=0.82, yaw=0.0, tilt=0.0):
-    """One of the game's mushrooms: a pale stem with a notched, flared foot and a wide, flat cap."""
-    STEM, STEM_D = (232, 228, 214), (196, 190, 176)
+def mushroom(r, hgt, cap, stem_r=None, yaw=0.0, tilt=0.0):
+    """One of the game's mature mushrooms: a tall, straight, pale stem with a slightly flared foot and a
+    wide, flat, disc-like cap, tilted a little."""
+    STEM, STEM_D = (234, 232, 222), (204, 200, 188)
+    sr = stem_r or r * 0.2
     m = Model()
-    sr = r * 0.26
-    m.lathe((0, 0, 0), [(sr * 1.7, 0.0), (sr * 1.15, hgt * 0.18), (sr, hgt * 0.5), (sr * 0.9, hgt)],
-            STEM, seg=10, cols=[STEM, STEM, STEM_D])                              # notched foot
-    gill = tuple(int(c * 0.72) for c in cap)
-    m.lathe((0, hgt - r * 0.04, 0), [(sr * 0.8, 0.0), (r, r * 0.02), (r * 0.94, r * 0.12), (r * 0.62, r * 0.2), (0.001, r * 0.23)],
-            cap, seg=16, cap_bottom=gill)                                         # flat cap
-    return _place(m, scale=(1, 1, oval), yaw=yaw, tilt=tilt)
+    m.lathe((0, 0, 0), [(sr * 1.25, 0.0), (sr * 1.05, hgt * 0.12), (sr, hgt * 0.5), (sr * 0.92, hgt)],
+            STEM, seg=10, cols=[STEM, STEM, STEM_D])
+    cap_part = Model()
+    gill = tuple(int(c * 0.7) for c in cap)
+    th = max(0.025, r * 0.12)
+    cap_part.lathe((0, 0, 0), [(sr * 0.9, 0.0), (r, th * 0.25), (r * 0.96, th * 0.7), (r * 0.6, th), (0.001, th * 1.08)],
+                   cap, seg=18, cap_bottom=gill)
+    m.add(_place(cap_part, yaw=yaw, tilt=tilt), (0, hgt - th * 0.3, 0))
+    return m
 
 
 def mushroom_cropfield():
-    """Mushroom Cropfield: a dark soil plot with a blue rim, as the game's cropfield icons, growing the
-    game's mushrooms: wide, flat red, brown and grey-green caps on pale stems."""
+    """Mushroom Cropfield: the game's cropfield plot (dark soil, blue edge) with its mature mushrooms:
+    one large brown mushroom in the middle, ringed by red, brown and grey-green ones on tall pale stems."""
     m = Model()
-    SOIL, SOIL_D, RIM = (96, 72, 84), (76, 56, 68), (70, 92, 160)
-    RED, BROWN, GREY = (150, 42, 54), (138, 98, 52), (104, 124, 108)
-    m.box((0, 0.03, 0), (0.98, 0.06, 0.98), RIM, top=RIM)                     # plot rim
-    m.box((0, 0.05, 0), (0.88, 0.06, 0.88), SOIL_D, top=SOIL)                 # soil
-    for i in range(5):                                                       # furrows
-        m.box((0, 0.081, -0.36 + i * 0.18), (0.84, 0.004, 0.03), SOIL_D)
-    # (x, z, cap radius, stem height, cap colour, turn, tilt)
-    shrooms = [(-0.06, 0.02, 0.27, 0.36, BROWN, 20, -8), (0.24, -0.20, 0.18, 0.24, RED, -30, 10),
-               (-0.26, -0.22, 0.17, 0.22, GREY, 60, 6), (0.26, 0.20, 0.16, 0.20, BROWN, 0, -10),
-               (-0.28, 0.26, 0.13, 0.16, RED, 40, 8), (0.05, -0.33, 0.11, 0.13, BROWN, 10, 0),
-               (0.34, -0.02, 0.10, 0.12, GREY, -20, 6), (-0.36, -0.02, 0.09, 0.10, RED, 0, -6)]
-    for x, z, r, hgt, cap, yaw, tilt in shrooms:
-        m.add(mushroom(r, hgt, cap, yaw=yaw, tilt=tilt), (x, 0.08, z))
+    SOIL, SOIL_D, RIM = (92, 70, 92), (74, 56, 76), (70, 92, 170)
+    RED, BROWN, GREY = (156, 44, 60), (150, 108, 50), (112, 128, 114)
+    m.box((0, 0.01, 0), (0.98, 0.02, 0.98), RIM)                              # plot edge
+    m.box((0, 0.02, 0), (0.9, 0.02, 0.9), SOIL_D, top=SOIL)                   # soil
+    m.add(mushroom(0.31, 0.46, BROWN, stem_r=0.085, yaw=10, tilt=-6), (0.0, 0.03, 0.0))
+    # (x, z, cap radius, stem height, colour, cap turn, cap tilt)
+    ring = [(-0.30, -0.10, 0.19, 0.40, GREY, 30, 16), (0.30, 0.08, 0.20, 0.42, BROWN, -20, -14),
+            (-0.08, -0.33, 0.13, 0.36, RED, 0, 18), (0.22, -0.28, 0.15, 0.30, RED, 50, -12),
+            (-0.26, 0.26, 0.17, 0.26, RED, -40, 14), (0.16, 0.33, 0.17, 0.24, GREY, 20, -16),
+            (-0.36, 0.06, 0.11, 0.22, RED, 70, 10), (0.36, -0.30, 0.10, 0.18, GREY, 0, 12)]
+    for x, z, r, hgt, cap, yaw, tilt in ring:
+        m.add(mushroom(r, hgt, cap, yaw=yaw, tilt=tilt), (x, 0.03, z))
     return m
 
 
