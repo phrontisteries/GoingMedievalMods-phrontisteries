@@ -3,7 +3,7 @@
   "name": "Urgent Haul - Bodies",
   "description": "English: Burying, burning and stripping bodies move to Urgent Haul, so they get done first.\n中文: 埋葬、焚烧和剥除尸体移至紧急搬运，优先完成。\nFrançais: Enterrer, brûler et dépouiller les corps passent au transport urgent et sont faits en priorité.\nEspañol: Enterrar, quemar y despojar cuerpos pasan a Transporte urgente, así se hacen primero.\nDeutsch: Leichen begraben, verbrennen und ausziehen wird zu dringendem Transport und zuerst erledigt.\nРусский: Захоронение, сжигание и раздевание тел перенесены в срочную переноску и выполняются первыми.\n日本語: 遺体の埋葬・焼却・剥ぎ取りを緊急運搬に移し、優先して行います。\nPortuguês: Enterrar, queimar e despir corpos passam para Transporte urgente e são feitos primeiro.\n한국어: 시체 매장, 소각, 벗기기가 긴급 운반으로 옮겨져 먼저 처리됩니다.\nPolski: Grzebanie, palenie i rozbieranie ciał trafia do pilnego transportu, więc dzieje się najpierw.\nTürkçe: Ceset gömme, yakma ve soyma Acil Taşıma'ya taşınır, böylece önce yapılır.\nItaliano: Seppellire, bruciare e spogliare i corpi passano al Trasporto urgente e vengono fatti per primi.\n\nSource, issues and suggestions: https://github.com/phrontisteries/GoingMedievalMods-phrontisteries",
   "author": "phrontisteries",
-  "modVersion": "1.2.2.17",
+  "modVersion": "1.3.2.17",
   "gameVersion": "1.2.17",
   "tags": [
     "General"

@@ -77,8 +77,7 @@ def finish(img, px=64):
 
 # mod -> {sprite name (= iconPath): (model, icon kind, camera pitch, footprint half-size in tiles)}
 ICONS = {
-    "Cold": {"phrontisteries_cold_shelf": (models.cold_shelf, "building", 33, 0.5),
-             "phrontisteries_cold_floor": (models.cold_floor, "building", 48, 0.5)},
+    # Cold: icons are made from the game's own icons (make_cold_shelf_icon.py, make_cold_floor_icons.py)
     "Fish_Farming": {"phrontisteries_fish_farm": (models.fish_farm, "building", 33, 1.5)},
     "Fermenting Apple Cider": {"phrontisteries_fermenting_apple_cider": (models.fermenting_apple_cider, "item", 33, 0.5)},
 }
@@ -106,8 +105,12 @@ def render_art(model_fn, kind, size, pitch=33):
 
 
 # ---------------------------------------------------------------- previews
-def font(size, bold=False):
-    for name in (["DejaVuSerif-Bold.ttf", "georgiab.ttf"] if bold else ["DejaVuSerif.ttf", "georgia.ttf"]):
+def font(size, bold=False, sans=False):
+    if sans:
+        names = ["DejaVuSans.ttf", "segoeui.ttf", "arial.ttf"]
+    else:
+        names = ["DejaVuSerif-Bold.ttf", "georgiab.ttf"] if bold else ["DejaVuSerif.ttf", "georgia.ttf"]
+    for name in names:
         try:
             return ImageFont.truetype(name, size)
         except OSError:
@@ -145,26 +148,135 @@ def preview(title, lines, art, top, bottom):
         y += 96
     d.line((x, y + 10, x + 260, y + 10), fill=(222, 190, 120, 255), width=3)
     y += 40
-    bf = font(34)
+    bf = font(31, sans=True)
     for line in lines:
-        for part in wrap(d, line, bf, 700):
+        for part in wrap(d, line, bf, 660):
             d.text((x, y), part, font=bf, fill=(232, 220, 196, 255))
-            y += 46
-        y += 8
-    sf = font(26)
+            y += 42
+        y += 12
+    sf = font(24, sans=True)
     d.text((x, H - 96), f"for Going Medieval {GAME_VERSION}   ·   by phrontisteries", font=sf, fill=(222, 190, 120, 255))
     return img.convert("RGB")
 
 
 def wrap(d, text, f, width):
-    words, out, cur = text.split(), [], ""
-    for w in words:
-        trial = (cur + " " + w).strip()
-        if d.textlength(trial, font=f) <= width or not cur:
-            cur = trial
+    """Wrap text into as few lines as fit `width`, then balance them: the narrowest width that still
+    gives that many lines, so lines are even and a sentence never ends on a lone word."""
+    words = [w for w in text.split(" ") if w]           # ordinary spaces only: non-breaking spaces bind words
+
+    def greedy(limit):
+        out, cur = [], ""
+        for w in words:
+            trial = (cur + " " + w).strip()
+            if d.textlength(trial, font=f) <= limit or not cur:
+                cur = trial
+            else:
+                out.append(cur); cur = w
+        return out + ([cur] if cur else [])
+
+    lines = greedy(width)
+    if len(lines) < 2:
+        return lines
+    lo, hi = max(d.textlength(w, font=f) for w in words), width
+    while hi - lo > 1:                                  # narrowest width with the same number of lines
+        mid = (lo + hi) / 2
+        if len(greedy(mid)) <= len(lines):
+            hi = mid
         else:
-            out.append(cur); cur = w
-    return out + ([cur] if cur else [])
+            lo = mid
+    return greedy(hi)
+
+
+# ---------------------------------------------------------------- Cold preview art (game assets)
+# The game textures are not in the repository: export them with extract_game_texture.py into the folder
+# named by GM_ART_WORK (default: work/ next to the repository): shelf (mesh), FloorDiffuseSheet,
+# painted_clay_tile_diffuse, marble_floor_diffuse. The Cold textures come from unity/Cold/Texture.
+ART_WORK = os.environ.get("GM_ART_WORK", os.path.join(ROOT, "..", "work"))
+FROST_HUE, FROST_SAT = 212 / 360, 0.30      # how the frosted parts read in game (blue-grey)
+SHELF_AT = (-0.5, -0.5)                     # the shelf stands on the back tile of the 2x2 floor patch
+
+
+def _in_game(rgb):
+    """A frosted colour as it reads in game: its lightness, in the Cold blue-grey."""
+    import colorsys
+    h, l, s = colorsys.rgb_to_hls(*[c / 255 for c in rgb[:3]])
+    return tuple(round(c * 255) for c in colorsys.hls_to_rgb(FROST_HUE, min(0.95, l + 0.04), FROST_SAT))
+
+
+def _floor_tile(model, origin, vanilla, frosted, tiling, n=40):
+    """One floor tile (1x1) as n x n small squares coloured from its texture (world-space, like the game);
+    frosted parts (where the Cold texture differs from the game's) in their in-game blue-grey."""
+    W, H = vanilla.size
+    ox, oz = origin
+    for i in range(n):
+        for j in range(n):
+            x0, z0 = ox + i / n, oz + j / n
+            u, v = ((x0 + 0.5 / n) * tiling) % 1, ((z0 + 0.5 / n) * tiling) % 1
+            px = (min(W - 1, int(u * W)), min(H - 1, int((1 - v) * H)))
+            a, b = vanilla.getpixel(px), frosted.getpixel(px)
+            col = _in_game(b) if sum(abs(p - q) for p, q in zip(a[:3], b[:3])) > 24 else a[:3]
+            model.quad((x0, 0, z0), (x0 + 1 / n, 0, z0), (x0 + 1 / n, 0, z0 + 1 / n), (x0, 0, z0 + 1 / n), col)
+
+
+def cold_preview_art(size=400):
+    from PIL import Image as I
+    work = ART_WORK
+    tex = os.path.join(ROOT, "unity", "Cold", "Texture")
+    sheet_v = I.open(os.path.join(work, "FloorDiffuseSheet.png")).convert("RGB")
+    sheet_f = I.open(os.path.join(tex, "phrontisteries_cold_floor_sheet.png")).convert("RGB")
+    c = sheet_v.size[0] // 4
+
+    def cell(img, x, y):                       # sheet square by the game's 1-based offset from bottom-left
+        return img.crop(((x - 1) * c, (4 - y) * c, x * c, (5 - y) * c))
+
+    m = model3d.Model()
+    floors = [  # (vanilla texture, frosted texture, tiling) for the 2x2 patch
+        (cell(sheet_v, 2, 1), cell(sheet_f, 2, 1), 0.6),                                   # clay brick
+        (cell(sheet_v, 1, 2), cell(sheet_f, 1, 2), 0.6),                                   # limestone block
+        (I.open(os.path.join(work, "painted_clay_tile_diffuse.png")).convert("RGB"),
+         I.open(os.path.join(tex, "phrontisteries_cold_clay_decorative_floor_albedo.png")).convert("RGB"), 0.25),
+        (I.open(os.path.join(work, "marble_floor_diffuse.png")).convert("RGB"),
+         I.open(os.path.join(tex, "phrontisteries_cold_marble_decorative_floor_albedo.png")).convert("RGB"), 0.25),
+    ]
+    for k, (v, f, t) in enumerate(floors):
+        _floor_tile(m, (-1 + k % 2, -1 + k // 2), v, f, t)
+    # the game's shelf model with the Cold Shelf's frosted texture, in its in-game blue-grey
+    shelf_tex = I.open(os.path.join(tex, "phrontisteries_cold_shelf_albedo.png")).convert("RGB")
+    TW, TH = shelf_tex.size
+    V, T = [], []
+    for line in open(os.path.join(work, "shelf.obj")):
+        p = line.split()
+        if not p:
+            continue
+        if p[0] == "v":
+            V.append((-float(p[1]) + SHELF_AT[0], float(p[2]) + 0.02, float(p[3]) + SHELF_AT[1]))
+        elif p[0] == "vt":
+            T.append((float(p[1]), float(p[2])))
+        elif p[0] == "f":
+            idx = [tuple(int(q) - 1 for q in x.split("/")[:2]) for x in p[1:]]
+            for i in range(1, len(idx) - 1):
+                tri = [idx[0], idx[i], idx[i + 1]]
+                u = sum(T[t][0] for _, t in tri) / 3; vv = sum(T[t][1] for _, t in tri) / 3
+                col = _in_game(shelf_tex.getpixel((min(TW - 1, int(u * TW)), min(TH - 1, int((1 - vv) * TH)))))
+                m.tri(V[tri[0][0]], V[tri[2][0]], V[tri[1][0]], col)
+    body = model3d.rasterize(m, size, pitch=33, margin=0.04)
+    # the renderer's violet shadow light turns blue-grey lavender: put frost blues back on the Cold hue
+    import colorsys
+    px = body.load()
+    for yy in range(body.height):
+        for xx in range(body.width):
+            r, g, b, a = px[xx, yy]
+            if a:
+                h, l, s_ = colorsys.rgb_to_hls(r / 255, g / 255, b / 255)
+                if 0.55 <= h <= 0.80 and s_ > 0.08:
+                    nr, ng, nb = colorsys.hls_to_rgb(FROST_HUE, l, min(s_, 0.40))
+                    px[xx, yy] = (round(nr * 255), round(ng * 255), round(nb * 255), a)
+    shadow = Image.new("RGBA", body.size, (0, 0, 0, 0))
+    shadow.paste((0, 0, 0, 140), (0, 0), body.split()[3])
+    out = Image.new("RGBA", body.size, (0, 0, 0, 0))
+    out.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(size / 40)), (0, 0))
+    out.alpha_composite(body)
+    return out
 
 
 def combo(*fns):           # several icons side by side, as one 400x400 picture
@@ -187,25 +299,25 @@ def hires(fn):
 
 
 PREVIEWS = {   # mod -> (title, lines, art, gradient top, gradient bottom)
-    "Cold": ("Cold", ["Cold Shelf: a 10-pile, actively cooled food shelf.", "Cold Floor: clay floor that chills the room.", "Adjusted temperature thresholds."],
-             lambda: combo(lambda: render_art(models.cold_shelf, "building", 400), lambda: render_art(models.cold_floor, "building", 400, 48)), (36, 70, 104), (14, 26, 44)),
-    "Fish_Farming": ("Fish Farming", ["Breed trout, pike and eel in a 3x3 fish farm.", "Feed them dung, vegetables or animal feed.", "Unlocked with barrel making."],
+    "Cold": ("Cold", ["Cold Shelf: actively cooled food storage, 10 piles.", "Cold Floors: every floor material, frost-patterned, in a dedicated build group.", "Lowest two temperature thresholds raised by 1°."],
+             cold_preview_art, (36, 70, 104), (14, 26, 44)),
+    "Fish_Farming": ("Fish Farming", ["3×3 fish farm producing trout, pike and eel.", "Inputs: dung, vegetables or animal feed.", "Unlocked by the Barrel Making research."],
                      lambda: render_art(models.fish_farm, "building", 400), (30, 82, 96), (12, 32, 40)),
-    "Fermenting Apple Cider": ("Apple Cider", ["The fermentation station makes apple cider.", "Ferments like mash, from apples."],
+    "Fermenting Apple Cider": ("Apple Cider", ["Fermentation station recipe: apple cider.", "Ferments from apples, the same way as mash."],
                                lambda: render_art(models.fermenting_apple_cider, "item", 400), (110, 52, 34), (40, 18, 12)),
-    "Better_Animals": ("Better Animals", ["Every animal can be tamed, penned, trained, haul and fight.", "Much stronger haulers; tidier diets.", "Cats hunt pests."],
+    "Better_Animals": ("Better Animals", ["All animals can be tamed, penned and trained, and can haul and fight.", "Higher hauling capacity; streamlined diets.", "Cats hunt vermin."],
                        lambda: render_art(models.animal_pen, "building", 400), (78, 92, 46), (28, 34, 16)),
-    "FasterRegionTravel": ("Faster Region Travel", ["Caravans cross the region map 100x faster."],
+    "FasterRegionTravel": ("Faster Region Travel", ["Caravan travel on the region map is 100× faster."],
                            lambda: render_art(models.caravan_cart, "building", 400), (120, 88, 42), (44, 30, 14)),
-    "Fine_Clothing_Worker": ("Fine Clothing Worker", ["Settlers in Superior or Flawless apparel work, walk, rest and fight better."],
+    "Fine_Clothing_Worker": ("Fine Clothing Worker", ["Superior and Flawless apparel improve work, movement, rest and combat."],
                              lambda: render_art(models.fine_tunic, "building", 400), (74, 46, 104), (26, 16, 40)),
-    "More_Prisoners": ("More Prisoners", ["Raiders surrender more readily.", "Merchants trade more prisoners."],
+    "More_Prisoners": ("More Prisoners", ["Higher raider surrender chance.", "Merchants stock more prisoners."],
                        lambda: render_art(models.surrender_flag, "building", 400), (70, 70, 76), (24, 24, 28)),
-    "Brokerastered": ("Brokerastered", ["The Broker trades, bargains and negotiates better.", "Mines faster and more; prefers trade, craft, mining and art."],
+    "Brokerastered": ("Brokerastered", ["Broker role: better trading, bargaining and negotiation.", "Faster, higher-yield mining; preferred work: trading, crafting, mining and art."],
                       lambda: render_art(models.broker_scale, "building", 400), (96, 74, 30), (34, 24, 10)),
-    "More_Creation_Points": ("More Creation Points", ["New settlers get up to 1000", "creation points, 40 perks", "and 20 passions."],
+    "More_Creation_Points": ("More Creation Points", ["Settler creation: up to 1000 points, 40 perks and 20 passions."],
                       lambda: render_art(models.creation_book, "building", 400), (70, 60, 96), (22, 18, 34)),
-    "Urgent_Body": ("Urgent Haul - Bodies", ["Burying, burning and stripping", "bodies move to Urgent Haul,", "so they get done first."],
+    "Urgent_Body": ("Urgent Haul\u00a0–\u00a0Bodies", ["Burying, burning and stripping bodies move to Urgent Haul, so they are done first."],
                       lambda: render_art(models.body_pyre, "building", 400), (92, 50, 34), (30, 16, 12)),
     # "Mushroom Cropfield" and "Heavy Crossbow Sniper" keep their own hand-made previews.
 }

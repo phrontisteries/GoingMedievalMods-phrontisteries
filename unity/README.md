@@ -33,7 +33,11 @@ python tools/art/make_cold_floors.py --info "<...>/StreamingAssets/Constructable
 python tools/art/make_cold_floors.py work unity/Cold/Texture "#948B83" preview.png
 ```
 
-The icons (`recipes/Cold/Sprites/phrontisteries_cold_<floor>.png`) are the game's floor icons with a frost tint and a snowflake badge: `python tools/art/make_cold_floor_icons.py <icon dir> recipes/Cold/Sprites <floor ids...>`.
+The icons are made from the game's own icons (export them by their `iconPath` names with `extract_game_texture.py`), with the snowflake badge of the Cold set:
+- Cold Floors (`recipes/Cold/Sprites/phrontisteries_cold_<floor>.png`): the floor icon with a light frost tint: `python tools/art/make_cold_floor_icons.py <icon dir> recipes/Cold/Sprites <floor ids...>`
+- Cold Shelf (`recipes/Cold/Sprites/phrontisteries_cold_shelf.png`): the shelf icon with the shelf in its in-game frosted blue-grey: `python tools/art/make_cold_shelf_icon.py <icon dir>/shelf.png recipes/Cold/Sprites/phrontisteries_cold_shelf.png`
+
+The Cold preview (`recipes/Cold/Preview.png`) is drawn by `tools/art/make_art.py` from the game's shelf model and floor textures (set `GM_ART_WORK` to the folder they were exported to).
 
 Until the frosted textures are in the built Addressables, the Cold Floors fall back to a cool tint of the vanilla floors (floor shader colour parameters).
 

@@ -3,7 +3,7 @@
   "name": "Fermenting Apple Cider",
   "description": "English: The fermentation station turns 20 apples into 10 Fermenting Apple Cider, which ferments into apple cider.\n中文: 发酵站可将20个苹果制成10份发酵苹果酒，发酵完成后变为苹果酒。\nFrançais: La station de fermentation transforme 20 pommes en 10 cidres en fermentation, qui deviennent du cidre de pomme.\nEspañol: La estación de fermentación convierte 20 manzanas en 10 de sidra en fermentación, que se convierte en sidra de manzana.\nDeutsch: Die Gärstation macht aus 20 Äpfeln 10 gärenden Apfelwein, der zu Apfelwein vergärt.\nРусский: Бродильная станция превращает 20 яблок в 10 бродящего сидра, который созревает в яблочный сидр.\n日本語: 発酵ステーションでリンゴ20個から発酵中のリンゴ酒10個を作り、発酵が終わるとリンゴ酒になります。\nPortuguês: A estação de fermentação transforma 20 maçãs em 10 de sidra em fermentação, que vira sidra de maçã.\n한국어: 발효대에서 사과 20개로 발효 중인 사과주 10개를 만들고, 발효가 끝나면 사과주가 됩니다.\nPolski: Stacja fermentacyjna zamienia 20 jabłek w 10 fermentującego cydru, który dojrzewa w cydr jabłkowy.\nTürkçe: Mayalama istasyonu 20 elmadan 10 mayalanan elma şırası yapar; mayalanınca elma şırasına dönüşür.\nItaliano: La stazione di fermentazione trasforma 20 mele in 10 sidro in fermentazione, che diventa sidro di mele.\n\nSource, issues and suggestions: https://github.com/phrontisteries/GoingMedievalMods-phrontisteries",
   "author": "phrontisteries",
-  "modVersion": "1.3.2.17",
+  "modVersion": "1.4.2.17",
   "gameVersion": "1.2.17",
   "tags": [
     "General"
