@@ -46,6 +46,9 @@ $script:Cold = [ordered]@{
     # made by tools\art\make_cold_floor.py. The bump map is the game's own clay-brick one.
     FloorTexture            = "phrontisteries_cold_floor_albedo"
     FloorNormal             = "clay_brick_floor_normal"
+    # Edge pieces (border rails) of the Cold Floor: _ElementColor (vanilla clay: #735337), set to land on the
+    # Cold Shelf's frosted-board shade in game (measured from an in-game screenshot).
+    FloorEdgeColor          = "#6F8471"
     # In-world look: the game's own shelf model with a light-blue copy of its texture
     # (unity\Cold\Texture\phrontisteries_cold_shelf_albedo.png, made by tools\art\recolor_texture.py)
     ShelfTexture            = "phrontisteries_cold_shelf_albedo"
@@ -177,6 +180,7 @@ function Build-Cold_BaseBuildingRepository {
     $floorClone.locKeys = @(Get-ColdLocKeys -Id $Cold.BuildingId_Floor_Id -InfoKey $vanillaFloor.locKeys[0].info)
     if (Test-ModAddressables "Cold" -Asset $Cold.FloorTexture) {
         Set-FloorTexture -Model $floorClone -Albedo $Cold.FloorTexture -Normal $Cold.FloorNormal   # frosted bricks, plain clay between
+        Set-ShaderParam -Model $floorClone -Name "_ElementColor" -Value $Cold.FloorEdgeColor          # frosted edge rails
     }
     else {
         Set-ShaderParam -Model $floorClone -Name "_FloorColorMultiply" -Value $Cold.FloorTintMultiply   # cool blue look in the world

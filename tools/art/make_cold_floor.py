@@ -2,7 +2,7 @@
 """Cold Floor texture: the game's clay herringbone floor with some bricks frosted.
 
     pip install numpy scipy networkx pillow
-    python make_cold_floor.py <clay_brick_floor_diffuse.png> <cold_shelf_albedo.png> <base_texture_png.png> <shelf.obj> <out.png> [count]
+    python make_cold_floor.py <clay_brick_floor_diffuse.png> <cold_shelf_albedo.png> <base_texture_png.png> <shelf.obj> <out.png> [count] [#colour]
 
 Inputs: the game's clay floor texture and shelf texture/model (export them with extract_game_texture.py:
 clay_brick_floor_diffuse, base_texture_png, shelf) and the Cold Shelf's frosted texture.
@@ -12,6 +12,9 @@ clay_brick_floor_diffuse, base_texture_png, shelf) and the Cold Shelf's frosted 
 3. Picks `count` bricks (default 9, the most possible) with no two touching, spread as evenly as
    possible on the repeating floor.
 4. Colours those bricks with the frost colour of the Cold Shelf's boards, keeping each brick's shading.
+   The floor faces the light and uses another shader, so the same texture colour shows brighter on a
+   floor than on the shelf: pass #colour (the bricks' average texture colour) to match them on screen.
+   The Cold Floor uses #948B83, measured from an in-game screenshot to land on the shelf boards' shade.
 """
 import itertools
 import sys
@@ -84,13 +87,16 @@ def shelf_board_colour(shelf_png, base_png, shelf_obj):
     return np.mean(boards, 0)
 
 
-def main(floor_png, shelf_png, base_png, shelf_obj, out_png, count=9):
+def main(floor_png, shelf_png, base_png, shelf_obj, out_png, count=9, colour=None):
     img = np.asarray(Image.open(floor_png).convert("RGB")).astype(float)
     masks, centres = find_bricks(img)
     g = touching_graph(masks)
     chosen, best = pick(g, centres, img.shape[1::-1], count)
     print(f"{len(masks)} bricks, {set(dict(g.degree()).values())} neighbours each, at most {best} not touching; using {len(chosen)}")
-    colour = shelf_board_colour(shelf_png, base_png, shelf_obj)
+    if colour:
+        colour = np.array([int(colour[i:i + 2], 16) for i in (1, 3, 5)], float)
+    else:
+        colour = shelf_board_colour(shelf_png, base_png, shelf_obj)
     lum = img @ np.array([0.299, 0.587, 0.114])
     m = np.zeros(img.shape[:2], bool)
     for i in chosen:
@@ -101,4 +107,4 @@ def main(floor_png, shelf_png, base_png, shelf_obj, out_png, count=9):
 
 
 if __name__ == "__main__":
-    main(*sys.argv[1:6], *([int(sys.argv[6])] if len(sys.argv) > 6 else []))
+    main(*sys.argv[1:6], *([int(sys.argv[6])] if len(sys.argv) > 6 else []), *(sys.argv[7:8]))
