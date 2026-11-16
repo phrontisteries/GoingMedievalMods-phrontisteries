@@ -23,13 +23,13 @@ The Cold Floor needs no build: it is tinted through the floor shader's own colou
 
 ## Build steps (once per change to a model)
 
-1. Install **Unity 2022.3.46f1** through Unity Hub, with **Windows Build Support**.
-2. Clone `https://github.com/FoxyVoxel/going-medieval-modding.git` and open it from Unity Hub.
-3. Copy `unity/Cold` and `unity/Fish_Farming` from this repo into the project's `Assets/Mods/`. The folder names must match the mod folder names.
-4. In Unity, select each texture in `Texture/` and set **Filter Mode = Point**, **Generate Mip Maps = off**, **Compression = None**, then Apply. This keeps the flat palette colours crisp.
-5. Open **Going Medieval > Addressable Builder**. Select **Cold**, click **Create Addressables**, then **Build**. Do the same for **Fish_Farming**.
-6. Copy the contents of `Assets/Mods/<Mod>/Exported/` into this repo's `recipes/<Mod>/AddressableAssets/`.
-7. Rebuild the mod: `.\MakeMod.ps1 -ModName Cold` (or `-All`). MakeMod sees the catalog, copies it to `Data\AddressableAssets`, and switches the building to the custom assets (`Set-ModelTexture` for the Cold Shelf, `Set-ModelMesh` for the Fish Farm).
+1. Install **Unity 2022.3.46f1** through Unity Hub, with **Windows Build Support (Mono)**.
+2. Get [FoxyVoxel/going-medieval-modding](https://github.com/FoxyVoxel/going-medieval-modding) (clone or **Code > Download ZIP**), then in Unity Hub **Add > Add project from disk** and open it. The first import takes several minutes.
+3. In the **Addressable Builder** window (or **Going Medieval > Addressable Builder**), click **Create New**, name the mod exactly as its folder (`Cold`, `Fish_Farming`) and click **Create**. This makes `Assets/Mods/<Mod>/` with `Mesh`, `Sprite`, `Texture` and `Exported` folders. Do not add other folders there: the builder only knows those names.
+4. Drag the files from this repo's `unity/<Mod>/Mesh` and `unity/<Mod>/Texture` into the matching folders in Unity's **Project** window. Keep the default import settings: they match the game's own textures (sRGB, mipmaps, bilinear, normal compression).
+5. In the **Addressable Builder**, select the mod and click **Create Addressables**. Optional check: **Window > Asset Management > Addressables > Groups** shows the mod's group with each file's name as its address and a `Texture` or `Mesh` label.
+6. With the mod still selected, click **Build**. The output (a `catalog_*.json`, a `.hash` and one or more `.bundle` files) lands in `Assets/Mods/<Mod>/Exported/`.
+7. Copy the contents of `Exported/` into this repo's `recipes/<Mod>/AddressableAssets/` and rebuild: `.\MakeMod.ps1 -ModName <Mod>`. MakeMod sees the catalog, copies it to `Data\AddressableAssets`, and switches the building to the custom assets (`Set-ModelTexture` for the Cold Shelf, `Set-ModelMesh` for the Fish Farm).
 8. Test in game, then commit `recipes/<Mod>/AddressableAssets` and the rebuilt mod.
 
 ## Notes
