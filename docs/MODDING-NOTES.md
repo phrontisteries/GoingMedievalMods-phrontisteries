@@ -23,7 +23,7 @@ A mod folder holds `ModInfo.json`, `Preview.png` (640×360 or 1280×720, under 1
 - Files without a `repository` array (most of `Settings\`) replace the matching top-level fields.
 
 ## Own build-menu group for a set of buildings
-The build menu groups buildings by `buildingSubCategoryUI`, a fixed list in the game's code (`NSMedieval.Types.BuildingSubCategoryUI`); a mod cannot add new values. The list has three spare values the game never uses: `NotInUse1`, `NotInUse2` and `NotInUse3`. Giving a mod's buildings one of these puts them in a group of their own (tested on 1.2.17: the Cold Floor got its own button under Base, shown at the end of the Base list, and saves with the floor already built loaded normally).
+The build menu groups buildings by `buildingSubCategoryUI`, a fixed list in the game's code (`NSMedieval.Types.BuildingSubCategoryUI`); a mod cannot add new values. The list has three spare values the game never uses: `NotInUse1`, `NotInUse2` and `NotInUse3`. Giving a mod's buildings one of these puts them in a group of their own (tested on 1.2.17: the Cold Floor got its own button under Base and saves with the floor already built loaded normally). The group is always listed last under Base, whichever spare value is used (NotInUse1 and NotInUse3 both tested): mod buildings load after the game's own, and the menu lists groups in load order.
 
 ## Pitfalls found so far
 

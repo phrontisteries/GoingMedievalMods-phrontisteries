@@ -29,18 +29,18 @@
     "Italian": "Tutti gli animali possono essere addomesticati, recintati, addestrati, trasportare e combattere; animali e coloni trasportano 100× di più; diete semplificate, i gatti cacciano i parassiti, limiti di popolazione più alti."
   },
   "Cold": {
-    "English": "Adds a Cold Shelf (10 piles) and a clay Cold Floor that chill the area around them to keep food fresh; the two lowest temperature thresholds move up by 1°.",
-    "Chinese": "新增冷架（可放10堆）和黏土冷地板，可冷却周围区域以保持食物新鲜；最低的两个温度阈值各提高1°。",
-    "French": "Ajoute une étagère froide (10 piles) et un sol froid en argile qui refroidissent les alentours pour garder la nourriture fraîche ; les deux seuils de température les plus bas augmentent de 1°.",
-    "Spanish": "Añade un estante frío (10 pilas) y un piso frío de arcilla que enfrían la zona para conservar la comida; los dos umbrales de temperatura más bajos suben 1°.",
-    "German": "Fügt ein Kaltregal (10 Stapel) und einen Kaltboden aus Ton hinzu, die ihre Umgebung kühlen und Essen frisch halten; die zwei niedrigsten Temperaturschwellen steigen um 1°.",
-    "Russian": "Добавляет холодную полку (10 стопок) и холодный глиняный пол, охлаждающие всё вокруг, чтобы еда не портилась; два нижних температурных порога повышены на 1°.",
-    "Japanese": "10スタック収納できるコールドシェルフと粘土製のコールドフロアを追加。周囲を冷やして食料を新鮮に保ちます。最も低い2つの温度しきい値を1°引き上げ。",
-    "Portugese": "Adiciona uma prateleira fria (10 pilhas) e um piso frio de argila que resfriam os arredores para manter a comida fresca; os dois limites de temperatura mais baixos sobem 1°.",
-    "Korean": "10더미를 보관하는 차가운 선반과 점토로 된 차가운 바닥을 추가합니다. 주변을 식혀 음식을 신선하게 유지하며, 가장 낮은 두 온도 기준이 1° 올라갑니다.",
-    "Polish": "Dodaje zimną półkę (10 stosów) i zimną podłogę z gliny, które chłodzą otoczenie, by jedzenie było świeże; dwa najniższe progi temperatury rosną o 1°.",
-    "Turkish": "Çevresini soğutarak yiyecekleri taze tutan bir Soğuk Raf (10 yığın) ve kilden Soğuk Zemin ekler; en düşük iki sıcaklık eşiği 1° yükselir.",
-    "Italian": "Aggiunge uno scaffale freddo (10 pile) e un pavimento freddo in argilla che raffreddano l'area circostante per conservare il cibo; le due soglie di temperatura più basse salgono di 1°."
+    "English": "Adds a Cold Shelf (10 piles) and a Cold Floor of every floor material, in a build group of their own; they chill the area around them to keep food fresh. The two lowest temperature thresholds move up by 1°.",
+    "Chinese": "新增冷架（可放10堆）以及每种地板材质的冷地板，位于独立的建造分组中；它们可冷却周围区域以保持食物新鲜。最低的两个温度阈值各提高1°。",
+    "French": "Ajoute une étagère froide (10 piles) et un sol froid pour chaque matériau de sol, dans leur propre groupe de construction ; ils refroidissent les alentours pour garder la nourriture fraîche. Les deux seuils de température les plus bas augmentent de 1°.",
+    "Spanish": "Añade un estante frío (10 pilas) y un piso frío de cada material de suelo, en su propio grupo de construcción; enfrían la zona para conservar la comida. Los dos umbrales de temperatura más bajos suben 1°.",
+    "German": "Fügt ein Kaltregal (10 Stapel) und einen Kaltboden aus jedem Bodenmaterial hinzu, in einer eigenen Baugruppe; sie kühlen ihre Umgebung und halten Essen frisch. Die zwei niedrigsten Temperaturschwellen steigen um 1°.",
+    "Russian": "Добавляет холодную полку (10 стопок) и холодный пол из каждого материала пола в отдельной группе строительства; они охлаждают всё вокруг, чтобы еда не портилась. Два нижних температурных порога повышены на 1°.",
+    "Japanese": "10スタック収納できるコールドシェルフと、すべての床材のコールドフロアを専用の建設グループに追加。周囲を冷やして食料を新鮮に保ちます。最も低い2つの温度しきい値を1°引き上げ。",
+    "Portugese": "Adiciona uma prateleira fria (10 pilhas) e um piso frio de cada material de piso, em um grupo de construção próprio; eles resfriam os arredores para manter a comida fresca. Os dois limites de temperatura mais baixos sobem 1°.",
+    "Korean": "10더미를 보관하는 차가운 선반과 모든 바닥 재료의 차가운 바닥을 별도의 건설 그룹에 추가합니다. 주변을 식혀 음식을 신선하게 유지하며, 가장 낮은 두 온도 기준이 1° 올라갑니다.",
+    "Polish": "Dodaje zimną półkę (10 stosów) i zimną podłogę z każdego materiału podłogowego, we własnej grupie budowy; chłodzą otoczenie, by jedzenie było świeże. Dwa najniższe progi temperatury rosną o 1°.",
+    "Turkish": "Soğuk Raf (10 yığın) ve her zemin malzemesinden bir Soğuk Zemin ekler, kendi inşa grubunda; çevrelerini soğutarak yiyecekleri taze tutarlar. En düşük iki sıcaklık eşiği 1° yükselir.",
+    "Italian": "Aggiunge uno scaffale freddo (10 pile) e un pavimento freddo per ogni materiale da pavimento, in un proprio gruppo di costruzione; raffreddano l'area intorno per mantenere il cibo fresco. Le due soglie di temperatura più basse salgono di 1°."
   },
   "FasterRegionTravel": {
     "English": "Caravans cross the region map 100× faster, in every season.",

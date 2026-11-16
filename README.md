@@ -12,7 +12,7 @@ Found a bug or have an idea? [Open an issue](https://github.com/phrontisteries/G
 |---|---|---|
 | [Better_Animals](Mods/Better_Animals) | [3681706355](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706355) | All animals can be tamed, penned, trained, haul and attack; 100x carrying; population caps; simpler diets; cat pest control; settlers carry more. |
 | [Brokerastered](Mods/Brokerastered) | (local) | The Broker trades, bargains and negotiates better, mines faster and more, and prefers trade, crafting, mining and art. |
-| [Cold](Mods/Cold) | [3681706554](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706554) | Cold Shelf (10 piles, actively cooled), Cold Floor (clay), adjusted temperature thresholds. |
+| [Cold](Mods/Cold) | [3681706554](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706554) | Cold Shelf (10 piles, actively cooled), a Cold Floor of every floor material in their own build group, adjusted temperature thresholds. |
 | [Faster Region Travel](Mods/FasterRegionTravel) | [3681708275](https://steamcommunity.com/sharedfiles/filedetails/?id=3681708275) | Caravans cross the region map 100x faster. |
 | [Fermenting Apple Cider](Mods/Fermenting%20Apple%20Cider) | [3681708241](https://steamcommunity.com/sharedfiles/filedetails/?id=3681708241) | The fermentation station makes apple cider. |
 | [Fine Clothing Worker](Mods/Fine_Clothing_Worker) | [3681706422](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706422) | Settlers in Superior/Flawless apparel work, walk, rest and fight better. |

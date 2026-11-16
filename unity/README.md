@@ -19,14 +19,20 @@ python tools/art/recolor_texture.py work/base_texture_png.png unity/Cold/Texture
 
 The arguments are the frost colour, how strongly it washes over the wood (0–1) and the contrast (1 = unchanged); change them for another look. The mod cannot load a loose texture file: the game only reads loose PNGs from `Data/Sprites` (icons). Building textures and meshes must come through Addressables, hence the Unity build below.
 
-The Cold Floor uses `Cold/Texture/phrontisteries_cold_floor_albedo.png`: the game's clay herringbone (`clay_brick_floor_diffuse`) with 9 bricks per repeat frosted, the most possible with no two touching (every herringbone brick borders 6 others), in the colour of the Cold Shelf's frosted boards. Floor textures are projected in world space, so the pattern runs across every floor piece (full, corner, edge, end, line, single). The bump map is the game's own `clay_brick_floor_normal`, referenced by name.
+The Cold Floors (one per vanilla floor) use frosted copies of the game's floor textures: on each floor the most elements possible with no two touching (planks, flagstones, blocks, bricks, tiles, triangles, panels, strands or bar segments) are frosted, spread evenly, in the colour of the Cold Shelf's frosted boards. Floor textures are projected in world space, so each pattern runs across every floor piece (full, corner, edge, end, line, single).
+
+- `Cold/Texture/phrontisteries_cold_floor_sheet.png`: the game's 4x4 floor sheet (`FloorDiffuseSheet`) with the square of every floor that uses it frosted (wood, wicker, limestone, limestone block, clay brick, metal grate, wicker mesh). Those floors keep their square, bump map and tiling; their shader tint is baked into the copy and reset on the Cold Floor.
+- `Cold/Texture/phrontisteries_cold_<floor>_albedo.png`: frosted copies of the decorative floors' own textures (stone, clay, marble).
 
 ```
-python tools/art/extract_game_texture.py "<...>/aa/StandaloneWindows64" work clay_brick_floor_diffuse base_texture_png shelf
-python tools/art/make_cold_floor.py work/clay_brick_floor_diffuse.png unity/Cold/Texture/phrontisteries_cold_shelf_albedo.png work/base_texture_png.png work/shelf.obj unity/Cold/Texture/phrontisteries_cold_floor_albedo.png 9
+python tools/art/extract_game_texture.py "<...>/aa/StandaloneWindows64" work FloorDiffuseSheet painted_stone_tile_diffuse painted_clay_tile_diffuse marble_floor_diffuse
+python tools/art/make_cold_floors.py --info "<...>/StreamingAssets/Constructables/BaseBuildingRepository.json" work/floors.json
+python tools/art/make_cold_floors.py work unity/Cold/Texture "#948B83" preview.png
 ```
 
-Until that texture is in the built Addressables, the Cold Floor falls back to a cool tint of the plain clay floor (floor shader colour parameters).
+The icons (`recipes/Cold/Sprites/phrontisteries_cold_<floor>.png`) are the game's floor icons with a frost tint and a snowflake badge: `python tools/art/make_cold_floor_icons.py <icon dir> recipes/Cold/Sprites <floor ids...>`.
+
+Until the frosted textures are in the built Addressables, the Cold Floors fall back to a cool tint of the vanilla floors (floor shader colour parameters).
 
 ## Build steps (once per change to a model)
 
@@ -51,6 +57,6 @@ When **Build** asks whether to turn on Debug Build Layout, choose No.
 - Units are metres with Y up, measured from the building's origin tile at floor level. Multi-tile buildings sit one or more tiles in from the origin: the 3×3 fish farm is centred at (1, 0, 1), matching its collider.
 - Unity's OBJ importer mirrors X, so the `.obj` files are pre-mirrored and arrive in Unity exactly as drawn. Import them directly; a round trip through Blender would mirror them back.
 - Production stages: the game cannot swap a building's model per stage. A building has one model, plus an optional built-in effect while it works (`productionEffectPrefabId` in ProductionComponentsRepository). Mods cannot add new effects; the Addressables system only takes meshes, textures and sprites.
-- Asset names: Foxy Voxel's builder uses each file name, without extension, as its address. The recipes reference `phrontisteries_cold_shelf_albedo`, `phrontisteries_cold_floor_albedo`, `phrontisteries_fish_farm` and `phrontisteries_fish_farm_palette`, so keep those names.
-- `phrontisteries_cold_shelf_albedo.png` and `phrontisteries_cold_floor_albedo.png` are recoloured copies of Foxy Voxel's game art, shipped only for use with the game. They are not covered by this repo's MIT licence.
+- Asset names: Foxy Voxel's builder uses each file name, without extension, as its address. The recipes reference `phrontisteries_cold_shelf_albedo`, `phrontisteries_cold_floor_sheet`, `phrontisteries_cold_<floor>_albedo`, `phrontisteries_fish_farm` and `phrontisteries_fish_farm_palette`, so keep those names.
+- The textures in `Cold/Texture/` are recoloured copies of Foxy Voxel's game art, shipped only for use with the game. They are not covered by this repo's MIT licence.
 - Untested so far: whether the game's shader likes the palette texture with empty reflection and emission slots, and the exact pivot the game expects. Check both on the first in-game test.

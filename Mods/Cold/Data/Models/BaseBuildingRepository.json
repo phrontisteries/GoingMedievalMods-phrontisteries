@@ -309,67 +309,1818 @@
       "defaultThermalModelID": "cold_temp"
     },
     {
-      "id": "cold_floor",
-      "iconPath": "phrontisteries_cold_floor",
+      "id": "cold_wood_floor",
+      "iconPath": "phrontisteries_cold_wood_floor",
       "locKeys": [
         {
           "languageName": "English",
-          "name": "Cold Floor",
+          "name": "Cold Wood Floor",
+          "info": "building_info_wood_floor"
+        },
+        {
+          "languageName": "Chinese",
+          "name": "冷木地板",
+          "info": "building_info_wood_floor"
+        },
+        {
+          "languageName": "French",
+          "name": "Sol froid en bois",
+          "info": "building_info_wood_floor"
+        },
+        {
+          "languageName": "Spanish",
+          "name": "Piso frío de madera",
+          "info": "building_info_wood_floor"
+        },
+        {
+          "languageName": "German",
+          "name": "Kalter Holzboden",
+          "info": "building_info_wood_floor"
+        },
+        {
+          "languageName": "Russian",
+          "name": "Холодный деревянный пол",
+          "info": "building_info_wood_floor"
+        },
+        {
+          "languageName": "Japanese",
+          "name": "コールド木の床",
+          "info": "building_info_wood_floor"
+        },
+        {
+          "languageName": "Portugese",
+          "name": "Piso Frio de Madeira",
+          "info": "building_info_wood_floor"
+        },
+        {
+          "languageName": "Korean",
+          "name": "차가운 나무 바닥",
+          "info": "building_info_wood_floor"
+        },
+        {
+          "languageName": "Polish",
+          "name": "Zimna drewniana podłoga",
+          "info": "building_info_wood_floor"
+        },
+        {
+          "languageName": "Turkish",
+          "name": "Soğuk Ahşap Zemin",
+          "info": "building_info_wood_floor"
+        },
+        {
+          "languageName": "Italian",
+          "name": "Pavimento Freddo in Legno",
+          "info": "building_info_wood_floor"
+        }
+      ],
+      "prefabID": "floor_element",
+      "previewPrefabID": "base_constructable_preview",
+      "occlusionCullingMode": "Enabled",
+      "cantFailConstruction": true,
+      "buildAnimationTrigger": "BuildDown",
+      "buildItem": "hammer_item",
+      "buildTime": 2.2,
+      "size": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "boxColliderSettings": {
+        "centerOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "sizeOffset": {
+          "x": 1,
+          "y": 0.4,
+          "z": 1
+        }
+      },
+      "combatBoxColliderSettings": {
+        "centerOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "sizeOffset": {
+          "x": 1,
+          "y": 0.1,
+          "z": 1
+        }
+      },
+      "buildingCategoryUI": "Base",
+      "buildingSubCategoryUI": "NotInUse1",
+      "soundMaterialCategory": 1,
+      "soundWalkableMaterialCategory": 4,
+      "buildingType": 4,
+      "constructableBaseCategory": 1,
+      "placementType": 2,
+      "materials": {
+        "keys": [
+          "wood"
+        ],
+        "values": [
+          2
+        ]
+      },
+      "pathfindingPenalty": 600,
+      "walkSpeedMultiplier": 1,
+      "walkSpeedMultiplierConstruction": 0.85,
+      "upgradeToFlag": 4,
+      "maxPoolCount": 500,
+      "refillThreshold": 100,
+      "placeableBellowOthers": true,
+      "transfersStability": false,
+      "canPlaceOnBeam": true,
+      "layerShadowOffset": -1,
+      "layerHideOffset": -1,
+      "attackTraversePenalty": 0,
+      "cover": 1,
+      "wealthPoints": 0.5,
+      "beautyInput": 1.5,
+      "flammability": 0.7,
+      "heatDamageThreshold": 80,
+      "heatDamage": 0.5,
+      "stats": [
+        {
+          "debugName": "Hitpoints",
+          "type": 1,
+          "initialValue": 50,
+          "attributes": {
+            "max": [
+              {
+                "baseValue": 50
+              }
+            ]
+          }
+        }
+      ],
+      "destroyParticles": "destroy_wood_floor",
+      "meshVariationCanRotate": true,
+      "useLOD": true,
+      "useShadowCasters": true,
+      "variationLists": [
+        {
+          "name": "list01",
+          "variations": [
+            {
+              "name": "default",
+              "icon": "structure_var_default",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "corner",
+              "icon": "structure_var_floor_corner",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_corner"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "edge",
+              "icon": "structure_var_floor_edge",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_edge"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "end",
+              "icon": "structure_var_floor_end",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_end"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "line",
+              "icon": "structure_var_floor_line",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_line"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "single",
+              "icon": "structure_var_floor_single",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_single"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "list02",
+          "hideInUI": true,
+          "variations": [
+            {
+              "name": "defaultMaterialParametars",
+              "icon": "structure_var_default",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "floorAlbedo",
+                  "slotType": "Texture",
+                  "value": "phrontisteries_cold_floor_sheet"
+                },
+                {
+                  "id": "2",
+                  "slot": "floorNormal",
+                  "slotType": "Texture",
+                  "value": ""
+                },
+                {
+                  "id": "12",
+                  "slot": "floorAlbedo",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorSheetSize",
+                    "vector2Value": {
+                      "x": 4,
+                      "y": 4
+                    }
+                  }
+                },
+                {
+                  "id": "13",
+                  "slot": "floorAlbedo",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorSheetOffset",
+                    "vector2Value": {
+                      "x": 1,
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "id": "3",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorTiling",
+                    "floatValue": 0.2
+                  }
+                },
+                {
+                  "id": "4",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorTilingOffset",
+                    "floatValue": 0.3
+                  }
+                },
+                {
+                  "id": "5",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorNormalScale",
+                    "floatValue": 1
+                  }
+                },
+                {
+                  "id": "6",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Metallic",
+                    "floatValue": 0
+                  }
+                },
+                {
+                  "id": "7",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Smoothness",
+                    "floatValue": 0
+                  }
+                },
+                {
+                  "id": "8",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorColorAdd",
+                    "colorValue": "#000000"
+                  }
+                },
+                {
+                  "id": "9",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorColorMultiply",
+                    "colorValue": "#FFFFFF"
+                  }
+                },
+                {
+                  "id": "10",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_ElementColor",
+                    "colorValue": "#6F8471"
+                  }
+                },
+                {
+                  "id": "11",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_GrassDetailScaleOffset",
+                    "vector2Value": {
+                      "x": 15.34,
+                      "y": -0.54
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "defaultThermalModelID": "cold_temp"
+    },
+    {
+      "id": "cold_wicker_floor",
+      "iconPath": "phrontisteries_cold_wicker_floor",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Cold Wicker Floor",
+          "info": "building_info_wicker_floor"
+        },
+        {
+          "languageName": "Chinese",
+          "name": "冷柳条地板",
+          "info": "building_info_wicker_floor"
+        },
+        {
+          "languageName": "French",
+          "name": "Sol froid en osier",
+          "info": "building_info_wicker_floor"
+        },
+        {
+          "languageName": "Spanish",
+          "name": "Piso frío de mimbre",
+          "info": "building_info_wicker_floor"
+        },
+        {
+          "languageName": "German",
+          "name": "Kalter Weidenboden",
+          "info": "building_info_wicker_floor"
+        },
+        {
+          "languageName": "Russian",
+          "name": "Холодный плетёный пол",
+          "info": "building_info_wicker_floor"
+        },
+        {
+          "languageName": "Japanese",
+          "name": "コールド枝編みの床",
+          "info": "building_info_wicker_floor"
+        },
+        {
+          "languageName": "Portugese",
+          "name": "Piso Frio de Vime",
+          "info": "building_info_wicker_floor"
+        },
+        {
+          "languageName": "Korean",
+          "name": "차가운 고리버들 바닥",
+          "info": "building_info_wicker_floor"
+        },
+        {
+          "languageName": "Polish",
+          "name": "Zimna wiklinowa podłoga",
+          "info": "building_info_wicker_floor"
+        },
+        {
+          "languageName": "Turkish",
+          "name": "Soğuk Hasır Zemin",
+          "info": "building_info_wicker_floor"
+        },
+        {
+          "languageName": "Italian",
+          "name": "Pavimento Freddo in Vimini",
+          "info": "building_info_wicker_floor"
+        }
+      ],
+      "prefabID": "floor_element",
+      "previewPrefabID": "base_constructable_preview",
+      "occlusionCullingMode": "Enabled",
+      "cantFailConstruction": true,
+      "buildAnimationTrigger": "BuildDown",
+      "buildItem": "hammer_item",
+      "buildTime": 2,
+      "size": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "boxColliderSettings": {
+        "centerOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "sizeOffset": {
+          "x": 1,
+          "y": 0.4,
+          "z": 1
+        }
+      },
+      "combatBoxColliderSettings": {
+        "centerOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "sizeOffset": {
+          "x": 1,
+          "y": 0.1,
+          "z": 1
+        }
+      },
+      "buildingCategoryUI": "Base",
+      "buildingSubCategoryUI": "NotInUse1",
+      "soundMaterialCategory": 1,
+      "soundWalkableMaterialCategory": 4,
+      "buildingType": 4,
+      "constructableBaseCategory": 1,
+      "placementType": 2,
+      "materials": {
+        "keys": [
+          "sticks"
+        ],
+        "values": [
+          2
+        ]
+      },
+      "pathfindingPenalty": 750,
+      "walkSpeedMultiplier": 0.95,
+      "walkSpeedMultiplierConstruction": 0.85,
+      "waterFlowThroughFloor": true,
+      "upgradeToFlag": 4,
+      "maxPoolCount": 500,
+      "refillThreshold": 100,
+      "placeableBellowOthers": true,
+      "transfersStability": false,
+      "canPlaceOnBeam": true,
+      "layerShadowOffset": -1,
+      "layerHideOffset": -1,
+      "attackTraversePenalty": 0,
+      "cover": 1,
+      "wealthPoints": 0.4,
+      "beautyInput": 1,
+      "flammability": 1.2,
+      "heatDamageThreshold": 80,
+      "heatDamage": 0.5,
+      "stats": [
+        {
+          "debugName": "Hitpoints",
+          "type": 1,
+          "initialValue": 20,
+          "attributes": {
+            "max": [
+              {
+                "baseValue": 20
+              }
+            ]
+          }
+        }
+      ],
+      "destroyParticles": "destroy_wicker_floor",
+      "meshVariationCanRotate": true,
+      "useLOD": true,
+      "useShadowCasters": true,
+      "variationLists": [
+        {
+          "name": "list01",
+          "variations": [
+            {
+              "name": "default",
+              "icon": "structure_var_default",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "corner",
+              "icon": "structure_var_floor_corner",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_corner"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "edge",
+              "icon": "structure_var_floor_edge",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_edge"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "end",
+              "icon": "structure_var_floor_end",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_end"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "line",
+              "icon": "structure_var_floor_line",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_line"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "single",
+              "icon": "structure_var_floor_single",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_single"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "list02",
+          "hideInUI": true,
+          "variations": [
+            {
+              "name": "defaultMaterialParametars",
+              "icon": "structure_var_default",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "floorAlbedo",
+                  "slotType": "Texture",
+                  "value": "phrontisteries_cold_floor_sheet"
+                },
+                {
+                  "id": "2",
+                  "slot": "floorNormal",
+                  "slotType": "Texture",
+                  "value": ""
+                },
+                {
+                  "id": "12",
+                  "slot": "floorAlbedo",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorSheetSize",
+                    "vector2Value": {
+                      "x": 4,
+                      "y": 4
+                    }
+                  }
+                },
+                {
+                  "id": "13",
+                  "slot": "floorAlbedo",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorSheetOffset",
+                    "vector2Value": {
+                      "x": 4,
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "id": "3",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorTiling",
+                    "floatValue": 0.4
+                  }
+                },
+                {
+                  "id": "4",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorTilingOffset",
+                    "floatValue": 0.3
+                  }
+                },
+                {
+                  "id": "5",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorNormalScale",
+                    "floatValue": 1
+                  }
+                },
+                {
+                  "id": "6",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Metallic",
+                    "floatValue": 0.05
+                  }
+                },
+                {
+                  "id": "7",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Smoothness",
+                    "floatValue": 0
+                  }
+                },
+                {
+                  "id": "8",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorColorAdd",
+                    "colorValue": "#000000"
+                  }
+                },
+                {
+                  "id": "9",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorColorMultiply",
+                    "colorValue": "#FFFFFF"
+                  }
+                },
+                {
+                  "id": "10",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_ElementColor",
+                    "colorValue": "#6F8471"
+                  }
+                },
+                {
+                  "id": "11",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_GrassDetailScaleOffset",
+                    "vector2Value": {
+                      "x": 1.23,
+                      "y": 0.19
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "defaultThermalModelID": "cold_temp"
+    },
+    {
+      "id": "cold_limestone_floor",
+      "iconPath": "phrontisteries_cold_limestone_floor",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Cold Limestone Floor",
+          "info": "building_info_limestone_floor"
+        },
+        {
+          "languageName": "Chinese",
+          "name": "冷石灰石地板",
+          "info": "building_info_limestone_floor"
+        },
+        {
+          "languageName": "French",
+          "name": "Sol froid en calcaire",
+          "info": "building_info_limestone_floor"
+        },
+        {
+          "languageName": "Spanish",
+          "name": "Piso frío de piedra caliza",
+          "info": "building_info_limestone_floor"
+        },
+        {
+          "languageName": "German",
+          "name": "Kalter Kalksteinboden",
+          "info": "building_info_limestone_floor"
+        },
+        {
+          "languageName": "Russian",
+          "name": "Холодный известняковый пол",
+          "info": "building_info_limestone_floor"
+        },
+        {
+          "languageName": "Japanese",
+          "name": "コールド石灰岩の床",
+          "info": "building_info_limestone_floor"
+        },
+        {
+          "languageName": "Portugese",
+          "name": "Piso Frio de Calcário",
+          "info": "building_info_limestone_floor"
+        },
+        {
+          "languageName": "Korean",
+          "name": "차가운 석회암 바닥",
+          "info": "building_info_limestone_floor"
+        },
+        {
+          "languageName": "Polish",
+          "name": "Zimna wapienna podłoga",
+          "info": "building_info_limestone_floor"
+        },
+        {
+          "languageName": "Turkish",
+          "name": "Soğuk Kireçtaşı Zemin",
+          "info": "building_info_limestone_floor"
+        },
+        {
+          "languageName": "Italian",
+          "name": "Pavimento Freddo in Calcare",
+          "info": "building_info_limestone_floor"
+        }
+      ],
+      "prefabID": "floor_element",
+      "previewPrefabID": "base_constructable_preview",
+      "occlusionCullingMode": "Enabled",
+      "cantFailConstruction": true,
+      "buildAnimationTrigger": "BuildDown",
+      "buildItem": "hammer_item",
+      "buildTime": 2.3,
+      "size": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "boxColliderSettings": {
+        "centerOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "sizeOffset": {
+          "x": 1,
+          "y": 0.4,
+          "z": 1
+        }
+      },
+      "combatBoxColliderSettings": {
+        "centerOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "sizeOffset": {
+          "x": 1,
+          "y": 0.1,
+          "z": 1
+        }
+      },
+      "buildingCategoryUI": "Base",
+      "buildingSubCategoryUI": "NotInUse1",
+      "soundMaterialCategory": 2,
+      "soundWalkableMaterialCategory": 3,
+      "buildingType": 4,
+      "constructableBaseCategory": 1,
+      "placementType": 2,
+      "materials": {
+        "keys": [
+          "limestone"
+        ],
+        "values": [
+          2
+        ]
+      },
+      "pathfindingPenalty": 750,
+      "walkSpeedMultiplier": 0.95,
+      "walkSpeedMultiplierConstruction": 0.85,
+      "upgradeToFlag": 4,
+      "maxPoolCount": 500,
+      "refillThreshold": 100,
+      "placeableBellowOthers": true,
+      "transfersStability": false,
+      "canPlaceOnBeam": true,
+      "layerShadowOffset": -1,
+      "layerHideOffset": -1,
+      "attackTraversePenalty": 0,
+      "cover": 1,
+      "wealthPoints": 0.5,
+      "beautyInput": 1.5,
+      "flammability": 0,
+      "heatDamageThreshold": 120,
+      "heatDamage": 0.5,
+      "isVerticalFireBlocker": true,
+      "stats": [
+        {
+          "debugName": "Hitpoints",
+          "type": 1,
+          "initialValue": 75,
+          "attributes": {
+            "max": [
+              {
+                "baseValue": 75
+              }
+            ]
+          }
+        }
+      ],
+      "destroyParticles": "destroy_limestone_wall",
+      "meshVariationCanRotate": true,
+      "useLOD": true,
+      "useShadowCasters": true,
+      "variationLists": [
+        {
+          "name": "list01",
+          "variations": [
+            {
+              "name": "default",
+              "icon": "structure_var_default",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "corner",
+              "icon": "structure_var_floor_corner",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_corner"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "edge",
+              "icon": "structure_var_floor_edge",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_edge"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "end",
+              "icon": "structure_var_floor_end",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_end"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "line",
+              "icon": "structure_var_floor_line",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_line"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "single",
+              "icon": "structure_var_floor_single",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_single"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "list02",
+          "hideInUI": true,
+          "variations": [
+            {
+              "name": "defaultMaterialParametars",
+              "icon": "structure_var_default",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "floorAlbedo",
+                  "slotType": "Texture",
+                  "value": "phrontisteries_cold_floor_sheet"
+                },
+                {
+                  "id": "2",
+                  "slot": "floorNormal",
+                  "slotType": "Texture",
+                  "value": ""
+                },
+                {
+                  "id": "12",
+                  "slot": "floorAlbedo",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorSheetSize",
+                    "vector2Value": {
+                      "x": 4,
+                      "y": 4
+                    }
+                  }
+                },
+                {
+                  "id": "13",
+                  "slot": "floorAlbedo",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorSheetOffset",
+                    "vector2Value": {
+                      "x": 3,
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "id": "3",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorTiling",
+                    "floatValue": 0.4
+                  }
+                },
+                {
+                  "id": "4",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorTilingOffset",
+                    "floatValue": 0.3
+                  }
+                },
+                {
+                  "id": "5",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorNormalScale",
+                    "floatValue": 1
+                  }
+                },
+                {
+                  "id": "6",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Metallic",
+                    "floatValue": 0
+                  }
+                },
+                {
+                  "id": "7",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Smoothness",
+                    "floatValue": 0
+                  }
+                },
+                {
+                  "id": "8",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorColorAdd",
+                    "colorValue": "#000000"
+                  }
+                },
+                {
+                  "id": "9",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorColorMultiply",
+                    "colorValue": "#FFFFFF"
+                  }
+                },
+                {
+                  "id": "10",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_ElementColor",
+                    "colorValue": "#6F8471"
+                  }
+                },
+                {
+                  "id": "11",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_GrassDetailScaleOffset",
+                    "vector2Value": {
+                      "x": 17.39,
+                      "y": -1.59
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "defaultThermalModelID": "cold_temp"
+    },
+    {
+      "id": "cold_limestone_block_floor",
+      "iconPath": "phrontisteries_cold_limestone_block_floor",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Cold Limestone Block Floor",
+          "info": "building_info_limestone_block_floor"
+        },
+        {
+          "languageName": "Chinese",
+          "name": "冷石灰石砖地板",
+          "info": "building_info_limestone_block_floor"
+        },
+        {
+          "languageName": "French",
+          "name": "Sol froid en blocs de calcaire",
+          "info": "building_info_limestone_block_floor"
+        },
+        {
+          "languageName": "Spanish",
+          "name": "Piso frío de bloques de caliza",
+          "info": "building_info_limestone_block_floor"
+        },
+        {
+          "languageName": "German",
+          "name": "Kalter Kalksteinblockboden",
+          "info": "building_info_limestone_block_floor"
+        },
+        {
+          "languageName": "Russian",
+          "name": "Холодный пол из известняковых блоков",
+          "info": "building_info_limestone_block_floor"
+        },
+        {
+          "languageName": "Japanese",
+          "name": "コールド石灰岩ブロックの床",
+          "info": "building_info_limestone_block_floor"
+        },
+        {
+          "languageName": "Portugese",
+          "name": "Piso Frio de Blocos de Calcário",
+          "info": "building_info_limestone_block_floor"
+        },
+        {
+          "languageName": "Korean",
+          "name": "차가운 석회암 블록 바닥",
+          "info": "building_info_limestone_block_floor"
+        },
+        {
+          "languageName": "Polish",
+          "name": "Zimna podłoga z bloków wapiennych",
+          "info": "building_info_limestone_block_floor"
+        },
+        {
+          "languageName": "Turkish",
+          "name": "Soğuk Kireçtaşı Blok Zemin",
+          "info": "building_info_limestone_block_floor"
+        },
+        {
+          "languageName": "Italian",
+          "name": "Pavimento Freddo in Blocchi di Calcare",
+          "info": "building_info_limestone_block_floor"
+        }
+      ],
+      "prefabID": "floor_element",
+      "previewPrefabID": "base_constructable_preview",
+      "occlusionCullingMode": "Enabled",
+      "cantFailConstruction": true,
+      "buildAnimationTrigger": "BuildDown",
+      "buildItem": "hammer_item",
+      "buildTime": 2.5,
+      "size": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "boxColliderSettings": {
+        "centerOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "sizeOffset": {
+          "x": 1,
+          "y": 0.4,
+          "z": 1
+        }
+      },
+      "combatBoxColliderSettings": {
+        "centerOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "sizeOffset": {
+          "x": 1,
+          "y": 0.1,
+          "z": 1
+        }
+      },
+      "buildingCategoryUI": "Base",
+      "buildingSubCategoryUI": "NotInUse1",
+      "soundMaterialCategory": 2,
+      "soundWalkableMaterialCategory": 3,
+      "buildingType": 4,
+      "constructableBaseCategory": 1,
+      "placementType": 2,
+      "materials": {
+        "keys": [
+          "limestone_block"
+        ],
+        "values": [
+          2
+        ]
+      },
+      "pathfindingPenalty": 500,
+      "walkSpeedMultiplier": 1.1,
+      "walkSpeedMultiplierConstruction": 0.85,
+      "upgradeToFlag": 4,
+      "maxPoolCount": 500,
+      "refillThreshold": 100,
+      "placeableBellowOthers": true,
+      "transfersStability": false,
+      "canPlaceOnBeam": true,
+      "layerShadowOffset": -1,
+      "layerHideOffset": -1,
+      "attackTraversePenalty": 0,
+      "cover": 1,
+      "wealthPoints": 1,
+      "beautyInput": 3,
+      "flammability": 0,
+      "heatDamageThreshold": 120,
+      "heatDamage": 0.5,
+      "isVerticalFireBlocker": true,
+      "stats": [
+        {
+          "debugName": "Hitpoints",
+          "type": 1,
+          "initialValue": 200,
+          "attributes": {
+            "max": [
+              {
+                "baseValue": 200
+              }
+            ]
+          }
+        }
+      ],
+      "destroyParticles": "destroy_limestone_block_wall",
+      "meshVariationCanRotate": true,
+      "useLOD": true,
+      "useShadowCasters": true,
+      "variationLists": [
+        {
+          "name": "list01",
+          "variations": [
+            {
+              "name": "default",
+              "icon": "structure_var_default",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "corner",
+              "icon": "structure_var_floor_corner",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_corner"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "edge",
+              "icon": "structure_var_floor_edge",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_edge"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "end",
+              "icon": "structure_var_floor_end",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_end"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "line",
+              "icon": "structure_var_floor_line",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_line"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "single",
+              "icon": "structure_var_floor_single",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_single"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "list02",
+          "hideInUI": true,
+          "variations": [
+            {
+              "name": "defaultMaterialParametars",
+              "icon": "structure_var_default",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "floorAlbedo",
+                  "slotType": "Texture",
+                  "value": "phrontisteries_cold_floor_sheet"
+                },
+                {
+                  "id": "2",
+                  "slot": "floorNormal",
+                  "slotType": "Texture",
+                  "value": ""
+                },
+                {
+                  "id": "12",
+                  "slot": "floorAlbedo",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorSheetSize",
+                    "vector2Value": {
+                      "x": 4,
+                      "y": 4
+                    }
+                  }
+                },
+                {
+                  "id": "13",
+                  "slot": "floorAlbedo",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorSheetOffset",
+                    "vector2Value": {
+                      "x": 1,
+                      "y": 2
+                    }
+                  }
+                },
+                {
+                  "id": "3",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorTiling",
+                    "floatValue": 0.3
+                  }
+                },
+                {
+                  "id": "4",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorTilingOffset",
+                    "floatValue": 0.3
+                  }
+                },
+                {
+                  "id": "5",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorNormalScale",
+                    "floatValue": 1.4
+                  }
+                },
+                {
+                  "id": "6",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Metallic",
+                    "floatValue": 0.16
+                  }
+                },
+                {
+                  "id": "7",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Smoothness",
+                    "floatValue": 0.12
+                  }
+                },
+                {
+                  "id": "8",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorColorAdd",
+                    "colorValue": "#000000"
+                  }
+                },
+                {
+                  "id": "9",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorColorMultiply",
+                    "colorValue": "#FFFFFF"
+                  }
+                },
+                {
+                  "id": "10",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_ElementColor",
+                    "colorValue": "#6F8471"
+                  }
+                },
+                {
+                  "id": "11",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_GrassDetailScaleOffset",
+                    "vector2Value": {
+                      "x": 17.6,
+                      "y": -14.5
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "defaultThermalModelID": "cold_temp"
+    },
+    {
+      "id": "cold_floor",
+      "iconPath": "phrontisteries_cold_clay_brick_floor",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Cold Clay Brick Floor",
           "info": "building_info_clay_brick_floor"
         },
         {
           "languageName": "Chinese",
-          "name": "冷地板",
+          "name": "冷黏土砖地板",
           "info": "building_info_clay_brick_floor"
         },
         {
           "languageName": "French",
-          "name": "Sol froid",
+          "name": "Sol froid en briques d'argile",
           "info": "building_info_clay_brick_floor"
         },
         {
           "languageName": "Spanish",
-          "name": "Piso frío",
+          "name": "Piso frío de ladrillo de arcilla",
           "info": "building_info_clay_brick_floor"
         },
         {
           "languageName": "German",
-          "name": "Kaltboden",
+          "name": "Kalter Lehmziegelboden",
           "info": "building_info_clay_brick_floor"
         },
         {
           "languageName": "Russian",
-          "name": "Холодный пол",
+          "name": "Холодный пол из глиняного кирпича",
           "info": "building_info_clay_brick_floor"
         },
         {
           "languageName": "Japanese",
-          "name": "コールドフロア",
+          "name": "コールド粘土レンガの床",
           "info": "building_info_clay_brick_floor"
         },
         {
           "languageName": "Portugese",
-          "name": "Piso Frio",
+          "name": "Piso Frio de Tijolo de Argila",
           "info": "building_info_clay_brick_floor"
         },
         {
           "languageName": "Korean",
-          "name": "차가운 바닥",
+          "name": "차가운 점토 벽돌 바닥",
           "info": "building_info_clay_brick_floor"
         },
         {
           "languageName": "Polish",
-          "name": "Zimna podłoga",
+          "name": "Zimna podłoga z cegły glinianej",
           "info": "building_info_clay_brick_floor"
         },
         {
           "languageName": "Turkish",
-          "name": "Soğuk Zemin",
+          "name": "Soğuk Kil Tuğla Zemin",
           "info": "building_info_clay_brick_floor"
         },
         {
           "languageName": "Italian",
-          "name": "Pavimento Freddo",
+          "name": "Pavimento Freddo in Mattoni d'Argilla",
           "info": "building_info_clay_brick_floor"
         }
       ],
@@ -623,13 +2374,13 @@
                   "id": "1",
                   "slot": "floorAlbedo",
                   "slotType": "Texture",
-                  "value": "phrontisteries_cold_floor_albedo"
+                  "value": "phrontisteries_cold_floor_sheet"
                 },
                 {
                   "id": "2",
                   "slot": "floorNormal",
                   "slotType": "Texture",
-                  "value": "clay_brick_floor_normal"
+                  "value": ""
                 },
                 {
                   "id": "12",
@@ -638,8 +2389,8 @@
                   "shaderParam": {
                     "variableName": "_FloorSheetSize",
                     "vector2Value": {
-                      "x": 1.0,
-                      "y": 1.0
+                      "x": 4,
+                      "y": 4
                     }
                   }
                 },
@@ -650,8 +2401,8 @@
                   "shaderParam": {
                     "variableName": "_FloorSheetOffset",
                     "vector2Value": {
-                      "x": 1.0,
-                      "y": 1.0
+                      "x": 2,
+                      "y": 1
                     }
                   }
                 },
@@ -736,6 +2487,2172 @@
                     "vector2Value": {
                       "x": 15,
                       "y": -0.48
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "defaultThermalModelID": "cold_temp"
+    },
+    {
+      "id": "cold_stone_decorative_floor",
+      "iconPath": "phrontisteries_cold_stone_decorative_floor",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Cold Decorative Stone Floor",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "Chinese",
+          "name": "冷装饰石地板",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "French",
+          "name": "Sol froid en pierre décorative",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "Spanish",
+          "name": "Piso frío de piedra decorativa",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "German",
+          "name": "Kalter dekorativer Steinboden",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "Russian",
+          "name": "Холодный декоративный каменный пол",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "Japanese",
+          "name": "コールド装飾石の床",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "Portugese",
+          "name": "Piso Frio de Pedra Decorativa",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "Korean",
+          "name": "차가운 장식용 돌 바닥",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "Polish",
+          "name": "Zimna ozdobna kamienna podłoga",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "Turkish",
+          "name": "Soğuk Dekoratif Taş Zemin",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "Italian",
+          "name": "Pavimento Freddo in Pietra Decorativa",
+          "info": "building_info_stone_decorative_floor"
+        }
+      ],
+      "prefabID": "floor_element",
+      "previewPrefabID": "base_constructable_preview",
+      "occlusionCullingMode": "Enabled",
+      "cantFailConstruction": true,
+      "buildAnimationTrigger": "BuildDown",
+      "buildItem": "hammer_item",
+      "buildTime": 3,
+      "size": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "boxColliderSettings": {
+        "centerOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "sizeOffset": {
+          "x": 1,
+          "y": 0.4,
+          "z": 1
+        }
+      },
+      "combatBoxColliderSettings": {
+        "centerOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "sizeOffset": {
+          "x": 1,
+          "y": 0.1,
+          "z": 1
+        }
+      },
+      "buildingCategoryUI": "Base",
+      "buildingSubCategoryUI": "NotInUse1",
+      "soundMaterialCategory": 2,
+      "soundWalkableMaterialCategory": 3,
+      "buildingType": 4,
+      "constructableBaseCategory": 1,
+      "placementType": 2,
+      "materials": {
+        "keys": [
+          "stone_tile_decorative"
+        ],
+        "values": [
+          2
+        ]
+      },
+      "returnOnDestroy": {
+        "keys": [
+          "stone_tile_decorative"
+        ],
+        "values": [
+          1
+        ]
+      },
+      "returnOnDeconstruct": {
+        "keys": [
+          "stone_tile_decorative"
+        ],
+        "values": [
+          0.5
+        ]
+      },
+      "pathfindingPenalty": 400,
+      "walkSpeedMultiplier": 1.1,
+      "walkSpeedMultiplierConstruction": 0.85,
+      "upgradeToFlag": 4,
+      "maxPoolCount": 500,
+      "refillThreshold": 100,
+      "placeableBellowOthers": true,
+      "transfersStability": false,
+      "canPlaceOnBeam": true,
+      "layerShadowOffset": -1,
+      "layerHideOffset": -1,
+      "attackTraversePenalty": 0,
+      "cover": 1,
+      "wealthPoints": 1.4,
+      "beautyInput": 4.5,
+      "flammability": 0,
+      "heatDamageThreshold": 120,
+      "heatDamage": 0.5,
+      "isVerticalFireBlocker": true,
+      "stats": [
+        {
+          "debugName": "Hitpoints",
+          "type": 1,
+          "initialValue": 200,
+          "attributes": {
+            "max": [
+              {
+                "baseValue": 200
+              }
+            ]
+          }
+        }
+      ],
+      "destroyParticles": "destroy_limestone_block_wall",
+      "meshVariationCanRotate": true,
+      "useLOD": true,
+      "useShadowCasters": true,
+      "variationLists": [
+        {
+          "name": "list01",
+          "variations": [
+            {
+              "name": "default",
+              "icon": "structure_var_default",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "corner",
+              "icon": "structure_var_floor_corner",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_corner"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "edge",
+              "icon": "structure_var_floor_edge",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_edge"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "end",
+              "icon": "structure_var_floor_end",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_end"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "line",
+              "icon": "structure_var_floor_line",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_line"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "single",
+              "icon": "structure_var_floor_single",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_single"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "list02",
+          "hideInUI": true,
+          "variations": [
+            {
+              "name": "defaultMaterialParametars",
+              "icon": "structure_var_default",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "floorAlbedo",
+                  "slotType": "Texture",
+                  "value": "phrontisteries_cold_stone_decorative_floor_albedo"
+                },
+                {
+                  "id": "2",
+                  "slot": "floorNormal",
+                  "slotType": "Texture",
+                  "value": "painted_stone_tile_normal"
+                },
+                {
+                  "id": "12",
+                  "slot": "floorAlbedo",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorSheetSize",
+                    "vector2Value": {
+                      "x": 1,
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "id": "13",
+                  "slot": "floorAlbedo",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorSheetOffset",
+                    "vector2Value": {
+                      "x": 1,
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "id": "3",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorTiling",
+                    "floatValue": 0.25
+                  }
+                },
+                {
+                  "id": "4",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorTilingOffset",
+                    "floatValue": 0
+                  }
+                },
+                {
+                  "id": "5",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorNormalScale",
+                    "floatValue": 1.5
+                  }
+                },
+                {
+                  "id": "6",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Metallic",
+                    "floatValue": 0.1
+                  }
+                },
+                {
+                  "id": "7",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Smoothness",
+                    "floatValue": 0.4
+                  }
+                },
+                {
+                  "id": "8",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorColorAdd",
+                    "colorValue": "#000000"
+                  }
+                },
+                {
+                  "id": "9",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorColorMultiply",
+                    "colorValue": "#FFFFF"
+                  }
+                },
+                {
+                  "id": "10",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_ElementColor",
+                    "colorValue": "#6F8471"
+                  }
+                },
+                {
+                  "id": "11",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_GrassDetailScaleOffset",
+                    "vector2Value": {
+                      "x": 1,
+                      "y": 1
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "defaultThermalModelID": "cold_temp"
+    },
+    {
+      "id": "cold_clay_decorative_floor",
+      "iconPath": "phrontisteries_cold_clay_decorative_floor",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Cold Decorative Clay Floor",
+          "info": "building_info_clay_decorative_floor"
+        },
+        {
+          "languageName": "Chinese",
+          "name": "冷装饰黏土地板",
+          "info": "building_info_clay_decorative_floor"
+        },
+        {
+          "languageName": "French",
+          "name": "Sol froid en argile décorative",
+          "info": "building_info_clay_decorative_floor"
+        },
+        {
+          "languageName": "Spanish",
+          "name": "Piso frío de arcilla decorativa",
+          "info": "building_info_clay_decorative_floor"
+        },
+        {
+          "languageName": "German",
+          "name": "Kalter dekorativer Tonboden",
+          "info": "building_info_clay_decorative_floor"
+        },
+        {
+          "languageName": "Russian",
+          "name": "Холодный декоративный глиняный пол",
+          "info": "building_info_clay_decorative_floor"
+        },
+        {
+          "languageName": "Japanese",
+          "name": "コールド装飾粘土の床",
+          "info": "building_info_clay_decorative_floor"
+        },
+        {
+          "languageName": "Portugese",
+          "name": "Piso Frio de Argila Decorativa",
+          "info": "building_info_clay_decorative_floor"
+        },
+        {
+          "languageName": "Korean",
+          "name": "차가운 장식용 점토 바닥",
+          "info": "building_info_clay_decorative_floor"
+        },
+        {
+          "languageName": "Polish",
+          "name": "Zimna ozdobna gliniana podłoga",
+          "info": "building_info_clay_decorative_floor"
+        },
+        {
+          "languageName": "Turkish",
+          "name": "Soğuk Dekoratif Kil Zemin",
+          "info": "building_info_clay_decorative_floor"
+        },
+        {
+          "languageName": "Italian",
+          "name": "Pavimento Freddo in Argilla Decorativa",
+          "info": "building_info_clay_decorative_floor"
+        }
+      ],
+      "prefabID": "floor_element",
+      "previewPrefabID": "base_constructable_preview",
+      "occlusionCullingMode": "Enabled",
+      "cantFailConstruction": true,
+      "buildAnimationTrigger": "BuildDown",
+      "buildItem": "hammer_item",
+      "buildTime": 3,
+      "size": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "boxColliderSettings": {
+        "centerOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "sizeOffset": {
+          "x": 1,
+          "y": 0.4,
+          "z": 1
+        }
+      },
+      "combatBoxColliderSettings": {
+        "centerOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "sizeOffset": {
+          "x": 1,
+          "y": 0.1,
+          "z": 1
+        }
+      },
+      "buildingCategoryUI": "Base",
+      "buildingSubCategoryUI": "NotInUse1",
+      "soundMaterialCategory": 2,
+      "soundWalkableMaterialCategory": 3,
+      "buildingType": 4,
+      "constructableBaseCategory": 1,
+      "placementType": 2,
+      "materials": {
+        "keys": [
+          "clay_tile_decorative"
+        ],
+        "values": [
+          2
+        ]
+      },
+      "returnOnDestroy": {
+        "keys": [
+          "clay_tile_decorative"
+        ],
+        "values": [
+          1
+        ]
+      },
+      "returnOnDeconstruct": {
+        "keys": [
+          "clay_tile_decorative"
+        ],
+        "values": [
+          0.5
+        ]
+      },
+      "pathfindingPenalty": 400,
+      "walkSpeedMultiplier": 1.1,
+      "walkSpeedMultiplierConstruction": 0.85,
+      "upgradeToFlag": 4,
+      "maxPoolCount": 500,
+      "refillThreshold": 100,
+      "placeableBellowOthers": true,
+      "transfersStability": false,
+      "canPlaceOnBeam": true,
+      "layerShadowOffset": -1,
+      "layerHideOffset": -1,
+      "attackTraversePenalty": 0,
+      "cover": 1,
+      "wealthPoints": 1.4,
+      "beautyInput": 4.5,
+      "flammability": 0,
+      "heatDamageThreshold": 120,
+      "heatDamage": 0.5,
+      "isVerticalFireBlocker": true,
+      "stats": [
+        {
+          "debugName": "Hitpoints",
+          "type": 1,
+          "initialValue": 200,
+          "attributes": {
+            "max": [
+              {
+                "baseValue": 200
+              }
+            ]
+          }
+        }
+      ],
+      "destroyParticles": "destroy_clay_brick_wall",
+      "meshVariationCanRotate": true,
+      "useLOD": true,
+      "useShadowCasters": true,
+      "variationLists": [
+        {
+          "name": "list01",
+          "variations": [
+            {
+              "name": "default",
+              "icon": "structure_var_default",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "corner",
+              "icon": "structure_var_floor_corner",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_corner"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "edge",
+              "icon": "structure_var_floor_edge",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_edge"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "end",
+              "icon": "structure_var_floor_end",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_end"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "line",
+              "icon": "structure_var_floor_line",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_line"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "single",
+              "icon": "structure_var_floor_single",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_single"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "list02",
+          "hideInUI": true,
+          "variations": [
+            {
+              "name": "defaultMaterialParametars",
+              "icon": "structure_var_default",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "floorAlbedo",
+                  "slotType": "Texture",
+                  "value": "phrontisteries_cold_clay_decorative_floor_albedo"
+                },
+                {
+                  "id": "2",
+                  "slot": "floorNormal",
+                  "slotType": "Texture",
+                  "value": "painted_clay_tile_normal"
+                },
+                {
+                  "id": "12",
+                  "slot": "floorAlbedo",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorSheetSize",
+                    "vector2Value": {
+                      "x": 1,
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "id": "13",
+                  "slot": "floorAlbedo",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorSheetOffset",
+                    "vector2Value": {
+                      "x": 1,
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "id": "3",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorTiling",
+                    "floatValue": 0.25
+                  }
+                },
+                {
+                  "id": "4",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorTilingOffset",
+                    "floatValue": 0
+                  }
+                },
+                {
+                  "id": "5",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorNormalScale",
+                    "floatValue": 1.5
+                  }
+                },
+                {
+                  "id": "6",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Metallic",
+                    "floatValue": 0.1
+                  }
+                },
+                {
+                  "id": "7",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Smoothness",
+                    "floatValue": 0.4
+                  }
+                },
+                {
+                  "id": "8",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorColorAdd",
+                    "colorValue": "#000000"
+                  }
+                },
+                {
+                  "id": "9",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorColorMultiply",
+                    "colorValue": "#FFFFF"
+                  }
+                },
+                {
+                  "id": "10",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_ElementColor",
+                    "colorValue": "#6F8471"
+                  }
+                },
+                {
+                  "id": "11",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_GrassDetailScaleOffset",
+                    "vector2Value": {
+                      "x": 1,
+                      "y": 1
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "defaultThermalModelID": "cold_temp"
+    },
+    {
+      "id": "cold_marble_decorative_floor",
+      "iconPath": "phrontisteries_cold_marble_decorative_floor",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Cold Marble Floor",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "Chinese",
+          "name": "冷大理石地板",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "French",
+          "name": "Sol froid en marbre",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "Spanish",
+          "name": "Piso frío de mármol",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "German",
+          "name": "Kalter Marmorboden",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "Russian",
+          "name": "Холодный мраморный пол",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "Japanese",
+          "name": "コールド大理石の床",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "Portugese",
+          "name": "Piso Frio de Mármore",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "Korean",
+          "name": "차가운 대리석 바닥",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "Polish",
+          "name": "Zimna marmurowa podłoga",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "Turkish",
+          "name": "Soğuk Mermer Zemin",
+          "info": "building_info_stone_decorative_floor"
+        },
+        {
+          "languageName": "Italian",
+          "name": "Pavimento Freddo in Marmo",
+          "info": "building_info_stone_decorative_floor"
+        }
+      ],
+      "prefabID": "floor_element",
+      "previewPrefabID": "base_constructable_preview",
+      "occlusionCullingMode": "Enabled",
+      "cantFailConstruction": true,
+      "buildAnimationTrigger": "BuildDown",
+      "buildItem": "hammer_item",
+      "buildTime": 5,
+      "size": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "boxColliderSettings": {
+        "centerOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "sizeOffset": {
+          "x": 1,
+          "y": 0.4,
+          "z": 1
+        }
+      },
+      "combatBoxColliderSettings": {
+        "centerOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "sizeOffset": {
+          "x": 1,
+          "y": 0.1,
+          "z": 1
+        }
+      },
+      "buildingCategoryUI": "Base",
+      "buildingSubCategoryUI": "NotInUse1",
+      "soundMaterialCategory": 2,
+      "soundWalkableMaterialCategory": 3,
+      "buildingType": 4,
+      "constructableBaseCategory": 1,
+      "placementType": 2,
+      "materials": {
+        "keys": [
+          "marble_tile_decorative"
+        ],
+        "values": [
+          2
+        ]
+      },
+      "returnOnDestroy": {
+        "keys": [
+          "marble_tile_decorative"
+        ],
+        "values": [
+          1
+        ]
+      },
+      "returnOnDeconstruct": {
+        "keys": [
+          "marble_tile_decorative"
+        ],
+        "values": [
+          1
+        ]
+      },
+      "pathfindingPenalty": 400,
+      "walkSpeedMultiplier": 1.1,
+      "walkSpeedMultiplierConstruction": 0.85,
+      "upgradeToFlag": 4,
+      "maxPoolCount": 500,
+      "refillThreshold": 100,
+      "placeableBellowOthers": true,
+      "transfersStability": false,
+      "canPlaceOnBeam": true,
+      "layerShadowOffset": -1,
+      "layerHideOffset": -1,
+      "attackTraversePenalty": 0,
+      "cover": 1,
+      "wealthPoints": 8,
+      "beautyInput": 6,
+      "flammability": 0,
+      "heatDamageThreshold": 120,
+      "heatDamage": 0.5,
+      "isVerticalFireBlocker": true,
+      "stats": [
+        {
+          "debugName": "Hitpoints",
+          "type": 1,
+          "initialValue": 200,
+          "attributes": {
+            "max": [
+              {
+                "baseValue": 200
+              }
+            ]
+          }
+        }
+      ],
+      "destroyParticles": "destroy_limestone_block_wall",
+      "meshVariationCanRotate": true,
+      "useLOD": true,
+      "useShadowCasters": true,
+      "variationLists": [
+        {
+          "name": "list01",
+          "variations": [
+            {
+              "name": "default",
+              "icon": "structure_var_default",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "corner",
+              "icon": "structure_var_floor_corner",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_corner"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "edge",
+              "icon": "structure_var_floor_edge",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_edge"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "end",
+              "icon": "structure_var_floor_end",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_end"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "line",
+              "icon": "structure_var_floor_line",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_line"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            },
+            {
+              "name": "single",
+              "icon": "structure_var_floor_single",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_element_01_single"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                },
+                {
+                  "id": "3",
+                  "slot": "baseMeshSC",
+                  "slotType": "Mesh",
+                  "value": "floor_element_SC"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "list02",
+          "hideInUI": true,
+          "variations": [
+            {
+              "name": "defaultMaterialParametars",
+              "icon": "structure_var_default",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "floorAlbedo",
+                  "slotType": "Texture",
+                  "value": "phrontisteries_cold_marble_decorative_floor_albedo"
+                },
+                {
+                  "id": "2",
+                  "slot": "floorNormal",
+                  "slotType": "Texture",
+                  "value": "marble_floor_normal"
+                },
+                {
+                  "id": "12",
+                  "slot": "floorAlbedo",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorSheetSize",
+                    "vector2Value": {
+                      "x": 1,
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "id": "13",
+                  "slot": "floorAlbedo",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorSheetOffset",
+                    "vector2Value": {
+                      "x": 1,
+                      "y": 1
+                    }
+                  }
+                },
+                {
+                  "id": "3",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorTiling",
+                    "floatValue": 0.25
+                  }
+                },
+                {
+                  "id": "4",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorTilingOffset",
+                    "floatValue": 0
+                  }
+                },
+                {
+                  "id": "5",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorNormalScale",
+                    "floatValue": 1.5
+                  }
+                },
+                {
+                  "id": "6",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Metallic",
+                    "floatValue": 0.1
+                  }
+                },
+                {
+                  "id": "7",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Smoothness",
+                    "floatValue": 0.55
+                  }
+                },
+                {
+                  "id": "8",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorColorAdd",
+                    "colorValue": "#000000"
+                  }
+                },
+                {
+                  "id": "9",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorColorMultiply",
+                    "colorValue": "#FFFFF"
+                  }
+                },
+                {
+                  "id": "10",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_ElementColor",
+                    "colorValue": "#6F8471"
+                  }
+                },
+                {
+                  "id": "11",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_GrassDetailScaleOffset",
+                    "vector2Value": {
+                      "x": 1,
+                      "y": 1
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "defaultThermalModelID": "cold_temp"
+    },
+    {
+      "id": "cold_metal_grated_platform",
+      "iconPath": "phrontisteries_cold_metal_grated_platform",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Cold Metal Grate",
+          "info": "building_info_metal_grated_platform"
+        },
+        {
+          "languageName": "Chinese",
+          "name": "冷金属格栅",
+          "info": "building_info_metal_grated_platform"
+        },
+        {
+          "languageName": "French",
+          "name": "Grille métallique froide",
+          "info": "building_info_metal_grated_platform"
+        },
+        {
+          "languageName": "Spanish",
+          "name": "Rejilla metálica fría",
+          "info": "building_info_metal_grated_platform"
+        },
+        {
+          "languageName": "German",
+          "name": "Kaltes Metallgitter",
+          "info": "building_info_metal_grated_platform"
+        },
+        {
+          "languageName": "Russian",
+          "name": "Холодная металлическая решётка",
+          "info": "building_info_metal_grated_platform"
+        },
+        {
+          "languageName": "Japanese",
+          "name": "コールド金属格子",
+          "info": "building_info_metal_grated_platform"
+        },
+        {
+          "languageName": "Portugese",
+          "name": "Grade de Metal Fria",
+          "info": "building_info_metal_grated_platform"
+        },
+        {
+          "languageName": "Korean",
+          "name": "차가운 금속 격자",
+          "info": "building_info_metal_grated_platform"
+        },
+        {
+          "languageName": "Polish",
+          "name": "Zimna metalowa krata",
+          "info": "building_info_metal_grated_platform"
+        },
+        {
+          "languageName": "Turkish",
+          "name": "Soğuk Metal Izgara",
+          "info": "building_info_metal_grated_platform"
+        },
+        {
+          "languageName": "Italian",
+          "name": "Grata Metallica Fredda",
+          "info": "building_info_metal_grated_platform"
+        }
+      ],
+      "prefabID": "floor_element",
+      "previewPrefabID": "base_constructable_preview",
+      "occlusionCullingMode": "CanBeOccludedOnly",
+      "cantFailConstruction": true,
+      "buildAnimationTrigger": "BuildDown",
+      "buildItem": "hammer_item",
+      "buildTime": 2.3,
+      "size": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "boxColliderSettings": {
+        "centerOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "sizeOffset": {
+          "x": 1,
+          "y": 0.4,
+          "z": 1
+        }
+      },
+      "combatBoxColliderSettings": {
+        "centerOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "sizeOffset": {
+          "x": 1,
+          "y": 0.1,
+          "z": 1
+        }
+      },
+      "buildingCategoryUI": "Base",
+      "buildingSubCategoryUI": "NotInUse1",
+      "soundMaterialCategory": 4,
+      "soundWalkableMaterialCategory": 4,
+      "buildingType": 4,
+      "constructableBaseCategory": 1,
+      "placementType": 2,
+      "materials": {
+        "keys": [
+          "iron_ingot"
+        ],
+        "values": [
+          2
+        ]
+      },
+      "pathfindingPenalty": 750,
+      "walkSpeedMultiplier": 0.95,
+      "walkSpeedMultiplierConstruction": 0.85,
+      "waterFlowThroughFloor": true,
+      "upgradeToFlag": 4,
+      "maxPoolCount": 500,
+      "refillThreshold": 100,
+      "placeableBellowOthers": true,
+      "transfersStability": false,
+      "canPlaceOnBeam": true,
+      "layerShadowOffset": -1,
+      "layerHideOffset": -1,
+      "attackTraversePenalty": 0,
+      "cover": 0.3,
+      "wealthPoints": 1.4,
+      "beautyInput": 1,
+      "passthroughFloor": true,
+      "flammability": 0,
+      "heatDamageThreshold": 150,
+      "heatDamage": 0.5,
+      "stats": [
+        {
+          "debugName": "Hitpoints",
+          "type": 1,
+          "initialValue": 500,
+          "attributes": {
+            "max": [
+              {
+                "baseValue": 500
+              }
+            ]
+          }
+        }
+      ],
+      "destroyParticles": "destroy_building",
+      "meshVariationCanRotate": true,
+      "useLOD": true,
+      "variationLists": [
+        {
+          "name": "list01",
+          "variations": [
+            {
+              "name": "default",
+              "icon": "structure_var_default",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_mesh_element"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                }
+              ]
+            },
+            {
+              "name": "corner",
+              "icon": "structure_var_floor_corner",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_mesh_element_01_corner"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                }
+              ]
+            },
+            {
+              "name": "edge",
+              "icon": "structure_var_floor_edge",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_mesh_element_01_edge"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                }
+              ]
+            },
+            {
+              "name": "end",
+              "icon": "structure_var_floor_end",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_mesh_element_01_end"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                }
+              ]
+            },
+            {
+              "name": "line",
+              "icon": "structure_var_floor_line",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_mesh_element_01_line"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                }
+              ]
+            },
+            {
+              "name": "single",
+              "icon": "structure_var_floor_single",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_mesh_element_01_single"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "list02",
+          "hideInUI": true,
+          "variations": [
+            {
+              "name": "defaultMaterialParametars",
+              "icon": "structure_var_default",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "floorAlbedo",
+                  "slotType": "Texture",
+                  "value": "phrontisteries_cold_floor_sheet"
+                },
+                {
+                  "id": "2",
+                  "slot": "floorNormal",
+                  "slotType": "Texture",
+                  "value": ""
+                },
+                {
+                  "id": "12",
+                  "slot": "floorAlbedo",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorSheetSize",
+                    "vector2Value": {
+                      "x": 4,
+                      "y": 4
+                    }
+                  }
+                },
+                {
+                  "id": "13",
+                  "slot": "floorAlbedo",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorSheetOffset",
+                    "vector2Value": {
+                      "x": 2,
+                      "y": 2
+                    }
+                  }
+                },
+                {
+                  "id": "3",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorTiling",
+                    "floatValue": 0.25
+                  }
+                },
+                {
+                  "id": "4",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorTilingOffset",
+                    "floatValue": 0
+                  }
+                },
+                {
+                  "id": "5",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorNormalScale",
+                    "floatValue": 1.2
+                  }
+                },
+                {
+                  "id": "6",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Metallic",
+                    "floatValue": 0.76
+                  }
+                },
+                {
+                  "id": "7",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Smoothness",
+                    "floatValue": 0.61
+                  }
+                },
+                {
+                  "id": "8",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorColorAdd",
+                    "colorValue": "#000000"
+                  }
+                },
+                {
+                  "id": "9",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorColorMultiply",
+                    "colorValue": "#FFFFFF"
+                  }
+                },
+                {
+                  "id": "10",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_ElementColor",
+                    "colorValue": "#6F8471"
+                  }
+                },
+                {
+                  "id": "11",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_GrassDetailScaleOffset",
+                    "vector2Value": {
+                      "x": 1.23,
+                      "y": 0.19
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "defaultThermalModelID": "cold_temp"
+    },
+    {
+      "id": "cold_wicker_mesh_floor",
+      "iconPath": "phrontisteries_cold_wicker_mesh_floor",
+      "locKeys": [
+        {
+          "languageName": "English",
+          "name": "Cold Wicker Mesh Floor",
+          "info": "building_info_wicker_mesh_floor"
+        },
+        {
+          "languageName": "Chinese",
+          "name": "冷柳条网地板",
+          "info": "building_info_wicker_mesh_floor"
+        },
+        {
+          "languageName": "French",
+          "name": "Sol froid en treillis d'osier",
+          "info": "building_info_wicker_mesh_floor"
+        },
+        {
+          "languageName": "Spanish",
+          "name": "Piso frío de malla de mimbre",
+          "info": "building_info_wicker_mesh_floor"
+        },
+        {
+          "languageName": "German",
+          "name": "Kalter Weidengeflechtboden",
+          "info": "building_info_wicker_mesh_floor"
+        },
+        {
+          "languageName": "Russian",
+          "name": "Холодный пол из плетёной сетки",
+          "info": "building_info_wicker_mesh_floor"
+        },
+        {
+          "languageName": "Japanese",
+          "name": "コールド枝編みメッシュの床",
+          "info": "building_info_wicker_mesh_floor"
+        },
+        {
+          "languageName": "Portugese",
+          "name": "Piso Frio de Malha de Vime",
+          "info": "building_info_wicker_mesh_floor"
+        },
+        {
+          "languageName": "Korean",
+          "name": "차가운 고리버들 망 바닥",
+          "info": "building_info_wicker_mesh_floor"
+        },
+        {
+          "languageName": "Polish",
+          "name": "Zimna podłoga z siatki wiklinowej",
+          "info": "building_info_wicker_mesh_floor"
+        },
+        {
+          "languageName": "Turkish",
+          "name": "Soğuk Hasır Örgü Zemin",
+          "info": "building_info_wicker_mesh_floor"
+        },
+        {
+          "languageName": "Italian",
+          "name": "Pavimento Freddo a Rete di Vimini",
+          "info": "building_info_wicker_mesh_floor"
+        }
+      ],
+      "prefabID": "floor_element",
+      "previewPrefabID": "base_constructable_preview",
+      "occlusionCullingMode": "CanBeOccludedOnly",
+      "cantFailConstruction": true,
+      "buildAnimationTrigger": "BuildDown",
+      "buildItem": "hammer_item",
+      "buildTime": 2,
+      "size": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "boxColliderSettings": {
+        "centerOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "sizeOffset": {
+          "x": 1,
+          "y": 0.4,
+          "z": 1
+        }
+      },
+      "combatBoxColliderSettings": {
+        "centerOffset": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "sizeOffset": {
+          "x": 1,
+          "y": 0.1,
+          "z": 1
+        }
+      },
+      "buildingCategoryUI": "Base",
+      "buildingSubCategoryUI": "NotInUse1",
+      "soundMaterialCategory": 1,
+      "soundWalkableMaterialCategory": 4,
+      "buildingType": 4,
+      "constructableBaseCategory": 1,
+      "placementType": 2,
+      "materials": {
+        "keys": [
+          "sticks"
+        ],
+        "values": [
+          2
+        ]
+      },
+      "pathfindingPenalty": 750,
+      "walkSpeedMultiplier": 0.95,
+      "walkSpeedMultiplierConstruction": 0.85,
+      "waterFlowThroughFloor": true,
+      "upgradeToFlag": 4,
+      "maxPoolCount": 500,
+      "refillThreshold": 100,
+      "placeableBellowOthers": true,
+      "transfersStability": false,
+      "canPlaceOnBeam": true,
+      "layerShadowOffset": -1,
+      "layerHideOffset": -1,
+      "attackTraversePenalty": 0,
+      "cover": 0.3,
+      "wealthPoints": 0.6,
+      "beautyInput": 0,
+      "passthroughFloor": true,
+      "flammability": 1.2,
+      "heatDamageThreshold": 80,
+      "heatDamage": 0.5,
+      "stats": [
+        {
+          "debugName": "Hitpoints",
+          "type": 1,
+          "initialValue": 20,
+          "attributes": {
+            "max": [
+              {
+                "baseValue": 20
+              }
+            ]
+          }
+        }
+      ],
+      "destroyParticles": "destroy_wicker_floor",
+      "meshVariationCanRotate": true,
+      "useLOD": true,
+      "variationLists": [
+        {
+          "name": "list01",
+          "variations": [
+            {
+              "name": "default",
+              "icon": "structure_var_default",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_mesh_element"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                }
+              ]
+            },
+            {
+              "name": "corner",
+              "icon": "structure_var_floor_corner",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_mesh_element_01_corner"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                }
+              ]
+            },
+            {
+              "name": "edge",
+              "icon": "structure_var_floor_edge",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_mesh_element_01_edge"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                }
+              ]
+            },
+            {
+              "name": "end",
+              "icon": "structure_var_floor_end",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_mesh_element_01_end"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                }
+              ]
+            },
+            {
+              "name": "line",
+              "icon": "structure_var_floor_line",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_mesh_element_01_line"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                }
+              ]
+            },
+            {
+              "name": "single",
+              "icon": "structure_var_floor_single",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "baseMesh",
+                  "slotType": "Mesh",
+                  "value": "floor_mesh_element_01_single"
+                },
+                {
+                  "id": "2",
+                  "slot": "baseMeshLOD0",
+                  "slotType": "Mesh",
+                  "value": "floor_element_LOD0"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "list02",
+          "hideInUI": true,
+          "variations": [
+            {
+              "name": "defaultMaterialParametars",
+              "icon": "structure_var_default",
+              "slots": [
+                {
+                  "id": "1",
+                  "slot": "floorAlbedo",
+                  "slotType": "Texture",
+                  "value": "phrontisteries_cold_floor_sheet"
+                },
+                {
+                  "id": "2",
+                  "slot": "floorNormal",
+                  "slotType": "Texture",
+                  "value": ""
+                },
+                {
+                  "id": "12",
+                  "slot": "floorAlbedo",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorSheetSize",
+                    "vector2Value": {
+                      "x": 4,
+                      "y": 4
+                    }
+                  }
+                },
+                {
+                  "id": "13",
+                  "slot": "floorAlbedo",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorSheetOffset",
+                    "vector2Value": {
+                      "x": 3,
+                      "y": 2
+                    }
+                  }
+                },
+                {
+                  "id": "3",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorTiling",
+                    "floatValue": 0.25
+                  }
+                },
+                {
+                  "id": "4",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorTilingOffset",
+                    "floatValue": 0.125
+                  }
+                },
+                {
+                  "id": "5",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorNormalScale",
+                    "floatValue": 1
+                  }
+                },
+                {
+                  "id": "6",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Metallic",
+                    "floatValue": 0.05
+                  }
+                },
+                {
+                  "id": "7",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_Smoothness",
+                    "floatValue": 0
+                  }
+                },
+                {
+                  "id": "8",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorColorAdd",
+                    "colorValue": "#000000"
+                  }
+                },
+                {
+                  "id": "9",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_FloorColorMultiply",
+                    "colorValue": "#FFFFFF"
+                  }
+                },
+                {
+                  "id": "10",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_ElementColor",
+                    "colorValue": "#6F8471"
+                  }
+                },
+                {
+                  "id": "11",
+                  "slot": "floorNormal",
+                  "slotType": "ShaderParam",
+                  "shaderParam": {
+                    "variableName": "_GrassDetailScaleOffset",
+                    "vector2Value": {
+                      "x": 1.23,
+                      "y": 0.19
                     }
                   }
                 }
