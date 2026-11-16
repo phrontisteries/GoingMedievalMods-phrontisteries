@@ -80,6 +80,7 @@ ICONS = {
     # Cold: icons are made from the game's own icons (make_cold_shelf_icon.py, make_cold_floor_icons.py)
     "Fish_Farming": {"phrontisteries_fish_farm": (models.fish_farm, "building", 33, 1.5)},
     "Fermenting Apple Cider": {"phrontisteries_fermenting_apple_cider": (models.fermenting_apple_cider, "item", 33, 0.5)},
+    "Mushroom Cropfield": {"phrontisteries_mushroom_cropfield": (models.mushroom_cropfield, "building", 33, 0.36)},
 }
 ICON_SIZE = 128   # the game's own icons are 128x128
 

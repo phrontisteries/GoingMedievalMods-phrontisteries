@@ -1,5 +1,7 @@
 # SPDX-License-Identifier: MIT  (Copyright (c) 2026 phrontisteries; see LICENSE)
 """Low-poly models of the mods' new items (metres, Y up, origin = centre of the tile floor)."""
+import math
+
 from model3d import Model
 
 WOOD, WOOD_D, WOOD_L = (214, 140, 62), (168, 104, 48), (232, 176, 98)
@@ -233,4 +235,30 @@ def body_pyre():
     m.lathe((0.85, 0, -0.35), [(0.42, 0.0), (0.3, 0.12), (0.0, 0.2)], EARTH, seg=12)   # mound
     m.box((0.85, 0.78, -0.35), (0.04, 0.7, 0.04), WOOD_L)                          # shovel handle
     m.box((0.85, 0.32, -0.35), (0.22, 0.3, 0.04), IRON)                           # blade
+    return m
+
+
+def mushroom_cropfield():
+    """Mushroom Cropfield: a dark soil plot with a blue rim, as the game's cropfield icons, growing a
+    cluster of red- and tan-capped mushrooms like the game's own mushrooms."""
+    m = Model()
+    SOIL, SOIL_D, RIM = (104, 74, 92), (84, 58, 76), (70, 92, 160)
+    STEM, CAP_RED, CAP_TAN, SPOT = (236, 224, 200), (184, 66, 56), (206, 142, 86), (246, 236, 214)
+    m.box((0, 0.03, 0), (0.98, 0.06, 0.98), RIM, top=RIM)                     # plot rim
+    m.box((0, 0.05, 0), (0.88, 0.06, 0.88), SOIL_D, top=SOIL)                 # soil
+    for i in range(5):                                                       # furrows
+        m.box((0, 0.081, -0.36 + i * 0.18), (0.84, 0.004, 0.03), SOIL_D)
+    # (x, z, cap radius, stem height, cap colour)
+    shrooms = [(-0.20, -0.16, 0.20, 0.27, CAP_RED), (0.12, -0.26, 0.15, 0.20, CAP_TAN),
+               (0.26, 0.04, 0.18, 0.25, CAP_RED), (-0.04, 0.10, 0.22, 0.33, CAP_RED),
+               (-0.30, 0.22, 0.13, 0.17, CAP_TAN), (0.14, 0.30, 0.15, 0.21, CAP_TAN),
+               (0.33, -0.30, 0.10, 0.13, CAP_RED), (-0.33, -0.36, 0.09, 0.12, CAP_TAN)]
+    for x, z, r, hgt, cap in shrooms:
+        m.cylinder((x, 0.08, z), r * 0.32, hgt, STEM, seg=8)                  # stem
+        prof = [(r * 0.30, 0.0), (r, 0.02), (r * 0.96, r * 0.32), (r * 0.72, r * 0.62), (r * 0.36, r * 0.82), (0.001, r * 0.86)]
+        m.lathe((x, 0.08 + hgt - 0.01, z), prof, cap, seg=14)                 # cap
+        if cap == CAP_RED:                                                    # pale spots
+            for k in range(3):
+                a = k * 2.1 + x * 7
+                m.sphere((x + 0.55 * r * math.cos(a), 0.08 + hgt + r * 0.62, z + 0.55 * r * math.sin(a)), r * 0.13, SPOT, seg=6, rings=3)
     return m
