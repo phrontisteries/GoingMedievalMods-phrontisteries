@@ -5,6 +5,10 @@ The copy keeps every texel's light and dark (so planks, edges and shading still 
 moves its colour to the target tint. Only the mod's own building uses the copy.
 
     python recolor_texture.py <in.png> <out.png> [#AFD8F5] [strength 0..1]
+    python recolor_texture.py <in.png> <out.png> frost [#DCEFFF] [amount 0..1] [contrast, 1 = unchanged]
+
+"frost" keeps the original colours and lays a pale wash over them (the Cold Shelf uses this):
+the texel is lightened, slightly desaturated and blended towards the frost colour.
 """
 import colorsys
 import sys
@@ -31,5 +35,32 @@ def recolor(src, dst, tint="#AFD8F5", strength=1.0):
     im.save(dst)
 
 
+def frost_pixel(rgb, tint=(0.86, 0.94, 1.0), amount=0.3, contrast=1.0, pivot=0.45):
+    """One colour (0..1 floats) with a frost wash: warmth drained, shading kept, pale blue laid over.
+    contrast > 1 pushes darks darker and lights lighter around the pivot brightness."""
+    r, g, b = rgb
+    h, l, s = colorsys.rgb_to_hls(r, g, b)
+    cr, cg, cb = colorsys.hls_to_rgb(h, l, s * max(0.0, 1 - 1.6 * amount))       # drain the warm colour
+    lum = 0.299 * cr + 0.587 * cg + 0.114 * cb
+    wash = [t * (0.35 + 0.9 * lum) for t in tint]                                   # frost colour, shaded like the wood
+    out = [c * (1 - amount) + w * amount for c, w in zip((cr, cg, cb), wash)]
+    return tuple(min(1.0, max(0.0, pivot + (c - pivot) * contrast)) for c in out)
+
+
+def frost(src, dst, tint="#DCEFFF", amount=0.3, contrast=1.0):
+    t = tuple(int(tint[i:i + 2], 16) / 255 for i in (1, 3, 5))
+    im = Image.open(src).convert("RGBA")
+    px = im.load()
+    for y in range(im.height):
+        for x in range(im.width):
+            r, g, b, a = px[x, y]
+            out = frost_pixel((r / 255, g / 255, b / 255), t, amount, contrast)
+            px[x, y] = tuple(round(v * 255) for v in out) + (a,)
+    im.save(dst)
+
+
 if __name__ == "__main__":
+    if len(sys.argv) > 3 and sys.argv[3] == "frost":
+        frost(sys.argv[1], sys.argv[2], *(sys.argv[4:5] or ["#DCEFFF"]), *[float(v) for v in sys.argv[5:7]])
+        sys.exit()
     recolor(sys.argv[1], sys.argv[2], *(sys.argv[3:4] or ["#AFD8F5"]), *([float(sys.argv[4])] if len(sys.argv) > 4 else []))
