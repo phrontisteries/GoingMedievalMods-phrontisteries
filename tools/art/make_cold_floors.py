@@ -47,9 +47,18 @@ METHODS = {
     "limestone_floor":         dict(kind="lum", min_size=300),
     "limestone_block_floor":   dict(kind="lum", min_size=300),
     "clay_brick_floor":        dict(kind="lum", min_size=300),
-    "stone_decorative_floor":  dict(kind="tiles", line=30, min_size=60, min_frost=700),
-    "clay_decorative_floor":   dict(kind="tiles", line=30, min_size=60, min_frost=700),
-    "marble_decorative_floor": dict(kind="triangles", grid=8),
+    # rosette quarters always frosted, tiny mosaic tiles never, middle squares: most possible not touching
+    "stone_decorative_floor":  dict(kind="tiles", line=30, min_size=60, square=(64, 13, 38),
+                                    classes=dict(by="size", always=3000, never=900),
+                                    circles=dict(quarter=dict(ring=61, dot=(11, 8)))),
+    # circle pieces (quarters of the large circles, and the complete-circle tiles) always, fleur tiles never;
+    # tiles are told apart by matching them, in any rotation, against a sample of each kind (x, y in pixels)
+    "clay_decorative_floor":   dict(kind="tiles", line=30, min_size=60,
+                                    classes=dict(by="sample", always=[(32, 32), (348, 31)], never=[(157, 31)]),
+                                    circles=dict(quarter=dict(ring=61, dot=(11, 8)), whole=dict(ring=31))),
+    # the dark triangles take the frost colour, the light ones stay; the round medallions where four
+    # triangles meet are frosted solid
+    "marble_decorative_floor": dict(kind="triangles", grid=8, classes=dict(by="dark"), medallions=dict(radius=20)),
     "wicker_mesh_floor":       dict(kind="panels", grid=4),
     "wicker_floor":            dict(kind="strands", length=70, min_size=400),
     "metal_grated_platform":   dict(kind="segments", length=25, grow=6, min_size=150),
@@ -123,7 +132,18 @@ def elements(rgb, alpha, method):
         L = method["line"]
         grout = ndimage.binary_opening(dark, structure=np.ones((1, L))) | ndimage.binary_opening(dark, structure=np.ones((L, 1)))
         grout = ndimage.binary_dilation(grout, iterations=1)[h:2 * h, w:2 * w]
-        return tiled_components(~grout & solid, method["min_size"])
+        parts = tiled_components(~grout & solid, method["min_size"])
+        if method.get("square"):
+            # middle squares sit at a fixed spot in each grid cell; a square that ran into tiny neighbouring
+            # tiles (missing grout) is cut back to exactly that spot
+            cell, start, size = method["square"]
+            box = np.zeros((h, w), bool)
+            for y in range(0, h, cell):
+                for x in range(0, w, cell):
+                    box[y + start:y + start + size, x + start:x + start + size] = True
+            parts = [p & box if 0.6 * size * size < p.sum() < 2 * size * size and (p & box).sum() > 0.6 * size * size else p
+                     for p in parts]                                 # (rosette quarters are bigger: left alone)
+        return parts
     if k == "triangles":
         n = method["grid"]; c = h // n
         yy, xx = np.mgrid[0:c, 0:c]
@@ -224,11 +244,163 @@ def most_spread(g, parts, candidates, tries=800, seed=7):
     return best
 
 
-def frost(rgb, alpha, parts, chosen, colour, lift=1.15):
+def classify(rgb, parts, rule):
+    """Split elements into always frosted / never frosted / picked (most possible with none touching)."""
+    always, never = set(), set()
+    lum = rgb @ LUMA
+    if rule["by"] == "size":
+        for i, p in enumerate(parts):
+            if p.sum() >= rule["always"]:
+                always.add(i)
+            elif p.sum() < rule["never"]:
+                never.add(i)
+    elif rule["by"] == "dark":
+        means = np.array([lum[p].mean() for p in parts])
+        cut = (means.min() + means.max()) / 2                           # two marbles: dark and light
+        for i, m in enumerate(means):
+            (always if m < cut else never).add(i)
+    elif rule["by"] == "sample":
+        def patch(p):
+            ys, xs = np.where(p)
+            box = lum[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
+            img = np.asarray(Image.fromarray((box * 255).astype("uint8")).resize((40, 40), Image.BILINEAR)).astype(float)
+            return (img - img.mean()) / (img.std() + 1e-6)
+
+        def owner(x, y):
+            return next(i for i, p in enumerate(parts) if p[y, x])
+
+        samples = [(cls, patch(parts[owner(x, y)])) for cls in ("always", "never") for (x, y) in rule[cls]]
+        for i, p in enumerate(parts):
+            q = patch(p)
+            variants = [np.rot90(q, k) for k in range(4)] + [np.rot90(q[:, ::-1], k) for k in range(4)]
+            best = max(samples, key=lambda s: max((v * s[1]).mean() for v in variants))
+            (always if best[0] == "always" else never).add(i)
+    return always, never
+
+
+def circle_masks(rgb, parts, indices, rule, cell=64):
+    """Only the circle of a circle tile, leaving the tile's corners in their own colour.
+    Large circles span four tiles; their centres are found by testing every corner and edge-middle of the
+    circle tiles for a complete ring around it (a real centre has the ring all the way round). Frosted is
+    the disc up to the ring (ring included) and the four small dots in the outer corners. Circle tiles on
+    no large circle have a complete circle of their own: the disc around the tile's centre.
+    Returns {element: mask}."""
+    lum = rgb @ LUMA
+    h, w = lum.shape
+    yy, xx = np.mgrid[0:h, 0:w]
+
+    def dist(oy, ox):
+        return np.hypot((yy - oy + h / 2) % h - h / 2, (xx - ox + w / 2) % w - w / 2)
+
+    boxes = {}
+    for i in indices:
+        p = parts[i]
+        cy, cx = (int(round(v)) for v in ndimage.center_of_mass(p))
+        q = np.roll(p, (h // 2 - cy, w // 2 - cx), (0, 1))
+        ys, xs = np.where(q)
+        sy, sx = cy - h // 2, cx - w // 2
+        boxes[i] = (ys.min() + sy, ys.max() + 1 + sy, xs.min() + sx, xs.max() + 1 + sx)
+
+    ring = rule["quarter"]["ring"]
+    cands = set()
+    for y0, y1, x0, x1 in boxes.values():
+        for y in (y0, (y0 + y1) / 2, y1):
+            for x in (x0, (x0 + x1) / 2, x1):
+                cands.add((round(y / 4) * 4 % h, round(x / 4) * 4 % w))   # tiles sit on a coarse grid
+    centres = []
+    for oy, ox in cands:
+        d = dist(oy, ox)
+        on = lum[np.abs(d - (ring - 2.5)) < 1.5].mean()
+        inside = lum[np.abs(d - (ring - 9)) < 1.5].mean()
+        ang = np.arctan2((yy - oy + h / 2) % h - h / 2, (xx - ox + w / 2) % w - w / 2)
+        band = np.abs(d - (ring - 2.5)) < 1.5
+        # the ring must be there all the way round: brightest-ring contrast in every one of 8 sectors
+        sectors = [lum[band & (np.abs(np.angle(np.exp(1j * (ang - a0)))) < np.pi / 8)].mean() - inside
+                   for a0 in np.linspace(-np.pi, np.pi, 8, endpoint=False)]
+        if min(sectors) > 4 / 255 and on - inside > 8 / 255:      # ring brighter than inside, all the way round
+            centres.append((oy, ox))
+    big = np.zeros((h, w), bool)
+    off, rad = rule["quarter"].get("dot", (0, 0))
+    for oy, ox in centres:
+        big |= dist(oy, ox) <= ring
+        if rad:
+            for sy in (-1, 1):
+                for sx in (-1, 1):
+                    big |= dist(oy + sy * (cell - off), ox + sx * (cell - off)) <= rad
+    out = {}
+    for i, (y0, y1, x0, x1) in boxes.items():
+        p = parts[i]
+        if (p & big).sum() > 0.2 * p.sum():                 # part of a large circle
+            out[i] = p & big
+        elif "whole" in rule:                                # a complete circle of its own
+            out[i] = p & (dist((y0 + y1) / 2, (x0 + x1) / 2) <= rule["whole"]["ring"])
+    print(f"  {len(centres)} large circles", flush=True)
+    return out
+
+
+def medallions(rgb, grid, radius):
+    """Round medallions on the points where four triangles meet, found by their round edge: all the way
+    round, the colour just inside the circle differs from the colour just outside it."""
+    h, w = rgb.shape[:2]
+    c = h // grid
+    R = 2 * radius
+    yy, xx = np.mgrid[-R:R + 1, -R:R + 1]
+    d = np.hypot(yy, xx); ang = np.arctan2(yy, xx)
+    big = np.tile(rgb, (3, 3, 1))
+    scores = []
+    for gy in range(grid):
+        for gx in range(grid):
+            win = big[h + gy * c - R:h + gy * c + R + 1, w + gx * c - R:w + gx * c + R + 1]
+            diffs = []
+            for a0 in np.linspace(-np.pi, np.pi, 24, endpoint=False):
+                sec = np.abs(np.angle(np.exp(1j * (ang - a0)))) < np.pi / 24
+                diffs.append(np.abs(win[sec & (d > radius - 5) & (d < radius - 1)].mean(0) -
+                                    win[sec & (d > radius + 1) & (d < radius + 5)].mean(0)).sum())
+            scores.append((float(np.median(diffs)), gy * c, gx * c))
+    vals = np.array([v for v, _, _ in scores])
+    cut = max(2 * np.percentile(vals, 75), 0.1)        # medallions stand well clear of plain meeting points
+    found = np.zeros((h, w), bool)
+    Y, X = np.mgrid[0:h, 0:w]
+    n = 0
+    for v, oy, ox in scores:
+        if v > cut:
+            n += 1
+            found |= np.hypot((Y - oy + h / 2) % h - h / 2, (X - ox + w / 2) % w - w / 2) <= radius
+    return found, n
+
+
+def add_least_touching(g, parts, chosen, candidates, extra):
+    """Add `extra` more elements to a non-touching set: each time the one touching the fewest frosted
+    elements, and among those the farthest from them."""
+    chosen = list(chosen)
+    centres = [ndimage.center_of_mass(p) for p in parts]
+    h, w = parts[0].shape
+    for _ in range(extra):
+        def key(n):
+            touch = sum(1 for c in chosen if g.has_edge(n, c))
+            d = min(min(abs(centres[n][1] - centres[c][1]), w - abs(centres[n][1] - centres[c][1])) ** 2 +
+                    min(abs(centres[n][0] - centres[c][0]), h - abs(centres[n][0] - centres[c][0])) ** 2 for c in chosen)
+            return (-touch, d)
+        rest = [n for n in candidates if n not in chosen]
+        if not rest:
+            break
+        chosen.append(max(rest, key=key))
+    return chosen
+
+
+def frost(rgb, alpha, parts, chosen, colour, lift=1.15, solid=None):
     lum = rgb @ LUMA
     m = np.zeros(alpha.shape, bool)
     for i in chosen:
         m |= parts[i]
+    if solid is not None and solid.any():                            # solid frost: the frost colour itself
+        rgb = rgb.copy()
+        soft = ndimage.gaussian_filter(solid.astype(float), 0.8)[..., None]
+        rgb = rgb * (1 - soft) + colour[None, None, :] * soft
+        m &= ~solid
+        if not m.any():
+            return rgb
+        lum = rgb @ LUMA
     base = max(lum[m].mean(), 1e-3)
     shade = lum / base
     # on grey materials the frost colour is close to the stone itself; keep its hue but make it at
@@ -275,10 +447,24 @@ def main(work, out, colour="#948B83", preview=None):
         alpha = src[..., 3]
         parts = elements(rgb, alpha, method)
         g = touching(parts, reach=method.get("reach", 10))
-        cand = [i for i, p in enumerate(parts) if p.sum() >= method.get("min_frost", 0)]
-        chosen = most_spread(g, parts, cand)
-        res = np.dstack([frost(rgb, alpha, parts, chosen, colour), alpha])
-        print(f"{fid}: {len(parts)} elements, {len(cand)} frostable, {len(chosen)} frosted (none touching)", flush=True)
+        always, never = classify(rgb, parts, method["classes"]) if "classes" in method else (set(), set())
+        cand = [i for i, p in enumerate(parts) if p.sum() >= method.get("min_frost", 0) and i not in always | never]
+        if method.get("extra"):
+            chosen = most_spread(g, parts, cand)
+            chosen = add_least_touching(g, parts, chosen, cand, method["extra"])
+        else:
+            chosen = most_spread(g, parts, cand) if cand else []
+        chosen = sorted(set(chosen) | always)
+        masks = {i: parts[i] for i in chosen}
+        if "circles" in method:                                      # circle tiles: only their circles
+            masks.update(circle_masks(rgb, parts, sorted(always), method["circles"]))
+        extra = None
+        if "medallions" in method:
+            extra, n = medallions(rgb, method["grid"], method["medallions"]["radius"])
+            print(f"  {n} medallions frosted solid", flush=True)
+        res = np.dstack([frost(rgb, alpha, list(masks.values()), range(len(masks)), colour, solid=extra), alpha])
+        print(f"{fid}: {len(parts)} elements, {len(always)} always, {len(never)} never, {len(cand)} picked from, "
+              f"{len(chosen)} frosted", flush=True)
         if f["albedo"]:
             Image.fromarray((res * 255).round().astype("uint8")).save(
                 os.path.join(out, f"phrontisteries_cold_{fid}_albedo.png"))

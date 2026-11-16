@@ -22,7 +22,10 @@ The arguments are the frost colour, how strongly it washes over the wood (0–1)
 The Cold Floors (one per vanilla floor) use frosted copies of the game's floor textures: on each floor the most elements possible with no two touching (planks, flagstones, blocks, bricks, tiles, triangles, panels, strands or bar segments) are frosted, spread evenly, in the colour of the Cold Shelf's frosted boards. Floor textures are projected in world space, so each pattern runs across every floor piece (full, corner, edge, end, line, single).
 
 - `Cold/Texture/phrontisteries_cold_floor_sheet.png`: the game's 4x4 floor sheet (`FloorDiffuseSheet`) with the square of every floor that uses it frosted (wood, wicker, limestone, limestone block, clay brick, metal grate, wicker mesh). Those floors keep their square, bump map and tiling; their shader tint is baked into the copy and reset on the Cold Floor.
-- `Cold/Texture/phrontisteries_cold_<floor>_albedo.png`: frosted copies of the decorative floors' own textures (stone, clay, marble).
+- `Cold/Texture/phrontisteries_cold_<floor>_albedo.png`: frosted copies of the decorative floors' own textures, with rules of their own:
+  - decorative stone: only the circle of each large rosette (and its four corner dots) and the middle squares; the tiny mosaic tiles never
+  - decorative clay: only the circles: of each large circle (and its corner dots) and of the complete-circle tiles; the fleur tiles never
+  - marble: the dark triangles, and the round medallions where four triangles meet frosted solid
 
 ```
 python tools/art/extract_game_texture.py "<...>/aa/StandaloneWindows64" work FloorDiffuseSheet painted_stone_tile_diffuse painted_clay_tile_diffuse marble_floor_diffuse
