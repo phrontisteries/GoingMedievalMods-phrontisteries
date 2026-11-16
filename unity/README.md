@@ -32,6 +32,12 @@ The Cold Floor needs no build: it is tinted through the floor shader's own colou
 7. Copy the contents of `Exported/` into this repo's `recipes/<Mod>/AddressableAssets/` and rebuild: `.\MakeMod.ps1 -ModName <Mod>`. MakeMod sees the catalog, copies it to `Data\AddressableAssets`, and switches the building to the custom assets (`Set-ModelTexture` for the Cold Shelf, `Set-ModelMesh` for the Fish Farm).
 8. Test in game, then commit `recipes/<Mod>/AddressableAssets` and the rebuilt mod.
 
+## Builder fixes (unity/patches)
+
+Foxy Voxel's Addressable Builder (as of their June 2025 release) could freeze the editor: it saves the Addressables settings on every redraw and refreshes on focus, so two builder windows kept refreshing each other ("Not Responding"). Its **Refresh** button also dropped the request ("Skipping Refresh() - not in a valid Unity GUI event"). `unity/patches/AddressableBuilder.cs` and `AddressableWindowChecker.cs` fix both. Copy them over the files in the project's `Assets/FoxyVoxel/NSMedieval/Editor/`. If the editor is already frozen, end Unity in Task Manager and delete `Library/CurrentLayout-default.dwlt` before reopening.
+
+When **Build** asks whether to turn on Debug Build Layout, choose No.
+
 ## Notes
 
 - The models are `.obj`. Unity imports OBJ directly. Foxy Voxel's guide mentions FBX; the OBJ files are meant to be used as they are (see the mirroring note).

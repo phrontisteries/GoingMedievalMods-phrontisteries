@@ -1,3 +1,4 @@
 # Windows tooling: keep Windows line endings in the working tree.
 * text=auto eol=crlf
 *.png binary
+**/AddressableAssets/** binary
