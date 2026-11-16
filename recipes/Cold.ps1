@@ -49,6 +49,9 @@ $script:Cold = [ordered]@{
     # Edge pieces (border rails) of the Cold Floor: _ElementColor (vanilla clay: #735337), set to land on the
     # Cold Shelf's frosted-board shade in game (measured from an in-game screenshot).
     FloorEdgeColor          = "#6F8471"
+    # Build-menu group for Cold Floors. The game's sub-categories are a fixed list; NotInUse1-3 are spare
+    # slots the game itself never uses, so a mod can give Cold Floors a group of their own under Base.
+    FloorMenuGroup          = "NotInUse1"
     # In-world look: the game's own shelf model with a light-blue copy of its texture
     # (unity\Cold\Texture\phrontisteries_cold_shelf_albedo.png, made by tools\art\recolor_texture.py)
     ShelfTexture            = "phrontisteries_cold_shelf_albedo"
@@ -178,6 +181,7 @@ function Build-Cold_BaseBuildingRepository {
     $floorClone.iconPath = $Cold.BuildingId_Floor_Icon
     $floorClone | Add-Member -NotePropertyName defaultThermalModelID -NotePropertyValue $Cold.ThermalModelId -Force
     $floorClone.locKeys = @(Get-ColdLocKeys -Id $Cold.BuildingId_Floor_Id -InfoKey $vanillaFloor.locKeys[0].info)
+    if ($Cold.FloorMenuGroup) { $floorClone.buildingSubCategoryUI = $Cold.FloorMenuGroup }   # own build-menu group
     if (Test-ModAddressables "Cold" -Asset $Cold.FloorTexture) {
         Set-FloorTexture -Model $floorClone -Albedo $Cold.FloorTexture -Normal $Cold.FloorNormal   # frosted bricks, plain clay between
         Set-ShaderParam -Model $floorClone -Name "_ElementColor" -Value $Cold.FloorEdgeColor          # frosted edge rails

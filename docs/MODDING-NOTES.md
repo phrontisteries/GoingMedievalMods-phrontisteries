@@ -22,6 +22,9 @@ A mod folder holds `ModInfo.json`, `Preview.png` (640×360 or 1280×720, under 1
 - **Lists replace** the vanilla list. Add `#APPEND` or `#REMOVE` to the field name to add or remove items instead, for example `"unlocks#APPEND": [ { "unlockId": "cold_shelf" } ]`.
 - Files without a `repository` array (most of `Settings\`) replace the matching top-level fields.
 
+## Own build-menu group for a set of buildings
+The build menu groups buildings by `buildingSubCategoryUI`, a fixed list in the game's code (`NSMedieval.Types.BuildingSubCategoryUI`); a mod cannot add new values. The list has three spare values the game never uses: `NotInUse1`, `NotInUse2` and `NotInUse3`. Giving a mod's buildings one of these puts them in a group of their own (tested on 1.2.17: the Cold Floor got its own button under Base, shown at the end of the Base list, and saves with the floor already built loaded normally).
+
 ## Pitfalls found so far
 
 ### ModInfo.json tags must be a flat list of known tags (mod missing from the menu)
