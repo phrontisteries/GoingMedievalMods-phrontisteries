@@ -167,19 +167,5 @@
     "Polish": "Nowi osadnicy: do 1000 punktów tworzenia, 40 atutów i 20 pasji.",
     "Turkish": "Yeni yerleşimciler: en fazla 1000 oluşturma puanı, 40 özellik ve 20 tutku.",
     "Italian": "Nuovi coloni: fino a 1000 punti creazione, 40 tratti e 20 passioni."
-  },
-  "Urgent_Body": {
-    "English": "Burying, burning and stripping bodies move to Urgent Haul, so they get done first.",
-    "Chinese": "埋葬、焚烧和剥除尸体移至紧急搬运，优先完成。",
-    "French": "Enterrer, brûler et dépouiller les corps passent au transport urgent et sont faits en priorité.",
-    "Spanish": "Enterrar, quemar y despojar cuerpos pasan a Transporte urgente, así se hacen primero.",
-    "German": "Leichen begraben, verbrennen und ausziehen wird zu dringendem Transport und zuerst erledigt.",
-    "Russian": "Захоронение, сжигание и раздевание тел перенесены в срочную переноску и выполняются первыми.",
-    "Japanese": "遺体の埋葬・焼却・剥ぎ取りを緊急運搬に移し、優先して行います。",
-    "Portugese": "Enterrar, queimar e despir corpos passam para Transporte urgente e são feitos primeiro.",
-    "Korean": "시체 매장, 소각, 벗기기가 긴급 운반으로 옮겨져 먼저 처리됩니다.",
-    "Polish": "Grzebanie, palenie i rozbieranie ciał trafia do pilnego transportu, więc dzieje się najpierw.",
-    "Turkish": "Ceset gömme, yakma ve soyma Acil Taşıma'ya taşınır, böylece önce yapılır.",
-    "Italian": "Seppellire, bruciare e spogliare i corpi passano al Trasporto urgente e vengono fatti per primi."
   }
 }

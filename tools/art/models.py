@@ -218,26 +218,6 @@ def creation_book():
     return m
 
 
-def body_pyre():
-    """Urgent Haul - Bodies: a burning pyre of logs with a shovel in a fresh mound beside it."""
-    m = Model()
-    FLAME, FLAME_L, EARTH = (240, 120, 40), (255, 210, 90), (120, 84, 56)
-    for layer in range(3):                                                        # crossed log stack
-        y = 0.08 + layer * 0.14
-        for i in range(4):
-            off = -0.3 + i * 0.2
-            if layer % 2 == 0:
-                m.cylinder((off, y, 0), 0.07, 0.9, WOOD_D, seg=8, axis="z", top=WOOD_L)
-            else:
-                m.cylinder((0, y, off), 0.07, 0.9, WOOD_D, seg=8, axis="x", top=WOOD_L)
-    m.lathe((0, 0.4, 0), [(0.38, 0.0), (0.3, 0.3), (0.14, 0.6), (0.0, 0.85)], FLAME, seg=10)
-    m.lathe((0.04, 0.42, 0.04), [(0.2, 0.0), (0.14, 0.25), (0.0, 0.5)], FLAME_L, seg=8)
-    m.lathe((0.85, 0, -0.35), [(0.42, 0.0), (0.3, 0.12), (0.0, 0.2)], EARTH, seg=12)   # mound
-    m.box((0.85, 0.78, -0.35), (0.04, 0.7, 0.04), WOOD_L)                          # shovel handle
-    m.box((0.85, 0.32, -0.35), (0.22, 0.3, 0.04), IRON)                           # blade
-    return m
-
-
 def mushroom_cropfield():
     """Mushroom Cropfield: a dark soil plot with a blue rim, as the game's cropfield icons, growing a
     cluster of red- and tan-capped mushrooms like the game's own mushrooms."""

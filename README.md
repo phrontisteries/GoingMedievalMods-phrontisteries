@@ -21,7 +21,6 @@ Found a bug or have an idea? [Open an issue](https://github.com/phrontisteries/G
 | [More Creation Points](Mods/More_Creation_Points) | (local) | New settlers get up to 1000 creation points, 40 perks and 20 passions. |
 | [More Prisoners](Mods/More_Prisoners) | [3681706523](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706523) | Raiders surrender more readily; merchants trade more prisoners. |
 | [Mushroom Cropfield](Mods/Mushroom%20Cropfield) | [3458079756](https://steamcommunity.com/sharedfiles/filedetails/?id=3458079756) | Plantable, fast-spreading mushrooms that grow on any terrain. |
-| [Urgent Haul - Bodies](Mods/Urgent_Body) | (local) | Burying, burning and stripping bodies move to Urgent Haul, so they get done first. **Do not enable on 1.2.17:** a game bug with Job.json mods hangs the loading screen (see [modding notes](docs/MODDING-NOTES.md)). |
 
 To play one without the Workshop, copy its folder from `Mods\` to `Documents\Foxy Voxel\Going Medieval\Mods\` and enable it in the game's Mods menu.
 
