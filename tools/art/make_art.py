@@ -17,7 +17,7 @@ import model3d, models
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-GAME_VERSION = "1.2.17"
+GAME_VERSION = "1.2.20"
 S = 8                      # supersampling factor for smooth edges
 OUT = 4                    # outline width (at 64px scale, before supersampling)
 

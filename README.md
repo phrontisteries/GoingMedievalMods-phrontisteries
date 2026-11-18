@@ -2,7 +2,7 @@
 
 [Going Medieval](https://store.steampowered.com/app/1029780/Going_Medieval/) mods by **phrontisteries**, and the PowerShell tooling that builds them from the game's own data, so they can be rebuilt after every game update.
 
-Built for game version **1.2.17**.
+Built for game version **1.2.20**.
 
 ## The mods
 

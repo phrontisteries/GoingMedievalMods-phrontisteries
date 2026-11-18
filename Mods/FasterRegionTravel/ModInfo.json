@@ -3,8 +3,8 @@
   "name": "Faster Region Travel",
   "description": "English: Caravans cross the region map 100× faster, in every season.\n中文: 商队在区域地图上的行进速度提升100倍，四季皆然。\nFrançais: Les caravanes traversent la carte régionale 100× plus vite, en toute saison.\nEspañol: Las caravanas cruzan el mapa regional 100× más rápido, en cualquier estación.\nDeutsch: Karawanen durchqueren die Regionskarte 100× schneller, in jeder Jahreszeit.\nРусский: Караваны пересекают карту региона в 100 раз быстрее в любое время года.\n日本語: キャラバンが地域マップを100倍の速さで移動します（全季節）。\nPortuguês: As caravanas cruzam o mapa da região 100× mais rápido, em qualquer estação.\n한국어: 캐러밴이 계절에 관계없이 지역 지도를 100배 빠르게 이동합니다.\nPolski: Karawany przemierzają mapę regionu 100× szybciej, w każdej porze roku.\nTürkçe: Kervanlar bölge haritasını her mevsimde 100 kat daha hızlı geçer.\nItaliano: Le carovane attraversano la mappa della regione 100× più velocemente, in ogni stagione.\n\nSource, issues and suggestions: https://github.com/phrontisteries/GoingMedievalMods-phrontisteries",
   "author": "phrontisteries",
-  "modVersion": "1.5.2.17",
-  "gameVersion": "1.2.17",
+  "modVersion": "1.0.2.20",
+  "gameVersion": "1.2.20",
   "tags": [
     "General"
   ]

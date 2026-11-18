@@ -1,6 +1,6 @@
 # Modding notes
 
-What we have learned about how Going Medieval loads JSON mods, and the problems these tools guard against. Last checked against game version 1.2.17.
+What we have learned about how Going Medieval loads JSON mods, and the problems these tools guard against. Last checked against game version 1.2.20.
 
 ## Where things are
 
@@ -27,7 +27,7 @@ The build menu groups buildings by `buildingSubCategoryUI`, a fixed list in the 
 
 ## Pitfalls found so far
 
-### Mods that change GOAP/Job.json stop the game loading (game bug, 1.2.17)
+### Mods that change GOAP/Job.json stop the game loading (game bug, 1.2.17; still present in 1.2.20)
 Adding a mod's `Job.json` makes the game run `JobRepository.Deserialize()` again. That method rebuilds `jobsByType`, but adds to `jobsByPriority` (keyed by the job-priority profiles in `GOAP/JobPriority.json`, the first being `worker`) without clearing it, so the second run throws `ArgumentException: An item with the same key has already been added. Key: worker`. Enabled from the Mods menu, the change still applies; enabled at startup, the exception stops the mod loading sequence and the game hangs on the loading screen. Data mods cannot avoid it (the body/haul goals exist only in `Job.json`), so a mod that moves body hauling to Urgent Haul is not possible on 1.2.17. Reported to Foxy Voxel; until it is fixed, keep Job.json mods disabled. If the game is stuck: end it in Task Manager and set the mod's entry to `"enabled": false` under `globalSettings.modSaveSettings` in `%USERPROFILE%\AppData\LocalLow\Foxy Voxel\Going Medieval\global.config`.
 
 ### ModInfo.json tags must be a flat list of known tags (mod missing from the menu)
