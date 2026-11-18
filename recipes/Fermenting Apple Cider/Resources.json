@@ -3,7 +3,7 @@
     {
       "#template": "fermenting_mash",
       "id": "fermenting_apple_cider",
-      "iconPath": "apple_cider",
+      "iconPath": "phrontisteries_fermenting_apple_cider",
       "locKeys": [
         {
           "languageName": "English",

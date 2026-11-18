@@ -2,3 +2,5 @@
 *.before.json
 # Local overrides
 Settings.local.ps1
+__pycache__/
+*.pyc

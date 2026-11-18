@@ -166,7 +166,10 @@ function Get-NextModVersion {
     $gPatch = [int]$gParts[2]
     if (-not $ExistingModVersion) { $v = 1; return "$($gMajor).$($v).$($gMinor).$($gPatch)" } # First time: v = 1 → x.1.y.z
     $mParts = $ExistingModVersion.Split('.') # Existing: x.v.y.z
-    if ($mParts.Count -ne 4) { throw "ExistingModVersion '$ExistingModVersion' must be in format x.v.y.z" }
+    if ($mParts.Count -ne 4 -or ($mParts | Where-Object { $_ -notmatch '^\d+$' })) { # older scheme (e.g. "0.2"): start fresh
+        Write-Host "(old version '$ExistingModVersion' -> new scheme) " -NoNewline -ForegroundColor DarkYellow
+        return "$($gMajor).0.$($gMinor).$($gPatch)"
+    }
     $mMajor = [int]$mParts[0]
     $mV     = [int]$mParts[1]
     $mMinor = [int]$mParts[2]
@@ -206,8 +209,32 @@ function New-ModInfoObject {
     $finalId          = Use-ExistingOrDefault "id"          "$($Global:Author).$($ModName.ToLower() -replace ' ', '_')"
     $finalName        = Use-ExistingOrDefault "name"        $(Invoke-SpacesBeforeCaptialLetters $ModName)
     $finalDescription = Use-ExistingOrDefault "description" "$ModName mod for Going Medieval."
+    # recipes\Descriptions.json: one short line per language (the game shows one description to every player)
+    $descFile = Join-Path $Global:RecipesRoot "Descriptions.json"
+    if (Test-Path $descFile) {
+        $all = Read-JsonFile $descFile
+        $mine = $all.PSObject.Properties[$ModName]
+        if ($mine) {
+            $lines = foreach ($p in $mine.Value.PSObject.Properties) {
+                $label = if ($all._labels.PSObject.Properties[$p.Name]) { $all._labels.($p.Name) } else { $p.Name }
+                "$($label): $($p.Value)"
+            }
+            $finalDescription = ($lines -join "`n")
+        }
+    }
+    if ($Global:RepoUrl) { # Link to the source: read it, report issues, suggest changes (added once, kept at the end)
+        $finalDescription = ($finalDescription -replace '(\r?\n)*Source, issues and suggestions: \S+\s*$', '')
+        $finalDescription = "$finalDescription`n`nSource, issues and suggestions: $($Global:RepoUrl)"
+    }
     $finalAuthor      = Use-ExistingOrDefault "author"      $Global:Author
-    $finalTags        = Use-ExistingOrDefault "tags"        @("General")
+    # tags: a flat list of the game's ModTag names (NSMedieval.Modding.ModTag). Anything else stops the game from
+    # reading ModInfo.json, and the mod disappears from the Mods menu.
+    $validTags = @("General", "Localization", "Scenario", "Character", "Map")
+    $requested = @(@(Use-ExistingOrDefault "tags" @("General")) | ForEach-Object { $_ } | ForEach-Object { $_ } | Where-Object { $_ })
+    $finalTags = [string[]]@($requested | Where-Object { $validTags -contains $_ } | Select-Object -Unique)
+    $dropped = @($requested | Where-Object { $validTags -notcontains $_ })
+    if ($dropped) { Write-Warning "Dropped tag(s) the game does not know: $($dropped -join ', ') (valid: $($validTags -join ', '))" }
+    if ($finalTags.Count -eq 0) { $finalTags = [string[]]@("General") }
     $existingModVersion = $null
     if ($ExistingModInfo -and $ExistingModInfo.modVersion) {
         $existingModVersion = [string]$ExistingModInfo.modVersion
@@ -227,7 +254,7 @@ function New-ModInfoObject {
         author      = $finalAuthor
         modVersion  = $finalModVersion
         gameVersion = $finalGameVersion
-        tags        = ,$finalTags
+        tags        = $finalTags
     }
 }
 function Get-JSONGameFile{
@@ -239,6 +266,60 @@ function Get-JSONGameFile{
     $sourcePath = $found.FullName
     Write-Host "Found Source File" -NoNewline -ForegroundColor Green
     return (Read-JsonFile $sourcePath)
+}
+function Set-ShaderParam { # Sets a shader parameter (e.g. _FloorColorAdd, _BaseColor) wherever a model's variations use it.
+    param([Parameter(Mandatory=$true)][object]$Model, [Parameter(Mandatory=$true)][string]$Name, [Parameter(Mandatory=$true)][string]$Value)
+    $hits = 0
+    foreach ($list in @($Model.variationLists)) { foreach ($v in @($list.variations)) { foreach ($slot in @($v.slots)) {
+        if ($slot.slotType -eq 'ShaderParam' -and $slot.shaderParam.variableName -eq $Name) {
+            $key = if ($Value -like '#*') { 'colorValue' } else { 'floatValue' }
+            $slot.shaderParam | Add-Member -NotePropertyName $key -NotePropertyValue $Value -Force; $hits++
+        } } } }
+    if ($hits -eq 0) { Write-Warning "Shader parameter '$Name' not found on '$($Model.id)'" }
+}
+function Set-ModelMesh { # Points a model's mesh slots (baseMesh, LOD0, shadow caster) and albedo texture at custom assets.
+    param([Parameter(Mandatory=$true)][object]$Model, [Parameter(Mandatory=$true)][string]$Mesh, [string]$Texture)
+    foreach ($list in @($Model.variationLists)) { foreach ($v in @($list.variations)) { foreach ($slot in @($v.slots)) {
+        if ($slot.slotType -eq 'Mesh' -and $slot.slot -like 'baseMesh*') { $slot.value = $Mesh }
+        elseif ($Texture -and $slot.slotType -eq 'Texture' -and $slot.slot -eq 'albedo') { $slot.value = $Texture }
+        elseif ($Texture -and $slot.slotType -eq 'Texture' -and $slot.slot -eq 'reflection') { $slot.value = "" }
+    } } }
+}
+function Set-ModelTexture { # Points a model's albedo texture at a custom asset; mesh, reflection and shader settings stay vanilla.
+    param([Parameter(Mandatory=$true)][object]$Model, [Parameter(Mandatory=$true)][string]$Texture)
+    foreach ($list in @($Model.variationLists)) { foreach ($v in @($list.variations)) { foreach ($slot in @($v.slots)) {
+        if ($slot.slotType -eq 'Texture' -and $slot.slot -eq 'albedo') { $slot.value = $Texture }
+    } } }
+}
+function Test-ModAddressables { # True when recipes\<ModName>\AddressableAssets holds a built catalog (see unity\README.md);
+    # with -Asset, only when that catalog also contains the named asset (its address, e.g. a texture's file name).
+    param([Parameter(Mandatory=$true)][string]$ModName, [string]$Asset)
+    $catalogs = @(Get-ChildItem -Path (Join-Path (Join-Path $Global:RecipesRoot $ModName) "AddressableAssets") -Filter "catalog*.json" -File -ErrorAction SilentlyContinue)
+    if ($catalogs.Count -eq 0) { return $false }
+    if (-not $Asset) { return $true }
+    foreach ($c in $catalogs) {
+        $keys = [System.Text.Encoding]::UTF8.GetString([Convert]::FromBase64String((Read-JsonFile $c.FullName).m_KeyDataString))
+        if ($keys.Contains($Asset)) { return $true }
+    }
+    return $false
+}
+function Set-ShaderVector2 { # Sets a Vector2 shader parameter (e.g. _FloorSheetSize) wherever a model's variations use it.
+    param([Parameter(Mandatory=$true)][object]$Model, [Parameter(Mandatory=$true)][string]$Name, [double]$X, [double]$Y)
+    $hits = 0
+    foreach ($list in @($Model.variationLists)) { foreach ($v in @($list.variations)) { foreach ($slot in @($v.slots)) {
+        if ($slot.slotType -eq 'ShaderParam' -and $slot.shaderParam.variableName -eq $Name) {
+            $slot.shaderParam | Add-Member -NotePropertyName vector2Value -NotePropertyValue ([ordered]@{ x = $X; y = $Y }) -Force; $hits++
+        } } } }
+    if ($hits -eq 0) { Write-Warning "Shader parameter '$Name' not found on '$($Model.id)'" }
+}
+function Set-FloorTexture { # Gives a floor its own albedo (and normal) texture instead of a square of the shared floor sheet.
+    param([Parameter(Mandatory=$true)][object]$Model, [Parameter(Mandatory=$true)][string]$Albedo, [string]$Normal)
+    foreach ($list in @($Model.variationLists)) { foreach ($v in @($list.variations)) { foreach ($slot in @($v.slots)) {
+        if ($slot.slotType -eq 'Texture' -and $slot.slot -eq 'floorAlbedo') { $slot.value = $Albedo }
+        elseif ($Normal -and $slot.slotType -eq 'Texture' -and $slot.slot -eq 'floorNormal') { $slot.value = $Normal }
+    } } }
+    Set-ShaderVector2 -Model $Model -Name "_FloorSheetSize" -X 1 -Y 1      # the whole texture is the floor
+    Set-ShaderVector2 -Model $Model -Name "_FloorSheetOffset" -X 1 -Y 1    # as the game's decorative floors do
 }
 function Merge-WithTemplate { # Copy of the vanilla model, with the fields written in $Entry replacing the vanilla ones.
     param(
@@ -278,7 +359,7 @@ function New-Mod {
 
     $fn = Get-ModFunctionName $ModName
     $sourceDir = Join-Path $Global:RecipesRoot $ModName
-    $hasSource = Test-Path $sourceDir -PathType Container
+    $hasSource = @(Get-ChildItem -Path $sourceDir -Filter *.json -File -ErrorAction SilentlyContinue).Count -gt 0
 
     # Ensure and Load Mod specific functions and file details
     $modScript = Join-Path $Global:RecipesRoot "$($ModName).ps1"
@@ -370,8 +451,30 @@ function New-Mod {
     $license = Join-Path $PSScriptRoot "LICENSE"
     if (Test-Path $license) { Copy-Item -Path $license -Destination (Join-Path $modRoot "LICENSE.txt") -Force }
 
-    # Ensure Preview.png
+    # Custom icons: recipes\<ModName>\Sprites\*.png -> Data\Sprites (64x64, file name = the model's iconPath)
+    $spriteSource = Join-Path $sourceDir "Sprites"
+    if (Test-Path $spriteSource) {
+        $spriteDest = Join-Path $modRoot "Data\Sprites"
+        $null = New-Item -ItemType Directory -Force -Path $spriteDest
+        $sprites = @(Get-ChildItem -Path $spriteSource -Filter *.png -File)
+        foreach ($s in $sprites) { Copy-Item -Path $s.FullName -Destination $spriteDest -Force }
+        Write-Host "Copied $($sprites.Count) sprite(s) to 'Data\Sprites'" -ForegroundColor Green
+    }
+
+    # Custom meshes/textures built with Foxy Voxel's Unity project: recipes\<ModName>\AddressableAssets -> Data\AddressableAssets
+    $aaSource = Join-Path $sourceDir "AddressableAssets"
+    if (Test-Path $aaSource) {
+        $aaDest = Join-Path $modRoot "Data\AddressableAssets"
+        if (Test-Path $aaDest) { Remove-Item -Path $aaDest -Recurse -Force }
+        $null = New-Item -ItemType Directory -Force -Path $aaDest
+        Copy-Item -Path (Join-Path $aaSource "*") -Destination $aaDest -Recurse -Force
+        Write-Host "Copied built Addressables to 'Data\AddressableAssets'" -ForegroundColor Green
+    }
+
+    # Ensure Preview.png: recipes\<ModName>\Preview.png if the recipe has one, else keep the mod's, else the game's generic one
     $modPreview = Join-Path $modRoot "Preview.png"
+    $recipePreview = Join-Path $sourceDir "Preview.png"
+    if (Test-Path $recipePreview) { Copy-Item -Path $recipePreview -Destination $modPreview -Force }
     $genericPreview = Join-Path $Global:StreamingAssets "Modding\PreviewMod.png"
     if (-not (Test-Path $modPreview)) {
         if (-not (Test-Path $genericPreview)) { throw "Generic preview image not found at '$genericPreview'." }

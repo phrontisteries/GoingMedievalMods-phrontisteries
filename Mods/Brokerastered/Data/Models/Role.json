@@ -1,0 +1,208 @@
+{
+  "repository": [
+    {
+      "id": "broker",
+      "roleLevels": [
+        {
+          "level": 1,
+          "globalStatModifier": {
+            "globalStatId": "trade_influence",
+            "valueCap": 22,
+            "dailyAddValue": 3
+          },
+          "onAssignEffectorIds": [
+            "RoleBrokerLvl1Assign"
+          ],
+          "onRetractEffectorIds": [
+            "RoleBrokerLvl1Retract"
+          ],
+          "onRequirementsLostEffectors": [
+            "RoleBrokerLvl1ReqLost"
+          ],
+          "onRoleRoomEnterEffectors": [
+            "RoleBrokerlvl1RoomEnter"
+          ],
+          "onRoleRoomStayEffectors": [
+            "RoleBrokerlvl1RoomStay"
+          ],
+          "goalPreferences": [
+            {
+              "key": "TradingPreference",
+              "value": 5
+            },
+            {
+              "key": "CraftingPreference",
+              "value": 5
+            },
+            {
+              "key": "MiningPreference",
+              "value": 5
+            },
+            {
+              "key": "ArtPreference",
+              "value": 5
+            }
+          ],
+          "hoursRequirement": 0,
+          "skillRequirements": [
+            {
+              "key": 11,
+              "value": 10
+            }
+          ],
+          "roomRequirement": [
+            "treasury"
+          ],
+          "ownRoomRequirement": true
+        },
+        {
+          "level": 2,
+          "globalStatModifier": {
+            "globalStatId": "trade_influence",
+            "valueCap": 35,
+            "dailyAddValue": 3
+          },
+          "onAssignEffectorIds": [
+            "RoleBrokerLvl2Assign"
+          ],
+          "onRetractEffectorIds": [
+            "RoleBrokerLvl2Retract"
+          ],
+          "onRequirementsLostEffectors": [
+            "RoleBrokerLvl2ReqLost"
+          ],
+          "onRoleRoomEnterEffectors": [
+            "RoleBrokerlvl2RoomEnter"
+          ],
+          "onRoleRoomStayEffectors": [
+            "RoleBrokerlvl2RoomStay"
+          ],
+          "goalPreferences": [
+            {
+              "key": "TradingPreference",
+              "value": 5
+            },
+            {
+              "key": "CraftingPreference",
+              "value": 5
+            },
+            {
+              "key": "MiningPreference",
+              "value": 5
+            },
+            {
+              "key": "ArtPreference",
+              "value": 5
+            }
+          ],
+          "hoursRequirement": 192,
+          "skillRequirements": [
+            {
+              "key": 11,
+              "value": 15
+            }
+          ],
+          "roomRequirement": [
+            "treasury"
+          ],
+          "roomRequiredFurniture": [
+            {
+              "textKey": [
+                "building_name_war_chest"
+              ],
+              "buildings": [
+                "war_chest"
+              ],
+              "minCount": 1
+            }
+          ],
+          "ownRoomRequirement": true,
+          "globalRequiredStoredResources": [
+            {
+              "key": "gold_coin",
+              "value": 100
+            }
+          ]
+        },
+        {
+          "level": 3,
+          "globalStatModifier": {
+            "globalStatId": "trade_influence",
+            "valueCap": 75,
+            "dailyAddValue": 1
+          },
+          "onAssignEffectorIds": [
+            "RoleBrokerLvl3Assign"
+          ],
+          "onRetractEffectorIds": [
+            "RoleBrokerLvl3Retract"
+          ],
+          "onRequirementsLostEffectors": [
+            "RoleBrokerLvl3ReqLost"
+          ],
+          "onRoleRoomEnterEffectors": [
+            "RoleBrokerlvl3RoomEnter"
+          ],
+          "onRoleRoomStayEffectors": [
+            "RoleBrokerlvl3RoomStay"
+          ],
+          "goalPreferences": [
+            {
+              "key": "TradingPreference",
+              "value": 5
+            },
+            {
+              "key": "CraftingPreference",
+              "value": 5
+            },
+            {
+              "key": "MiningPreference",
+              "value": 5
+            },
+            {
+              "key": "ArtPreference",
+              "value": 5
+            }
+          ],
+          "hoursRequirement": 240,
+          "skillRequirements": [
+            {
+              "key": 11,
+              "value": 20
+            }
+          ],
+          "roomRequirement": [
+            "treasury"
+          ],
+          "roomRequiredFurniture": [
+            {
+              "textKey": [
+                "building_name_war_chest"
+              ],
+              "buildings": [
+                "war_chest"
+              ],
+              "minCount": 1
+            },
+            {
+              "textKey": [
+                "building_name_scales"
+              ],
+              "buildings": [
+                "scales"
+              ],
+              "minCount": 1
+            }
+          ],
+          "ownRoomRequirement": true,
+          "globalRequiredStoredResources": [
+            {
+              "key": "gold_coin",
+              "value": 250
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

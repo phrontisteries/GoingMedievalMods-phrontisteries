@@ -1,0 +1,100 @@
+{
+  "repository": [
+    {
+      "defaultHeight": [
+        100,
+        164,
+        178
+      ],
+      "heightFactor": {
+        "min": -8,
+        "max": 8
+      },
+      "heightNormalRange": {
+        "min": 160,
+        "max": 185
+      },
+      "weightNormalRange": {
+        "min": 23,
+        "max": 31
+      },
+      "weightCoefficientRange": {
+        "min": 17,
+        "max": 37
+      },
+      "ageRange": {
+        "min": 22,
+        "max": 70
+      },
+      "heightRange": {
+        "min": 100,
+        "max": 210
+      },
+      "weightRange": {
+        "min": 45,
+        "max": 120
+      },
+      "baseSkillCount": 85,
+      "npcSkillCount": 50,
+      "pseudonymChance": 25,
+      "pseudonymLimit": 25,
+      "maxCreationPoints": 1000,
+      "birthdayPerkChance": {
+        "min": 0.75,
+        "max": 0.25
+      },
+      "ageCategories": [
+        {
+          "ageCategory": {
+            "min": 18,
+            "max": 25
+          },
+          "possiblePerks": {
+            "min": 0,
+            "max": 40
+          }
+        },
+        {
+          "ageCategory": {
+            "min": 25,
+            "max": 35
+          },
+          "possiblePerks": {
+            "min": 1,
+            "max": 40
+          }
+        },
+        {
+          "ageCategory": {
+            "min": 35,
+            "max": 45
+          },
+          "possiblePerks": {
+            "min": 2,
+            "max": 40
+          }
+        },
+        {
+          "ageCategory": {
+            "min": 45,
+            "max": 200
+          },
+          "possiblePerks": {
+            "min": 3,
+            "max": 40
+          }
+        }
+      ],
+      "passions": [
+        {
+          "min": 2,
+          "max": 20
+        },
+        {
+          "min": 0,
+          "max": 20
+        }
+      ]
+    }
+  ]
+}

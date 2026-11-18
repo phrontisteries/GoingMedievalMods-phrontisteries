@@ -401,7 +401,7 @@
       "locKeys": [
         {
           "languageName": "English",
-          "name": "Pike (64 ~24H)",
+          "name": "Pike (32 ~24H)",
           "info": "resource_info_pike_fish"
         }
       ],
@@ -415,7 +415,7 @@
       "produced": [
         {
           "blueprintID": "pike_fish",
-          "amount": 64
+          "amount": 32
         }
       ],
       "recipe": [

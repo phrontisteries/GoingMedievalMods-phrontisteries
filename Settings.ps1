@@ -5,6 +5,9 @@
 # Unique identifier used in new mod ids (author.modname) and ModInfo.json "author".
 $Global:Author = if ($env:GM_AUTHOR) { $env:GM_AUTHOR } else { "phrontisteries" }
 
+# Public repository linked at the end of every mod description (leave empty for no link).
+$Global:RepoUrl = if ($null -ne $env:GM_REPO_URL) { $env:GM_REPO_URL } else { "https://github.com/phrontisteries/GoingMedievalMods-phrontisteries" }
+
 # The game's StreamingAssets folder (source of the vanilla JSON every recipe starts from).
 $Global:StreamingAssets = if ($env:GM_STREAMING_ASSETS) { $env:GM_STREAMING_ASSETS } else {
     "C:\Program Files (x86)\Steam\steamapps\common\Going Medieval\Going Medieval_Data\StreamingAssets"

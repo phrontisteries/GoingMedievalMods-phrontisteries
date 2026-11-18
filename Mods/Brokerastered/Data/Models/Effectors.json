@@ -1,0 +1,394 @@
+{
+  "repository": [
+    {
+      "id": "RoleBrokerLvl1Assign",
+      "effects#APPEND": [
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "TradingValue"
+            },
+            {
+              "key": "Multiplier",
+              "value": "2"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "TradingBargain"
+            },
+            {
+              "key": "Multiplier",
+              "value": "2"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "NegotiationMultiplier"
+            },
+            {
+              "key": "Multiplier",
+              "value": ".5"
+            }
+          ]
+        },
+        {
+          "type": "ModifyExperience",
+          "parameters": [
+            {
+              "key": "skillType",
+              "value": "Speechcraft"
+            },
+            {
+              "key": "min",
+              "value": "5000"
+            },
+            {
+              "key": "max",
+              "value": "6000"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "SpeechcraftXpGainMult"
+            },
+            {
+              "key": "Multiplier",
+              "value": "2"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "MineSpeed"
+            },
+            {
+              "key": "Multiplier",
+              "value": "2"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "MineAmount"
+            },
+            {
+              "key": "Multiplier",
+              "value": "2"
+            }
+          ]
+        },
+        {
+          "type": "ModifyExperience",
+          "parameters": [
+            {
+              "key": "skillType",
+              "value": "Mining"
+            },
+            {
+              "key": "min",
+              "value": "5000"
+            },
+            {
+              "key": "max",
+              "value": "6000"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "MiningXpGainMult"
+            },
+            {
+              "key": "Multiplier",
+              "value": "2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RoleBrokerLvl2Assign",
+      "effects#APPEND": [
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "TradingValue"
+            },
+            {
+              "key": "Multiplier",
+              "value": "4"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "TradingBargain"
+            },
+            {
+              "key": "Multiplier",
+              "value": "4"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "NegotiationMultiplier"
+            },
+            {
+              "key": "Multiplier",
+              "value": ".3"
+            }
+          ]
+        },
+        {
+          "type": "ModifyExperience",
+          "parameters": [
+            {
+              "key": "skillType",
+              "value": "Speechcraft"
+            },
+            {
+              "key": "min",
+              "value": "10000"
+            },
+            {
+              "key": "max",
+              "value": "12000"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "SpeechcraftXpGainMult"
+            },
+            {
+              "key": "Multiplier",
+              "value": "4"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "MineSpeed"
+            },
+            {
+              "key": "Multiplier",
+              "value": "4"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "MineAmount"
+            },
+            {
+              "key": "Multiplier",
+              "value": "4"
+            }
+          ]
+        },
+        {
+          "type": "ModifyExperience",
+          "parameters": [
+            {
+              "key": "skillType",
+              "value": "Mining"
+            },
+            {
+              "key": "min",
+              "value": "10000"
+            },
+            {
+              "key": "max",
+              "value": "12000"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "MiningXpGainMult"
+            },
+            {
+              "key": "Multiplier",
+              "value": "4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RoleBrokerLvl3Assign",
+      "effects#APPEND": [
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "TradingValue"
+            },
+            {
+              "key": "Multiplier",
+              "value": "6"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "TradingBargain"
+            },
+            {
+              "key": "Multiplier",
+              "value": "6"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "NegotiationMultiplier"
+            },
+            {
+              "key": "Multiplier",
+              "value": ".1"
+            }
+          ]
+        },
+        {
+          "type": "ModifyExperience",
+          "parameters": [
+            {
+              "key": "skillType",
+              "value": "Speechcraft"
+            },
+            {
+              "key": "min",
+              "value": "15000"
+            },
+            {
+              "key": "max",
+              "value": "18000"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "SpeechcraftXpGainMult"
+            },
+            {
+              "key": "Multiplier",
+              "value": "6"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "MineSpeed"
+            },
+            {
+              "key": "Multiplier",
+              "value": "6"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "MineAmount"
+            },
+            {
+              "key": "Multiplier",
+              "value": "6"
+            }
+          ]
+        },
+        {
+          "type": "ModifyExperience",
+          "parameters": [
+            {
+              "key": "skillType",
+              "value": "Mining"
+            },
+            {
+              "key": "min",
+              "value": "15000"
+            },
+            {
+              "key": "max",
+              "value": "18000"
+            }
+          ]
+        },
+        {
+          "type": "AttributeModify",
+          "parameters": [
+            {
+              "key": "Attribute",
+              "value": "MiningXpGainMult"
+            },
+            {
+              "key": "Multiplier",
+              "value": "6"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

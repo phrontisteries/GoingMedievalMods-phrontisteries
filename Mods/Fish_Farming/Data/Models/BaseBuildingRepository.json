@@ -1,7 +1,6 @@
 {
   "repository": [
     {
-      "iconPath": "saltpeter_pit",
       "prefabID": "base_production_structure",
       "previewPrefabID": "base_constructable_preview",
       "occlusionCullingMode": "CanBeOccludedOnly",
@@ -288,7 +287,8 @@
         }
       ],
       "flammability": 0.2,
-      "productionComponentID": "fish_farm"
+      "productionComponentID": "fish_farm",
+      "iconPath": "phrontisteries_fish_farm"
     }
   ]
 }

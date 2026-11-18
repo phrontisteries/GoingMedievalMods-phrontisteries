@@ -1,0 +1,575 @@
+{
+  "repository": [
+    {
+      "id": "philosophers_of_the_natural_order_archer_medium",
+      "itemGroups": [
+        {
+          "groupName": "head",
+          "isNoneChance": 0.1,
+          "hitPointsRange": {
+            "min": 0.4,
+            "max": 0.8
+          },
+          "equipment": [
+            "sturdy_iron_plate_helmet",
+            "sturdy_iron_mail_helmet",
+            "good_iron_plate_helmet",
+            "sturdy_iron_pigface_helmet",
+            "sturdy_steel_mail_helmet",
+            "good_linen_hood",
+            "sturdy_linen_chaperon",
+            "sturdy_leather_light_helmet",
+            "good_linen_chaperon"
+          ]
+        },
+        {
+          "groupName": "body",
+          "isNoneChance": 0.1,
+          "hitPointsRange": {
+            "min": 0.2,
+            "max": 0.6
+          },
+          "equipment": [
+            "flimsy_leather_winter_clothes",
+            "flimsy_wool_winter_clothes",
+            "sturdy_leather_winter_clothes",
+            "sturdy_wool_winter_clothes",
+            "flimsy_leather_summer_clothes",
+            "sturdy_leather_summer_clothes",
+            "sturdy_linen_winter_clothes",
+            "sturdy_linen_summer_clothes"
+          ]
+        },
+        {
+          "groupName": "bodyArmor",
+          "isNoneChance": 0,
+          "hitPointsRange": {
+            "min": 0.4,
+            "max": 0.8
+          },
+          "equipment": [
+            "flimsy_leather_light_armor",
+            "flimsy_iron_mail_armor",
+            "sturdy_leather_light_armor",
+            "sturdy_iron_mail_armor",
+            "sturdy_linen_gambeson_armor",
+            "sturdy_wool_gambeson_armor"
+          ]
+        },
+        {
+          "groupName": "weapon",
+          "isNoneChance": 0.2,
+          "hitPointsRange": {
+            "min": 0.4,
+            "max": 0.8
+          },
+          "equipment": [
+            "sturdy_wood_heater_shield",
+            "sturdy_wood_kite_shield",
+            "sturdy_wood_heater_shield",
+            "sturdy_wood_kite_shield",
+            "sturdy_wood_tower_shield",
+            "sturdy_iron_heater_shield",
+            "sturdy_iron_buckler_shield",
+            "sturdy_wood_buckler_shield"
+          ]
+        },
+        {
+          "groupName": "weapon",
+          "isNoneChance": 0,
+          "hitPointsRange": {
+            "min": 0.4,
+            "max": 0.8
+          },
+          "equipment": [
+            "sturdy_wood_war_bow",
+            "good_wood_short_bow",
+            "sturdy_wood_short_bow",
+            "sturdy_wood_light_crossbow",
+            "good_wood_light_crossbow",
+            "good_wood_crossbow"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "philosophers_of_the_natural_order_archer_hard",
+      "itemGroups": [
+        {
+          "groupName": "head",
+          "isNoneChance": 0,
+          "hitPointsRange": {
+            "min": 0.7,
+            "max": 0.9
+          },
+          "equipment": [
+            "good_iron_plate_helmet",
+            "good_iron_mail_helmet",
+            "fine_iron_plate_helmet",
+            "good_iron_pigface_helmet",
+            "good_steel_mail_helmet",
+            "sturdy_linen_chaperon",
+            "good_leather_light_helmet",
+            "fine_iron_pigface_helmet",
+            "good_linen_chaperon"
+          ]
+        },
+        {
+          "groupName": "body",
+          "isNoneChance": 0.1,
+          "hitPointsRange": {
+            "min": 0.2,
+            "max": 0.6
+          },
+          "equipment": [
+            "flimsy_leather_winter_clothes",
+            "flimsy_wool_winter_clothes",
+            "sturdy_leather_winter_clothes",
+            "sturdy_wool_winter_clothes",
+            "flimsy_leather_summer_clothes",
+            "sturdy_leather_summer_clothes",
+            "sturdy_linen_winter_clothes",
+            "sturdy_linen_summer_clothes"
+          ]
+        },
+        {
+          "groupName": "bodyArmor",
+          "isNoneChance": 0,
+          "hitPointsRange": {
+            "min": 0.7,
+            "max": 0.9
+          },
+          "equipment": [
+            "good_leather_light_armor",
+            "good_iron_mail_armor",
+            "fine_leather_light_armor",
+            "fine_iron_mail_armor",
+            "fine_linen_gambeson_armor",
+            "fine_wool_gambeson_armor",
+            "good_iron_plate_armor",
+            "good_silver_plate_armor",
+            "sturdy_steel_plate_armor"
+          ]
+        },
+        {
+          "groupName": "weapon",
+          "isNoneChance": 0.1,
+          "hitPointsRange": {
+            "min": 0.7,
+            "max": 0.9
+          },
+          "equipment": [
+            "good_wood_heater_shield",
+            "good_wood_kite_shield",
+            "good_wood_heater_shield",
+            "good_wood_kite_shield",
+            "good_wood_tower_shield",
+            "good_iron_heater_shield",
+            "good_iron_buckler_shield"
+          ]
+        },
+        {
+          "groupName": "weapon",
+          "isNoneChance": 0,
+          "hitPointsRange": {
+            "min": 0.7,
+            "max": 0.9
+          },
+          "equipment": [
+            "good_wood_short_bow",
+            "good_wood_war_bow",
+            "fine_wood_short_bow",
+            "good_wood_light_crossbow",
+            "fine_wood_light_crossbow",
+            "good_wood_crossbow",
+            "fine_wood_crossbow"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "philosophers_of_the_natural_order_archer_very_hard",
+      "itemGroups": [
+        {
+          "groupName": "head",
+          "isNoneChance": 0,
+          "hitPointsRange": {
+            "min": 0.9,
+            "max": 1
+          },
+          "equipment": [
+            "fine_iron_plate_helmet",
+            "fine_iron_mail_helmet",
+            "superior_iron_plate_helmet",
+            "fine_iron_pigface_helmet",
+            "fine_steel_mail_helmet",
+            "good_linen_chaperon",
+            "fine_leather_light_helmet",
+            "superior_iron_pigface_helmet",
+            "fine_linen_chaperon"
+          ]
+        },
+        {
+          "groupName": "body",
+          "isNoneChance": 0.1,
+          "hitPointsRange": {
+            "min": 0.2,
+            "max": 0.6
+          },
+          "equipment": [
+            "flimsy_leather_winter_clothes",
+            "flimsy_wool_winter_clothes",
+            "sturdy_leather_winter_clothes",
+            "sturdy_wool_winter_clothes",
+            "flimsy_leather_summer_clothes",
+            "sturdy_leather_summer_clothes",
+            "sturdy_linen_winter_clothes",
+            "sturdy_linen_summer_clothes"
+          ]
+        },
+        {
+          "groupName": "bodyArmor",
+          "isNoneChance": 0,
+          "hitPointsRange": {
+            "min": 0.9,
+            "max": 1
+          },
+          "equipment": [
+            "fine_leather_light_armor",
+            "fine_iron_mail_armor",
+            "superior_leather_light_armor",
+            "superior_iron_mail_armor",
+            "superior_linen_gambeson_armor",
+            "superior_wool_gambeson_armor",
+            "fine_iron_plate_armor",
+            "fine_silver_plate_armor",
+            "good_steel_plate_armor",
+            "flawless_leather_light_armor"
+          ]
+        },
+        {
+          "groupName": "weapon",
+          "isNoneChance": 0.1,
+          "hitPointsRange": {
+            "min": 0.9,
+            "max": 1
+          },
+          "equipment": [
+            "fine_wood_heater_shield",
+            "flawless_wood_kite_shield",
+            "fine_wood_heater_shield",
+            "fine_wood_kite_shield",
+            "fine_wood_tower_shield",
+            "fine_iron_heater_shield",
+            "fine_iron_buckler_shield",
+            "fine_iron_buckler_shield"
+          ]
+        },
+        {
+          "groupName": "weapon",
+          "isNoneChance": 0,
+          "hitPointsRange": {
+            "min": 0.9,
+            "max": 1
+          },
+          "equipment": [
+            "fine_wood_short_bow",
+            "fine_wood_war_bow",
+            "superior_wood_short_bow",
+            "fine_wood_light_crossbow",
+            "superior_wood_light_crossbow",
+            "fine_wood_crossbow",
+            "superior_wood_crossbow"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "society_of_fellows_archer_medium",
+      "itemGroups": [
+        {
+          "groupName": "head",
+          "isNoneChance": 0.1,
+          "hitPointsRange": {
+            "min": 0.4,
+            "max": 0.8
+          },
+          "equipment": [
+            "sturdy_linen_chaperon",
+            "sturdy_iron_mail_helmet",
+            "good_linen_mouthpiece",
+            "sturdy_linen_head_scarf",
+            "sturdy_steel_mail_helmet",
+            "sturdy_linen_hood",
+            "good_linen_hood",
+            "sturdy_leather_cap",
+            "sturdy_linen_headband",
+            "sturdy_leather_light_helmet"
+          ]
+        },
+        {
+          "groupName": "body",
+          "isNoneChance": 0.1,
+          "hitPointsRange": {
+            "min": 0.2,
+            "max": 0.6
+          },
+          "equipment": [
+            "flimsy_leather_winter_clothes",
+            "flimsy_wool_winter_clothes",
+            "sturdy_leather_winter_clothes",
+            "sturdy_wool_winter_clothes",
+            "flimsy_leather_summer_clothes",
+            "sturdy_leather_summer_clothes",
+            "sturdy_linen_winter_clothes",
+            "sturdy_linen_summer_clothes"
+          ]
+        },
+        {
+          "groupName": "bodyArmor",
+          "isNoneChance": 0,
+          "hitPointsRange": {
+            "min": 0.4,
+            "max": 0.8
+          },
+          "equipment": [
+            "flimsy_leather_light_armor",
+            "flimsy_iron_mail_armor",
+            "sturdy_leather_light_armor",
+            "sturdy_iron_mail_armor",
+            "sturdy_linen_gambeson_armor",
+            "sturdy_wool_gambeson_armor"
+          ]
+        },
+        {
+          "groupName": "weapon",
+          "isNoneChance": 0.2,
+          "hitPointsRange": {
+            "min": 0.4,
+            "max": 0.8
+          },
+          "equipment": [
+            "sturdy_wood_heater_shield",
+            "sturdy_wood_kite_shield",
+            "sturdy_wood_heater_shield",
+            "sturdy_wood_kite_shield",
+            "sturdy_wood_tower_shield",
+            "sturdy_iron_heater_shield",
+            "sturdy_iron_buckler_shield",
+            "sturdy_wood_buckler_shield"
+          ]
+        },
+        {
+          "groupName": "weapon",
+          "isNoneChance": 0,
+          "hitPointsRange": {
+            "min": 0.4,
+            "max": 0.8
+          },
+          "equipment": [
+            "sturdy_wood_war_bow",
+            "good_wood_short_bow",
+            "sturdy_wood_short_bow",
+            "sturdy_wood_light_crossbow",
+            "good_wood_light_crossbow",
+            "good_wood_crossbow"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "society_of_fellows_archer_hard",
+      "itemGroups": [
+        {
+          "groupName": "head",
+          "isNoneChance": 0,
+          "hitPointsRange": {
+            "min": 0.7,
+            "max": 0.9
+          },
+          "equipment": [
+            "good_linen_chaperon",
+            "good_iron_mail_helmet",
+            "fine_linen_mouthpiece",
+            "good_linen_head_scarf",
+            "good_steel_mail_helmet",
+            "good_linen_hood",
+            "fine_linen_hood",
+            "good_leather_cap",
+            "good_linen_headband",
+            "good_leather_light_helmet"
+          ]
+        },
+        {
+          "groupName": "body",
+          "isNoneChance": 0.1,
+          "hitPointsRange": {
+            "min": 0.2,
+            "max": 0.6
+          },
+          "equipment": [
+            "flimsy_leather_winter_clothes",
+            "flimsy_wool_winter_clothes",
+            "sturdy_leather_winter_clothes",
+            "sturdy_wool_winter_clothes",
+            "flimsy_leather_summer_clothes",
+            "sturdy_leather_summer_clothes",
+            "sturdy_linen_winter_clothes",
+            "sturdy_linen_summer_clothes"
+          ]
+        },
+        {
+          "groupName": "bodyArmor",
+          "isNoneChance": 0,
+          "hitPointsRange": {
+            "min": 0.7,
+            "max": 0.9
+          },
+          "equipment": [
+            "good_leather_light_armor",
+            "good_iron_mail_armor",
+            "fine_leather_light_armor",
+            "fine_iron_mail_armor",
+            "fine_linen_gambeson_armor",
+            "fine_wool_gambeson_armor",
+            "good_iron_plate_armor",
+            "good_silver_plate_armor",
+            "sturdy_steel_plate_armor"
+          ]
+        },
+        {
+          "groupName": "weapon",
+          "isNoneChance": 0.1,
+          "hitPointsRange": {
+            "min": 0.7,
+            "max": 0.9
+          },
+          "equipment": [
+            "good_wood_heater_shield",
+            "good_wood_kite_shield",
+            "good_wood_heater_shield",
+            "good_wood_kite_shield",
+            "good_wood_tower_shield",
+            "good_iron_heater_shield",
+            "good_iron_buckler_shield"
+          ]
+        },
+        {
+          "groupName": "weapon",
+          "isNoneChance": 0,
+          "hitPointsRange": {
+            "min": 0.7,
+            "max": 0.9
+          },
+          "equipment": [
+            "good_wood_short_bow",
+            "good_wood_war_bow",
+            "fine_wood_short_bow",
+            "good_wood_light_crossbow",
+            "fine_wood_light_crossbow",
+            "good_wood_crossbow",
+            "fine_wood_crossbow"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "society_of_fellows_archer_very_hard",
+      "itemGroups": [
+        {
+          "groupName": "head",
+          "isNoneChance": 0,
+          "hitPointsRange": {
+            "min": 0.9,
+            "max": 1
+          },
+          "equipment": [
+            "fine_linen_chaperon",
+            "fine_iron_mail_helmet",
+            "superior_linen_mouthpiece",
+            "fine_linen_head_scarf",
+            "fine_steel_mail_helmet",
+            "fine_linen_hood",
+            "superior_linen_hood",
+            "fine_leather_cap",
+            "fine_linen_headband",
+            "fine_leather_light_helmet"
+          ]
+        },
+        {
+          "groupName": "body",
+          "isNoneChance": 0.1,
+          "hitPointsRange": {
+            "min": 0.2,
+            "max": 0.6
+          },
+          "equipment": [
+            "flimsy_leather_winter_clothes",
+            "flimsy_wool_winter_clothes",
+            "sturdy_leather_winter_clothes",
+            "sturdy_wool_winter_clothes",
+            "flimsy_leather_summer_clothes",
+            "sturdy_leather_summer_clothes",
+            "sturdy_linen_winter_clothes",
+            "sturdy_linen_summer_clothes"
+          ]
+        },
+        {
+          "groupName": "bodyArmor",
+          "isNoneChance": 0,
+          "hitPointsRange": {
+            "min": 0.9,
+            "max": 1
+          },
+          "equipment": [
+            "fine_leather_light_armor",
+            "fine_iron_mail_armor",
+            "superior_leather_light_armor",
+            "superior_iron_mail_armor",
+            "superior_linen_gambeson_armor",
+            "superior_wool_gambeson_armor",
+            "fine_iron_plate_armor",
+            "fine_silver_plate_armor",
+            "good_steel_plate_armor",
+            "flawless_leather_light_armor"
+          ]
+        },
+        {
+          "groupName": "weapon",
+          "isNoneChance": 0.1,
+          "hitPointsRange": {
+            "min": 0.9,
+            "max": 1
+          },
+          "equipment": [
+            "fine_wood_heater_shield",
+            "flawless_wood_kite_shield",
+            "fine_wood_heater_shield",
+            "fine_wood_kite_shield",
+            "fine_wood_tower_shield",
+            "fine_iron_heater_shield",
+            "fine_iron_buckler_shield",
+            "fine_iron_buckler_shield"
+          ]
+        },
+        {
+          "groupName": "weapon",
+          "isNoneChance": 0,
+          "hitPointsRange": {
+            "min": 0.9,
+            "max": 1
+          },
+          "equipment": [
+            "fine_wood_short_bow",
+            "fine_wood_war_bow",
+            "superior_wood_short_bow",
+            "fine_wood_light_crossbow",
+            "superior_wood_light_crossbow",
+            "fine_wood_crossbow",
+            "superior_wood_crossbow"
+          ]
+        }
+      ]
+    }
+  ]
+}
