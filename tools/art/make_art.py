@@ -80,7 +80,8 @@ ICONS = {
     # Cold: icons are made from the game's own icons (make_cold_shelf_icon.py, make_cold_floor_icons.py)
     "Fish_Farming": {"phrontisteries_fish_farm": (models.fish_farm, "building", 33, 1.5)},
     "Fermenting Apple Cider": {"phrontisteries_fermenting_apple_cider": (models.fermenting_apple_cider, "item", 33, 0.5)},
-    "Mushroom Cropfield": {"phrontisteries_mushroom_cropfield": (models.mushroom_cropfield, "cropfield", 36, 0.5)},
+    # "Mushroom Cropfield" keeps a hand-made icon (in-game mushrooms on the game's default_stockpile icon,
+    # with a black outline): recipes/Mushroom Cropfield/Sprites/phrontisteries_mushroom_cropfield.png
 }
 ICON_SIZE = 128   # the game's own icons are 128x128
 
@@ -219,6 +220,20 @@ def _floor_tile(model, origin, vanilla, frosted, tiling, n=40):
             model.quad((x0, 0, z0), (x0 + 1 / n, 0, z0), (x0 + 1 / n, 0, z0 + 1 / n), (x0, 0, z0 + 1 / n), col)
 
 
+def mushroom_preview_art(size=400):
+    """The game's mature mushrooms, cut out of an in-game screenshot (assets/mushrooms_cutout.png),
+    with the same black outline as the build-menu icon."""
+    cut = Image.open(os.path.join(os.path.dirname(__file__), "assets", "mushrooms_cutout.png")).convert("RGBA")
+    S = 2; W = size * S
+    w = int(W * 0.98); h = round(w * cut.height / cut.width)
+    cut = cut.resize((w, h), Image.LANCZOS)
+    layer = Image.new("RGBA", (W, W), (0, 0, 0, 0)); layer.paste(cut, ((W - w) // 2, (W - h) // 2))
+    ring = layer.getchannel("A").filter(ImageFilter.MaxFilter(2 * 3 * S + 1))
+    out = Image.new("RGBA", (W, W), (0, 0, 0, 0)); out.putalpha(ring)
+    out.alpha_composite(layer)
+    return out.resize((size, size), Image.LANCZOS)
+
+
 def cold_preview_art(size=400):
     from PIL import Image as I
     work = ART_WORK
@@ -319,7 +334,7 @@ PREVIEWS = {   # mod -> (title, lines, art, gradient top, gradient bottom)
     "More_Creation_Points": ("More Creation Points", ["Settler creation: up to 1000 points, 40 perks and 20 passions."],
                       lambda: render_art(models.creation_book, "building", 400), (70, 60, 96), (22, 18, 34)),
     "Mushroom Cropfield": ("Mushroom Cropfield", ["Mushrooms grow in cropfields (Agriculture\u00a0I) on any terrain, from 0 to 45\u00a0°C.", "No blight; 10× nutrition; spreads fast.", "Buy your first mushrooms from traders."],
-                           lambda: render_art(models.mushroom_cropfield, "building", 400), (84, 50, 64), (30, 16, 24)),
+                           mushroom_preview_art, (84, 50, 64), (30, 16, 24)),
     "Heavy Crossbow Sniper": ("Heavy\u00a0Crossbow Sniper", ["360 armour-piercing damage, 45\u00a0m range, perfect accuracy.", "Fast reload, no wear, full cover; NPCs no longer carry it."],
                               lambda: render_art(models.heavy_crossbow, "building", 400), (52, 66, 86), (16, 22, 32)),
 }

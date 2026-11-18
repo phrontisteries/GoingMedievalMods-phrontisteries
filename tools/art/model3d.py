@@ -19,15 +19,18 @@ class Model:
     def __init__(self):
         self.tris = []      # (v0, v1, v2) as np arrays
         self.cols = []      # (r, g, b) 0..255 per triangle
+        self.soft = []      # per triangle: True = only lightly shaded (keeps pale parts pale)
 
     def add(self, other, offset=(0, 0, 0)):
         o = np.array(offset, float)
         for t, c in zip(other.tris, other.cols):
             self.tris.append(tuple(v + o for v in t)); self.cols.append(c)
+        self.soft += list(getattr(other, "soft", [])) + [False] * (len(other.tris) - len(getattr(other, "soft", [])))
         return self
 
-    def tri(self, a, b, c, col):
+    def tri(self, a, b, c, col, soft=False):
         self.tris.append((np.array(a, float), np.array(b, float), np.array(c, float))); self.cols.append(col)
+        self.soft += [False] * (len(self.tris) - 1 - len(self.soft)) + [soft]
 
     def quad(self, a, b, c, d, col):
         self.tri(a, b, c, col); self.tri(a, c, d, col)
@@ -147,6 +150,9 @@ def rasterize(model, size, yaw=-38, pitch=33, margin=0.12, ss=4, fit=None, proj=
     rim = (1 - np.clip(ncam[:, 2], 0, 1))[:, None] ** 2.2
     up = np.clip(n[:, 1], 0, 1)[:, None]
     shade = cols * (AMB_COL + KEY_COL * diff + 0.10 * up) + RIM_COL * rim * 0.35
+    if any(getattr(model, "soft", [])):
+        soft = np.array(list(model.soft) + [False] * (len(model.tris) - len(model.soft)))[:, None]
+        shade = np.where(soft, cols * (0.86 + 0.14 * diff), shade)
     shade = np.clip(shade, 0, 1)
 
     color = np.zeros((W, W, 3)); alpha = np.zeros((W, W)); zbuf = np.full((W, W), -1e9)
