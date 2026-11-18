@@ -1,6 +1,6 @@
 # Graphics
 
-Branch `1.2.20` (formerly `1.2.17`) explores giving the mods their own art. Everything here is drawn from scratch (no game assets), so it is covered by the repo's MIT license.
+Branch `1.2.20` (formerly `1.2.17`) explores giving the mods their own art. Most of it is drawn from scratch and covered by the repo's MIT license. The exceptions are made from the game's own art and stay Foxy Voxel's: the Cold textures, icons and preview, and the Mushroom Cropfield icon and preview (see the License section of the README).
 
 ## What the game supports
 
