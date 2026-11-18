@@ -110,6 +110,14 @@ A mod can use both. A `Build-` function wins over a source file with the same na
 
 Script files are saved as UTF-8 **with** a BOM so Windows PowerShell 5.1 reads them correctly. Keep it when editing (VS Code: "UTF-8 with BOM"). Mod JSON is written as UTF-8 without a BOM through `Write-JsonFile` in `Settings.ps1`; use it (not `ConvertTo-Json | Out-File`) in new tools so 5.1 and 7 give the same bytes.
 
+## Releasing
+
+Merging a pull request into `main` publishes a release automatically (`.github/workflows/release.yml`):
+- **Tag:** `v` plus the game version from "Built for game version" above, e.g. `v1.2.20`.
+- **Notes:** taken from `docs/releases/<version>.md`, or from the pull request's description if that file doesn't exist.
+- **Download:** `GoingMedievalMods-<version>.zip`, holding every mod folder.
+- **Repeat merges:** if that version already has a release, nothing is published, so later merges for the same game version leave it unchanged.
+
 ## License
 
 Everything in this repository is released under the [MIT License](LICENSE): the tooling, the recipes and the mods. The exceptions are images made from the game's own art, which stays Foxy Voxel's: the textures in `unity/Cold/Texture/` and the bundles built from them (recoloured game textures); the Cold build-menu icons in `recipes/Cold/Sprites/` (recoloured game icons) and the Cold preview (drawn with game textures); and the Mushroom Cropfield icon, preview and `tools/art/assets/mushrooms_cutout.png` (the game's mushrooms, cut from an in-game screenshot, on the game's stockpile icon). Every built mod folder carries a copy as `LICENSE.txt`. Going Medieval and its game data remain the property of Foxy Voxel / Mythwright; see their [modding policy](https://foxyvoxel.io/2025/03/13/modding-guide-policy/) before publishing.

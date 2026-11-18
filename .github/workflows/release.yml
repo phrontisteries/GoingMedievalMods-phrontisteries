@@ -1,0 +1,58 @@
+# Publishes a GitHub release whenever a pull request is merged into main.
+#   Version: the game version in README.md ("Built for game version **x.y.z**"); the tag is vx.y.z.
+#   Notes:   docs/releases/<version>.md if it exists, otherwise the pull request's description.
+#   Asset:   GoingMedievalMods-<version>.zip with every mod folder from Mods/.
+# If the tag already exists (a second merge for the same game version), nothing is published.
+name: Release on merge to main
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
+
+      - name: Read the game version
+        id: ver
+        run: |
+          v=$(grep -oP 'Built for game version \*\*\K[0-9]+\.[0-9]+\.[0-9]+' README.md | head -1)
+          if [ -z "$v" ]; then echo "::error::No game version found in README.md"; exit 1; fi
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+          if git ls-remote --exit-code --tags origin "refs/tags/v$v" >/dev/null; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Release v$v already exists; nothing to publish."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Release notes
+        if: steps.ver.outputs.exists == 'false'
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          f="docs/releases/${{ steps.ver.outputs.version }}.md"
+          if [ -f "$f" ]; then cp "$f" notes.md; else printf '%s\n' "$PR_BODY" > notes.md; fi
+
+      - name: Zip the mods
+        if: steps.ver.outputs.exists == 'false'
+        run: cd Mods && zip -qr "../GoingMedievalMods-${{ steps.ver.outputs.version }}.zip" .
+
+      - name: Publish
+        if: steps.ver.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          v="${{ steps.ver.outputs.version }}"
+          gh release create "v$v" "GoingMedievalMods-$v.zip" \
+            --target "${{ github.event.pull_request.merge_commit_sha }}" \
+            --title "$v" --notes-file notes.md
