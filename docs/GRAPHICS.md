@@ -1,6 +1,6 @@
 # Graphics
 
-Branch `1.2.17` explores giving the mods their own art. Everything here is drawn from scratch (no game assets), so it is covered by the repo's MIT license.
+Branch `1.2.20` (formerly `1.2.17`) explores giving the mods their own art. Everything here is drawn from scratch (no game assets), so it is covered by the repo's MIT license.
 
 ## What the game supports
 
