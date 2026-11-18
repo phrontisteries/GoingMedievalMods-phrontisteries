@@ -11,14 +11,14 @@ Found a bug or have an idea? [Open an issue](https://github.com/phrontisteries/G
 | Mod | Workshop | What it does |
 |---|---|---|
 | [Better_Animals](Mods/Better_Animals) | [3681706355](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706355) | All animals can be tamed, penned, trained, haul and attack; 100x carrying; population caps; simpler diets; cat pest control; settlers carry more. |
-| [Brokerastered](Mods/Brokerastered) | (local) | The Broker trades, bargains and negotiates better, mines faster and more, and prefers trade, crafting, mining and art. |
+| [Brokerastered](Mods/Brokerastered) | [3841980884](https://steamcommunity.com/sharedfiles/filedetails/?id=3841980884) | The Broker trades, bargains and negotiates better, mines faster and more, and prefers trade, crafting, mining and art. |
 | [Cold](Mods/Cold) | [3681706554](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706554) | Cold Shelf (10 piles, actively cooled), a Cold Floor of every floor material in their own build group, adjusted temperature thresholds. |
 | [Faster Region Travel](Mods/FasterRegionTravel) | [3681708275](https://steamcommunity.com/sharedfiles/filedetails/?id=3681708275) | Caravans cross the region map 100x faster. |
 | [Fermenting Apple Cider](Mods/Fermenting%20Apple%20Cider) | [3681708241](https://steamcommunity.com/sharedfiles/filedetails/?id=3681708241) | The fermentation station makes apple cider. |
 | [Fine Clothing Worker](Mods/Fine_Clothing_Worker) | [3681706422](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706422) | Settlers in Superior/Flawless apparel work, walk, rest and fight better. |
 | [Fish Farming](Mods/Fish_Farming) | [3681706482](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706482) | A fish farm that breeds trout, pike and eel (unlocked with barrel making). |
 | [Heavy Crossbow Sniper](Mods/Heavy%20Crossbow%20Sniper) | [3458906692](https://steamcommunity.com/sharedfiles/filedetails/?id=3458906692) | The heavy crossbow becomes a long-range sniper weapon (360 armor-piercing damage, 45 m, perfect accuracy, fast reload, full cover); NPCs no longer spawn with it. |
-| [More Creation Points](Mods/More_Creation_Points) | (local) | New settlers get up to 1000 creation points, 40 perks and 20 passions. |
+| [More Creation Points](Mods/More_Creation_Points) | [3841981912](https://steamcommunity.com/sharedfiles/filedetails/?id=3841981912) | New settlers get up to 1000 creation points, 40 perks and 20 passions. |
 | [More Prisoners](Mods/More_Prisoners) | [3681706523](https://steamcommunity.com/sharedfiles/filedetails/?id=3681706523) | Raiders surrender more readily; merchants trade more prisoners. |
 | [Mushroom Cropfield](Mods/Mushroom%20Cropfield) | [3458079756](https://steamcommunity.com/sharedfiles/filedetails/?id=3458079756) | Plantable, fast-spreading mushrooms that grow on any terrain. |
 
